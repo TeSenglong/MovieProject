@@ -20,3 +20,6 @@
   height: 100%;
   object-fit: cover;
 }
+::-webkit-scrollbar-thumb{
+  background: linear-gradient(blue,white);
+}

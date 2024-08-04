@@ -24,33 +24,33 @@ export default function PopularSwiper() {
     return (
         <>
       <Swiper
-        slidesPerView={1}
+        // slidesPerView={1}
         spaceBetween={0}
         pagination={{
           clickable: true,
         }}
         breakpoints={{
-            '@0.00': {
-              slidesPerView: 1,
-              spaceBetween: 10,
-            },
-            '@0.75': {
-              slidesPerView: 2,
-              spaceBetween: 0,
-            },
-            '@1.00': {
-              slidesPerView: 3,
-              spaceBetween: 1,
-            },
-            '@1.50': {
-              slidesPerView: 4,
-              spaceBetween: 0,
-            },
-            '@2.00': {
-              slidesPerView: 5,
-              spaceBetween: 0,
-            },
-          }}
+          340: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          640: {
+            slidesPerView: 3,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 4,
+            spaceBetween: 40,
+          },
+          1024: {
+            slidesPerView: 5,
+            spaceBetween: 50,
+          },
+          1500: {
+            slidesPerView: 6,
+            spaceBetween: 50,
+          },
+        }}
         modules={[Pagination]}
         className="mySwiper"
       >
@@ -58,14 +58,14 @@ export default function PopularSwiper() {
                     movie.map((products) => 
 
 
-                        <SwiperSlide>
-                            <div className="w-72 flex-none transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110  duration-300  rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                        <SwiperSlide className='flex justify-center ' >
+                            <div className="w-52 flex-none transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110  duration-300  rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                                 <a className='' href="#">
-                                    <img className="rounded-t-lg " src={`https://image.tmdb.org/t/p/w500${products.poster_path}`} alt={products.title} />
+                                    <img className=" " src={`https://image.tmdb.org/t/p/w500${products.poster_path}`} alt={products.title} />
                                 </a>
                                 <div className="p-5 text-center">
                                     <a href="#">
-                                        <h5 className="mb-2 text-center text-xl font-bold tracking-tight text-white/75 dark:text-white">{products.title}</h5>
+                                        <h5 className="mb-2 text-center text-base font-bold tracking-tight text-white/75 dark:text-white">{products.title}</h5>
                                     </a>
                                     <p className="mb-3 font-normal text-gray-100/50 dark:text-gray-400">{products.release_date}</p>
 

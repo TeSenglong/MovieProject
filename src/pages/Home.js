@@ -29,13 +29,17 @@ export default function Home() {
 
    <MainContent/>
        
-<section className='mt-20 ' >
     <h2 className='text-2xl ml-10 mt-5 text-white mb-2' >Popular Movies</h2>
+<section className='mt-20 w-11/12 m-auto flex' >
     <PopularSwiper/>
 </section>
-<section>
-<h2 className='text-2xl ml-10 mt-5 text-white mb-2' >Top Rate Movies</h2>
+<h2 className='text-2xl ml-10 mt-5 text-white mb-2 ' >Top Rate Movies</h2>
+<section className=' ' >
+<div className='w-11/12  hide-scrollbar m-auto gap-2'>
+<div className='flex flex-nowrap mt-10 gap-2' >
     <ToprateMovie/>
+</div>
+</div>
 </section>
     </main>
     

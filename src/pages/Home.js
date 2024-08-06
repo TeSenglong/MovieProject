@@ -15,33 +15,42 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import MainContent from '../components/MainContent';
 
 export default function Home() {
-    const [movie, setmovie]=useState([]);
-    useEffect(()=>{
+    const [movie, setmovie] = useState([]);
+    useEffect(() => {
         products()
-        .then((res)=>{
-            setmovie(res.results)
-            console.log('nananan',movie.poster_path)
-        })
-    },[])
-  return (
-    
-    <main className='bg-gray-900'>
+            .then((res) => {
+                setmovie(res.results)
+                console.log('nananan', movie.poster_path)
+            })
+    }, [])
+    return (
 
-   <MainContent/>
-       
-    <h2 className='text-2xl ml-10 mt-5 text-white mb-2' >Popular Movies</h2>
-<section className='mt-20 w-11/12 m-auto flex' >
-    <PopularSwiper/>
-</section>
-<h2 className='text-2xl ml-10 mt-5 text-white mb-2 ' >Top Rate Movies</h2>
-<section className=' ' >
-<div className='w-11/12  hide-scrollbar m-auto gap-2'>
-<div className='flex flex-nowrap mt-10 gap-2' >
-    <ToprateMovie/>
-</div>
-</div>
-</section>
-    </main>
-    
-  )
+        <main className='bg-gray-900'>
+            <section className=''>
+                <MainContent />
+            </section>
+
+
+            <h2 className='text-2xl ml-10 mt-5 text-white mb-2' >Popular Movies</h2>
+            <section className=' ' >
+                <div className='w-11/12  hide-scrollbar m-auto gap-2'>
+                    <div className='flex flex-nowrap mt-10 gap-2' >
+                    <PopularSwiper />
+                    </div>
+                </div>
+            </section>
+
+                
+        
+            <h2 className='text-2xl ml-10 mt-5 text-white mb-2 ' >Top Rate Movies</h2>
+            <section className=' ' >
+                <div className='w-11/12  hide-scrollbar m-auto gap-2'>
+                    <div className='flex flex-nowrap mt-10 gap-2' >
+                        <ToprateMovie />
+                    </div>
+                </div>
+            </section>
+        </main>
+
+    )
 }

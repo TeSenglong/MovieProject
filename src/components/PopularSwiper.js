@@ -8,7 +8,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/free-mode';
 
 // import required modules
-import { FreeMode, Pagination } from 'swiper/modules';
+import { FreeMode, Navigation, Pagination } from 'swiper/modules';
 import Card, { SwiperCard } from './Card';
 import products from '../services/products';
 
@@ -21,90 +21,28 @@ export default function PopularSwiper() {
                 console.log(movie)
             })
     }, [])
+
     return (
-        <>
-      <Swiper
-        // slidesPerView={1}
-        spaceBetween={0}
-        pagination={{
-          clickable: true,
-        }}
-        breakpoints={{
-          340: {
-            slidesPerView: 2,
-            spaceBetween: 20,
-          },
-          640: {
-            slidesPerView: 3,
-            spaceBetween: 20,
-          },
-          768: {
-            slidesPerView: 4,
-            spaceBetween: 40,
-          },
-          1024: {
-            slidesPerView: 5,
-            spaceBetween: 50,
-          },
-          1500: {
-            slidesPerView: 6,
-            spaceBetween: 50,
-          },
-        }}
-        modules={[Pagination]}
-        className="mySwiper"
-      >
-                {
-                    movie.map((products) => 
-
-
-                        <SwiperSlide className='flex justify-center ' >
-                            <div className="w-52 flex-none transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110  duration-300  rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                                <a className='' href="#">
-                                    <img className=" " src={`https://image.tmdb.org/t/p/w500${products.poster_path}`} alt={products.title} />
-                                </a>
-                                <div className="p-5 text-center">
-                                    <a href="#">
-                                        <h5 className="mb-2 text-center text-base font-bold tracking-tight text-white/75 dark:text-white">{products.title}</h5>
-                                    </a>
-                                    <p className="mb-3 font-normal text-gray-100/50 dark:text-gray-400">{products.release_date}</p>
-
-                                </div>
-                            </div>
-                        </SwiperSlide>
-                    )
-                    }
-
-            </Swiper>
-        </>
+      <>
+  
+        {
+          movie.map((products) =>
+            <div className="w-36 sm:w-44 md:w-52 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-95  duration-300 border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+              <a href="#">
+                <img className="rounded-t-lg h-52 sm:h-64 md:h-72 w-full" src={`https://image.tmdb.org/t/p/w500${products.poster_path}`} alt="" />
+              </a>
+              <div className="text-center">
+                <a href="#">
+                  <h5 className="mb-2 text-xs sm:text-sm md:text-base mt-2  tracking-tight text-gray-100 dark:text-white">{products.title}</h5>
+                </a>
+              </div>
+            </div>
+          )
+        }
+  
+  
+      </>
     );
-}
+  }
+  
 
-
-
-//   return (
-// <>
-// <Swiper
-//         slidesPerView={4}
-//         spaceBetween={10}
-//         grabCursor={true}
-//         modules={[Pagination, Autoplay, Navigation]}
-//         Autoplay={{
-//             delay: 3000,
-//             disableOnInteraction: false
-//         }}
-//         navigation={true}
-//  >
-//     {
-//         movie.map((products,index)=><SwiperSlide>
-//             <Card
-//             key={index}
-//             data={products}
-//             />
-//         </SwiperSlide>)
-//     }
-
-// </Swiper>
-// </>
-//   )
-// }

@@ -12,6 +12,7 @@ import { FreeMode, Navigation, Pagination } from 'swiper/modules';
 import Card, { SwiperCard } from './Card';
 import products from '../services/products';
 
+
 export default function PopularSwiper() {
     const [movie, setmovie] = useState([]);
     useEffect(() => {
@@ -28,7 +29,7 @@ export default function PopularSwiper() {
         {
           movie.map((products) =>
             <div className="w-36 sm:w-44 md:w-52 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-95  duration-300 border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-              <a href="#">
+              <a to={`/onemovie${products.name}`}>
                 <img className="rounded-t-lg h-52 sm:h-64 md:h-72 w-full" src={`https://image.tmdb.org/t/p/w500${products.poster_path}`} alt="" />
               </a>
               <div className="text-center">

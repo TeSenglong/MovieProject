@@ -15,10 +15,8 @@ function App() {
     <Routes>
       {/* <Route path='/' element={<Home/>} /> */}
       {/* <Route path='/Navbar' element={<Navbar />} /> */}
-      <Route path='/' element={<MainlayOut/>}>
-        <Route path='/' element={<Home/>}/>
-        <Route path='/movielist' element={<MovieList/>} />
-      </Route>
+      {/* <Route path='/' element={<Home/>}/> */}
+      <Route path='/' element={<MainlayOut/>}/>
     </Routes>
 
   );
@@ -26,9 +24,12 @@ function App() {
 export default App;
  
 function MainlayOut(){
+  return(
+
   <>
   <Navbar/>
-  <Outlet/>
+  <Home/>
   <Footer/>
   </>
+  )
 }

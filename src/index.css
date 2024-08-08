@@ -20,7 +20,7 @@
 .hide-scrollbar{
     display: flex;
     overflow-x: scroll;
-    scrollbar-color:rgba(12, 222, 250, 1) rgba(245, 245, 245, 0) ;
+    scrollbar-color:#0cdefa rgba(245, 245, 245, 0) ;
     /* scrollbar-width: thin; */
 }
 ::-webkit-scrollbar-thumb

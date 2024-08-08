@@ -13,6 +13,11 @@ module.exports = {
       'xs': '475px',
     },
     extend: {
+      color:{
+        primary:'#0cdefa',
+        secondary:'#111827',
+        manimo:'#09142C'
+      },
     },
   },
   plugins: [

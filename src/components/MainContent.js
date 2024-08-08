@@ -13,13 +13,16 @@ import 'swiper/css/navigation';
 // import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import products from '../services/products';
+import { Loading } from './Loading';
 
 export default function MainContent() {
+    const [loading,setLoading] =useState(true)
     const [movie, setmovie] = useState([]);
     useEffect(() => {
         products()
             .then((res) => {
                 setmovie(res.results)
+                setLoading(false)
                 console.log('nananan', movie.poster_path)
             })
     }, [])
@@ -40,6 +43,7 @@ export default function MainContent() {
                 className="mySwiper"
             >
                 {
+                //    loading? <Loading/> :
                     movie.map((movie) =>
                         <SwiperSlide>
                             <section className=" relative top-0  dark:bg-gray-900 bg-cover  bg-no-repeat"

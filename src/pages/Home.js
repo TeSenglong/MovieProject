@@ -13,24 +13,27 @@ import 'swiper/css/navigation';
 // import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import MainContent from '../components/MainContent';
+import { Loading } from '../components/Loading';
 
 export default function Home() {
+    const [loading, setloading]=useState(true)
     const [movie, setmovie] = useState([]);
     useEffect(() => {
         products()
             .then((res) => {
                 setmovie(res.results)
+                setloading(false)
                 console.log('nananan', movie.poster_path)
             })
     }, [])
     return (
-
+<>
+{
+    // loading ? <Loading/> :
         <main className='bg-gray-900'>
             <section className=''>
                 <MainContent />
             </section>
-
-
             <h2 className='text-2xl ml-10 mt-5 text-white mb-2' >Popular Movies</h2>
             <section className=' ' >
                 <div className='w-11/12  hide-scrollbar m-auto gap-2'>
@@ -39,9 +42,6 @@ export default function Home() {
                     </div>
                 </div>
             </section>
-
-                
-        
             <h2 className='text-2xl ml-10 mt-5 text-white mb-2 ' >Top Rate Movies</h2>
             <section className=' ' >
                 <div className='w-11/12  hide-scrollbar m-auto gap-2'>
@@ -51,6 +51,8 @@ export default function Home() {
                 </div>
             </section>
         </main>
+}
+</>
 
     )
 }

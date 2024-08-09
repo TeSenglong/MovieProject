@@ -29,3 +29,7 @@ export async function nowplaying() {
     const res= await fetch(`${BASE_URL}/movie/now_playing${API_key}&language=en-US&page=1`)
     return res.json()
 }
+export async function upcoming() {
+    const res= await fetch(`${BASE_URL}/movie/upcoming${API_key}&language=en-US&page=1`)
+    return res.json()
+}

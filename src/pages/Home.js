@@ -31,9 +31,7 @@ export default function Home() {
 {
     // loading ? <Loading/> :
         <main className='bg-gray-900'>
-            <section className=''>
-                <MainContent />
-            </section>
+                <MainContent/>   
             <h2 className='text-2xl ml-10 mt-5 text-white mb-2' >Popular Movies</h2>
             <section className=' ' >
                 <div className='w-11/12  hide-scrollbar m-auto gap-2'>

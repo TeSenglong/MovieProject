@@ -30,6 +30,7 @@ export default function MainContent() {
     return (
         <>
             <Swiper
+                cssMode={true}
                 spaceBetween={30}
                 centeredSlides={true}
                 autoplay={{
@@ -44,7 +45,7 @@ export default function MainContent() {
                 className="mySwiper"
             >
                 {
-                //    loading? <Loading/> :
+                   loading? <Loading/> :
                     movie.map((movie) =>
                         <SwiperSlide>
                             <section className=" relative top-0  dark:bg-gray-900 bg-cover  bg-no-repeat"

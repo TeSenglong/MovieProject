@@ -5,6 +5,7 @@ import { Loading1 } from '../components/Loading'
 import Actor from '../components/Actor'
 import NowPlaying from '../components/NowPlaying'
 import PopularSwiper from '../components/PopularSwiper'
+import UpComing from '../components/UpComing'
 
 
 export default function OneMovie() {
@@ -106,14 +107,14 @@ export default function OneMovie() {
           </div>
         </div>
       </section>
-
+      <section className='w-11/12 m-auto'>
+        <h3 className='text-secondary text-xl font-bold mt-10 mb-2' >
+          UpComing movies
+        </h3>
+        <UpComing/>
+      </section>
     </main>
   )
 }
 
-// const convertMinutesToHours = (minutes) => {
-//   const hours = Math.floor(minutes / 60);
-//   const remainingMinutes = minutes % 60;
-//   return `${hours} hours and ${remainingMinutes} minutes`;
-// };
 

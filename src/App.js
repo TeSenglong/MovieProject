@@ -8,6 +8,7 @@ import OneMovie  from './pages/OneMovie';
 import { Outlet, Route, Routes } from 'react-router-dom';
 import MovieList from './pages/MoviesList';
 import { Suspense } from 'react';
+import Actor from './components/Actor';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path='/' element={<Home/>}/>
         <Route path='/movielist' element={<MovieList/>} />
         <Route path='/onemovie/:id' element={<OneMovie/>} />
+        <Route path='/actor' element={<Actor/>} />
       </Route>
     </Routes>
 

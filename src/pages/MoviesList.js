@@ -16,11 +16,11 @@ const MovieList = () =>{
     },[])
     return(
         <>
-        {loading ? <Loading/> :  movie.slice(0,10).map((movie, index)=>(
-            <Card
-            key={index}
-            data={movie}
-            />
+        {loading ? <Loading/> :  movie.map((movie, index)=>( 
+                <Card
+                key={index}
+                data={movie}
+                />
         ))}
         </>
     )

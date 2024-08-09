@@ -8,7 +8,7 @@ export default function Card({data}) {
 
 
 
-<div className="w-64 flex-none transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110  duration-300  rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+<div className="w-64 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110  duration-300  rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
     <a className='' href="#">
         <img className="rounded-t-lg  " src={`https://image.tmdb.org/t/p/w500${data.poster_path}`} alt={data.title} />
     </a>

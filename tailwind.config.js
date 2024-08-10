@@ -18,6 +18,9 @@ module.exports = {
         secondary:'#111827',
         manimo:'#09142C'
       },
+      width: {
+        '128': '32rem',
+      },
     },
   },
   plugins: [

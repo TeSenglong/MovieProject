@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css'
@@ -26,8 +26,11 @@ export default function ToprateMovie() {
       {
         movie.map((products) =>
           <div className="w-36 sm:w-44 md:w-52 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-95  duration-300 border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <Link to={`/onemovie/${products.id}`}>
-              <img className="rounded-t-lg h-52 sm:h-64 md:h-72 w-full" src={`https://image.tmdb.org/t/p/w500${products.poster_path}`} alt="" />
+            <Link onClick={() => {
+              window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+            }} to={`/onemovie/${products.id}`}>
+              <img className="rounded-t-lg h-52 sm:h-64 md:h-72 w-full"
+                src={`https://image.tmdb.org/t/p/w500${products.poster_path}`} alt="" />
             </Link>
             <div className="text-center">
               <a href="#">

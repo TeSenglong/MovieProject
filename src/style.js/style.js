@@ -1,13 +1,11 @@
-let lastScrollY = 0 
-const navbar = document.getElementById("hidenn")
-window.addEventListener('scroll',() =>{
-    const currentScrollY = window.scrollY
-    if(currentScrollY > lastScrollY) {
-        console.log('scroll Down')
-        navbar.classList.add('hiddenn')
-    }else {
-        console.log('scroll up')
-        navbar.classList.remove('hiddenn')
-    }
-    lastScrollY = currentScrollY
-})
+import { useEffect, useLayoutEffect } from "react";
+import { useLocation } from "react-router-dom";
+
+ export const Wrapper = ({children}) => {
+    const location = useLocation();
+    useLayoutEffect(() => {
+      document.documentElement.scrollTo(0, 0);
+    }, [location.pathname]);
+    return children
+  } 
+

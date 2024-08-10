@@ -9,9 +9,13 @@ import { Outlet, Route, Routes } from 'react-router-dom';
 import MovieList from './pages/MoviesList';
 import { Suspense } from 'react';
 import Actor from './components/Actor';
+import { ScrollToTop, Wrapper } from './style.js/style';
+import Popularpeople from './pages/Popularpeople';
 
 
 function App() {
+
+
   return (
 
     <Routes>
@@ -19,7 +23,7 @@ function App() {
         <Route path='/' element={<Home/>}/>
         <Route path='/movielist' element={<MovieList/>} />
         <Route path='/onemovie/:id' element={<OneMovie/>} />
-        <Route path='/actor' element={<Actor/>} />
+        <Route path='/person' element={<Popularpeople/>} />
       </Route>
     </Routes>
 
@@ -29,14 +33,12 @@ export default App;
  
 function MainlayOut(){
   return(
-
-  
-  <Suspense fallback={<div>loading...</div>}  >
-
+ <>
   <Navbar/>
+  <Wrapper>
   <Outlet/>
+  </Wrapper>
   <Footer/>
-  </Suspense>
-  
+ </>
   )
 }

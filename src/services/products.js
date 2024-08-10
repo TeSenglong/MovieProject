@@ -6,7 +6,7 @@ export default async function products() {
     const response= await fetch(`${BASE_URL}/movie/popular?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US&page=1`)
     return response.json()
 }
-export async function productsid(id) {  
+export async function movieid(id) {  
     const response= await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US&page=1`)
     return response.json()
 }
@@ -17,7 +17,7 @@ export async function topratemovie() {
 }
 
 const IDproducts='https://api.themoviedb.org/3/movie/76600/videos?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US'
-export async function getOneMovie(id){
+export async function getOneMovieVideo(id){
 const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US`)
 return response.json()
 }
@@ -31,5 +31,9 @@ export async function nowplaying() {
 }
 export async function upcoming() {
     const res= await fetch(`${BASE_URL}/movie/upcoming${API_key}&language=en-US&page=1`)
+    return res.json()
+}
+export async function popularperson() {
+    const res = await fetch(`${BASE_URL}/person/popular${API_key}&language=en-US&page=1`)
     return res.json()
 }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getactor, productsid } from '../services/products'
+import { movieid } from '../services/products'
 import { useParams } from 'react-router-dom'
 import { Loading1 } from '../components/Loading'
 import Actor from '../components/Actor'
@@ -15,7 +15,7 @@ export default function OneMovie() {
 
   // const genres= res.genres.map(ress)
   useEffect(() => {
-    productsid(id)
+    movieid(id)
       // getactor(id)
       .then((res) => {
         setonemovie(res)
@@ -31,9 +31,9 @@ export default function OneMovie() {
             style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500${onemovie.poster_path})`, }}
           >
             <div className=" absolute inset-0 sm:inset-0 bg-opacity-80 bg-slate-900"></div>
-            <div className="flex flex-wrap  items-center justify-center sm:justify-around sm:flex-nowrap h-3/4 px-4 relative md:pt-16 pt-10 mx-auto gap-4 lg:gap-8 xl:gap-0  ">
+            <div className="flex flex-wrap  justify-center sm:justify-around sm:flex-nowrap h-3/4 px-4 relative md:pt-16 pt-10 mx-auto gap-4 lg:gap-8 xl:gap-0  ">
 
-              <div className=" mt-5 sm:w-3/5 w-4/5 flex flex-col sm:col-span-8 justify-center">
+              <div className=" mt-5 sm:mt-0 sm:w-3/5 sm:h-full w-4/5 flex flex-col sm:col-span-8 justify-center">
                 <div className="sm:hidden h-auto mb-5 w-full flex justify-center">
                   <img className=' w-60 h-auto sm:w-56 md:w-60 lg:w-60 lg:h-auto xl:w-72  ' src={`https://image.tmdb.org/t/p/w500${onemovie.poster_path}`} alt="mockup" />
                 </div>
@@ -43,10 +43,9 @@ export default function OneMovie() {
                 <p className='text-xl mb-2' >Overview</p>
                 <p className=" max-w-2xl  font-light text-xs text-white lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
                   {onemovie.overview}</p>
-
               </div>
 
-              <div className='w-4/5 sm:w-auto '>
+              <div className='w-4/5 sm:w-auto sm:ml-10 '>
                 <div className=' sm:gap-10 text-xs sm:text-sm '>
                   <p>Popular: <span className='text-gray-400' > {onemovie.popularity}</span></p>
                   <p>Rate: <span className='text-secondary' >{onemovie.vote_average}/10</span></p>
@@ -85,7 +84,7 @@ export default function OneMovie() {
                 <img className=' w-60 h-auto sm:w-56 md:w-60 lg:w-60 lg:h-auto xl:w-72  ' src={`https://image.tmdb.org/t/p/w500${onemovie.poster_path}`} alt="mockup" />
               </div>
 
-              <div className=''></div>
+
             </div>
           </section>
 
@@ -100,7 +99,7 @@ export default function OneMovie() {
         </div>
       </section>
       <section className=' ' >
-        <h3 className=' text-xl font-bold text-secondary w-11/12 m-auto mt-10' >Now playing Movie</h3>
+        <h3 className=' text-xl font-bold text-secondary w-11/12 m-auto mt-10' >Now playing</h3>
         <div className='w-11/12 hide-scrollbar m-auto gap-2'>
           <div className='flex flex-nowrap mt-10 gap-2' >
             <NowPlaying />
@@ -108,10 +107,10 @@ export default function OneMovie() {
         </div>
       </section>
       <section className='w-11/12 m-auto'>
-        <h3 className='text-secondary text-xl font-bold mt-10 mb-2' >
-          UpComing movies
+        <h3 className='text-secondary text-xl font-bold mt-10 mb-5' >
+          UpComing
         </h3>
-        <UpComing/>
+        <UpComing />
       </section>
     </main>
   )

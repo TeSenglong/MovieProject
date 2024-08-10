@@ -17,25 +17,26 @@ export default function UpComing() {
     }, [])
     return (
         <>
-              <Swiper
-        effect={'coverflow'}
-        grabCursor={true}
-        centeredSlides={true}
-        slidesPerView={'2'}
-        coverflowEffect={{
-          rotate: 50,
-          stretch: 0,
-          depth: 100,
-          modifier: 1,
-          slideShadows: true,
-        }}
-        pagination={true}
-        modules={[EffectCoverflow, Pagination]}
-        className="mySwiper"
-      >
+            <Swiper
+
+                effect={'coverflow'}
+                grabCursor={true}
+                centeredSlides={true}
+                slidesPerView={'2'}
+                coverflowEffect={{
+                    rotate: 50,
+                    stretch: 0,
+                    depth: 100,
+                    modifier: 1,
+                    slideShadows: true,
+                }}
+                pagination={true}
+                modules={[EffectCoverflow, Pagination]}
+                className="mySwiper"
+            >
                 {
                     coming.map((movie) =>
-                      <SwiperSlide>
+                        <SwiperSlide>
                             <div className=' m-auto' >
                                 <div className=" relative top-0 w-auto h-auto  dark:bg-gray-900 bg-cover  bg-no-repeat"
                                     style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500${movie.poster_path})`, }}  >
@@ -56,10 +57,10 @@ export default function UpComing() {
                                     </div>
                                 </div>
                             </div>
-                            </SwiperSlide>
+                        </SwiperSlide>
                     )
                 }
- </Swiper>
+            </Swiper>
         </>
     )
 }

@@ -23,7 +23,6 @@ export default function PopularSwiper() {
         console.log(movie)
       })
   }, [])
-
   return (
     <>
       {
@@ -40,6 +39,7 @@ export default function PopularSwiper() {
           </div>
         )
       }
+
     </>
   );
 }

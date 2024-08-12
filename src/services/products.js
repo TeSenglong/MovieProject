@@ -3,7 +3,7 @@ const BASE_URL ='https://api.themoviedb.org/3';
 const API_key = '?api_key=4113f3ad734e747a5b463cde8c55de42'
 
 export default async function products() {  
-    const response= await fetch(`${BASE_URL}/movie/popular?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US&page=1`)
+    const response= await fetch(`${BASE_URL}/movie/popular${API_key}&language=en-US&page=1`)
     return response.json()
 }
 export async function movieid(id) {  

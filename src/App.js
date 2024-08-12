@@ -11,6 +11,9 @@ import { Suspense } from 'react';
 import Actor from './components/Actor';
 import { ScrollToTop, Wrapper } from './style.js/style';
 import Popularpeople from './pages/Popularpeople';
+import { TopRateMovieslist } from './components/ToprateMovie';
+import { NowPlayinglist } from './components/NowPlaying';
+import { UpCominglist } from './components/UpComing';
 
 
 function App() {
@@ -22,6 +25,9 @@ function App() {
       <Route path='/' element={<MainlayOut/>} >
         <Route path='/' element={<Home/>}/>
         <Route path='/movielist' element={<MovieList/>} />
+        <Route path='/topratelist' element={<TopRateMovieslist/>}/>
+        <Route path='/nowplayinglist' element={<NowPlayinglist/>} />
+        <Route path='/upcominglist' element={<UpCominglist/>} />
         <Route path='/onemovie/:id' element={<OneMovie/>} />
         <Route path='/person' element={<Popularpeople/>} />
       </Route>

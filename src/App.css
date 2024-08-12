@@ -32,3 +32,13 @@ html{
 .h-vh{
   height: 95vh;
 }
+@font-face {
+  font-family:moulbali ;
+  src: url(./font/moulpali/Moulpali-Regular.ttf);
+}
+.font-moulbali{
+  font-family: moulbali;
+}
+html{
+  font-family: 'Courier New', Courier, monospace;
+}

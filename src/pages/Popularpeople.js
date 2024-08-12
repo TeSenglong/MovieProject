@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { popularperson } from '../services/products'
+import { Loading1 } from '../components/Loading'
 
 export default function Popularpeople() {
+    const [loading, setloading]=useState(true)
     const [person, setperson] = useState([])
     useEffect(() => {
         popularperson()
             .then((res) => {
                 setperson(res.results)
+                setloading(false)
                 console.log('personnnn', person)
             })
     }, [])
     return (
-
+        loading ? <Loading1/> :
         <main className='w-11/12 m-auto'>
             <section className='mt-28' >
             <p className='text-secondary text-xl ' >Popular Actor </p>
@@ -19,7 +22,7 @@ export default function Popularpeople() {
                 {
                     person.map((data,index) => 
 
-                        <div key={index} className="w-64 h-32 sm:w-72 sm:h-36 xl:w-96 xl:h-60 2xl:w-128 2xl:h-64  bg-slate-500   flex-none mt-5 rounded-lg shadow dark:bg-gray-800">
+                        <div key={index} className="w-64 h-32 sm:w-72 sm:h-36 xl:w-96 xl:h-60 2xl:w-128 2xl:h-64  bg-slate-800   flex-none mt-5 rounded-lg shadow dark:bg-gray-800">
                             <div className="flex h-full items-center justify-center">
                                 <img className=" w-20 h-20 sm:w-28 sm:h-28 xl:w-44 xl:h-44 2xl:w-52 2xl:h-52  mr-5 rounded-full   shadow-lg" src={`https://image.tmdb.org/t/p/w500${data.profile_path}`} alt="" />
                                 <div className='' >

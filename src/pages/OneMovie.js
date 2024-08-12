@@ -24,16 +24,16 @@ export default function OneMovie() {
       })
   }, [id])
   return (
-    <main>
+    loading ? <Loading1 /> : <main>
       {
-        loading ? <Loading1 /> :
+       
           <section ion className=" relative pb-10 pt-10 top-0 text-white  dark:bg-gray-900 bg-cover  bg-no-repeat"
             style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500${onemovie.poster_path})`, }}
           >
             <div className=" absolute inset-0 sm:inset-0 bg-opacity-80 bg-slate-900"></div>
-            <div className="flex flex-wrap  justify-center sm:justify-around sm:flex-nowrap h-3/4 px-4 relative md:pt-16 pt-10 mx-auto gap-4 lg:gap-8 xl:gap-0  ">
+            <div className="flex flex-wrap  justify-center sm:justify-around 2xl:justify-around sm:flex-nowrap h-3/4 px-4 relative md:pt-16 pt-10 mx-auto gap-4 lg:gap-8 xl:gap-0  ">
 
-              <div className=" mt-5 sm:mt-0 sm:w-3/5 sm:h-full w-4/5 flex flex-col sm:col-span-8 justify-center">
+              <div className=" mt-5 sm:mt-0 sm:w-3/5 2xl:w-auto sm:h-full w-4/5 flex flex-col sm:col-span-8 justify-center">
                 <div className="sm:hidden h-auto mb-5 w-full flex justify-center">
                   <img className=' w-60 h-auto sm:w-56 md:w-60 lg:w-60 lg:h-auto xl:w-72  ' src={`https://image.tmdb.org/t/p/w500${onemovie.poster_path}`} alt="mockup" />
                 </div>
@@ -57,9 +57,9 @@ export default function OneMovie() {
                       </span>
                     ))}
                 </div>
-                <div className=' flex justify-around sm:block  sm:gap-10 text-xs sm:text-base xl:text-xl '>
+                <div className=' flex justify-around sm:block  sm:gap-10 text-xs sm:text-sm md:text-base xl:text-xl '>
                   <div className='pr-3' >
-                    <p className='sm:mb-2' >Popular: <span className='text-gray-400 ' > {onemovie.popularity}</span></p>
+                    <p className='sm:mb-2  ' >Popular: <span className='text-gray-400 ' > {onemovie.popularity}</span></p>
                     <p className='sm:mb-2'>Rate: <span className='text-secondary' >{onemovie.vote_average}/10</span></p>
                     <p className='sm:mb-2'> Status: <span className='text-gray-400' > {onemovie.status}</span></p>
                   </div>
@@ -90,7 +90,6 @@ export default function OneMovie() {
           </section>
 
       }
-
       <section className='w-11/12 m-auto'>
         <h3 className='text-secondary font-bold text-xl mt-10 w-11/12 '>
           Movie Top Cast

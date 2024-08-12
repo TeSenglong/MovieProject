@@ -33,12 +33,10 @@ export default function Home() {
         <main className='bg-gray-900'>
                 <MainContent/>   
             <h2 className='text-2xl ml-10 mt-5 text-white mb-2' >Popular Movies</h2>
-            <section className=' ' >
-                <div className='w-11/12  hide-scrollbar m-auto gap-2'>
-                    <div className='flex flex-nowrap mt-10 gap-2' >
+            <section className='w-11/12 m-auto ' >
+                    <div className='hide-scrollbar gap-2' >
                     <PopularSwiper />
                     </div>
-                </div>
             </section>
             <h2 className='text-2xl ml-10 mt-5 text-white mb-2 ' >Top Rate Movies</h2>
             <section className=' ' >

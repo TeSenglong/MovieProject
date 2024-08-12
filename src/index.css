@@ -18,15 +18,11 @@
   }
 
 .hide-scrollbar{
-    display: flex;
+    display:flex;
     overflow-x: scroll;
     scrollbar-color:#0cdefa rgba(245, 245, 245, 0) ;
-    /* scrollbar-width: thin; */
 }
-::-webkit-scrollbar-thumb
-{
-    background-color: brown;
-}
+
 #hiddenn{
     transform: translateY(-100%);
 }

@@ -25,7 +25,12 @@ export default function UpComing() {
                 effect={'coverflow'}
                 grabCursor={true}
                 centeredSlides={true}
-                slidesPerView={'2'}
+                slidesPerView={'1'}
+                breakpoints={{
+                    640: {
+                      slidesPerView: 2,
+                      spaceBetween: 20,
+                    },}}
                 coverflowEffect={{
                     rotate: 50,
                     stretch: 0,
@@ -40,20 +45,20 @@ export default function UpComing() {
                 {
                  loading ? <Loading1/> :   coming.map((movie) =>
                         <SwiperSlide>
-                            <div className=' m-auto' >
-                                <div className=" relative top-0 w-auto h-auto  dark:bg-gray-900 bg-cover  bg-no-repeat"
+                            <div className=' m-auto w-auto h-auto cursive-font' >
+                                <div className=" relative top-0 w-auto h-auto mb-10  dark:bg-gray-900 bg-cover  bg-no-repeat"
                                     style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500${movie.poster_path})`, }}  >
-                                    <div className="absolute inset-0 bg-opacity-60 bg-slate-900 "></div>
-                                    <div className="flex flex-wrap sm:flex-nowrap h-3/4 max-w-screen-xl px-4 relative mx-auto lg:gap-8 xl:gap-0 ">
-                                        <div className="lg:flex m-auto ">
-                                            <img className=' w-60 h-72' src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="mockup" />
+                                    <div className="absolute inset-0 bg-opacity-80 bg-slate-900 "></div>
+                                    <div className="flex flex-wrap gap-2 xs:grid xs:grid-cols-8  h-3/4 pb-4 max-w-screen-xl p-5 sm:p-2  relative mx-auto lg:gap-8 xl:gap-0 ">
+                                        <div className=" m-auto col-span-3 ">
+                                            <img className=' w-52 h-64 sm:w-auto sm:h-auto' src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="mockup" />
                                         </div>
-                                        <div className=" my-5 place-self-center  text-center">
+                                        <div className=" my-5 m-auto place-self-center col-span-5  text-center">
                                             <Link to={`/onemovie/${movie.id}`} >
                                                 <h1 className=" mb-4 text-xl font-extrabold tracking-tight leading-none md:text-2xl xl:text-6xl text-white dark:text-white">{movie.title}</h1>
                                             </Link>
-                                            <p className="hidden sm:block max-w-2xl mb-6 font-light text-white lg:mb-8 text-xs md:text-base lg:text-lg dark:text-gray-400">{movie.overview.length > 300 ? `${movie.overview.substring(0,300)}....`:movie.overview}</p>
-                                            <a href="#" className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-black focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
+                                            <p className="hidden xs:block max-w-2xl mb-6 font-light text-white lg:mb-8 text-base md:text-base lg:text-lg xl:text-xl 2xl:text-2xl dark:text-gray-400">{movie.overview.length > 150 ? `${movie.overview.substring(0,150)}....`:movie.overview}</p>
+                                            <a href="#" className="inline-flex items-center text-secondary justify-center px-4 py-3 text-sm md:text-sm lg:text-base xl:text-xl 2xl:text-2xl text-center font-bold border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-black focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
                                                 Watch now
                                             </a>
                                         </div>

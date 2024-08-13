@@ -51,8 +51,8 @@ export default function Home() {
       <p class="load_more"><a className=" text-white no_click load_more" data-next-page="2" data-current-page="1" href="/movie?page=2">Load More</a></p>
     </div>
             </section>
-            <h2 className='text-2xl ml-10 mt-5 text-white mb-2 ' >Top Rate Movies</h2>
             <section className=' ' >
+            <h2 className='text-2xl w-11/12 m-auto mt-5 text-white ' >Top Rate Movies</h2>
                 <div className='w-11/12  hide-scrollbar m-auto gap-2'>
                     <div className='flex flex-nowrap mt-10 gap-2' >
                         <ToprateMovie />

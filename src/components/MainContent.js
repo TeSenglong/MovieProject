@@ -15,6 +15,7 @@ import { Pagination, Navigation, Keyboard, Mousewheel, Autoplay } from 'swiper/m
 import products from '../services/products';
 import { register } from 'swiper/element-bundle';
 import { Loading } from './Loading';
+import { Link } from 'react-router-dom';
 register();
 
 export default function MainContent() {
@@ -50,14 +51,16 @@ export default function MainContent() {
     {
      loading? <Loading/>:   movie.map((data)=>
             <SwiperSlide >
-        <div className=' relative top-0  h-full  bg-cover  bg-no-repeat ' style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500${data.backdrop_path})`, }} >
+        <div className=' relative top-0  h-full  bg-cover  bg-no-repeat cursive-font' style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500${data.backdrop_path})`, }} >
         <div className="absolute inset-0 bg-opacity-60 bg-slate-900"></div>
-        <div className='flex gap-2 md:justify-around opacity-95 pt-20 pb-10 flex-col xs:flex sm:flex-row justify-center'>
+        <div className='flex md:p-10 md:pt-20 gap-2 md:justify-around opacity-95 pt-20 pb-10 flex-col xs:flex sm:flex-row justify-center'>
             <div className='flex-none m-auto sm:m-0' >
+                <Link to={`/onemovie/${data.id}`}>
             <img className='h-96 w-72  md:h-auto md:w-96' src={`https://image.tmdb.org/t/p/w500${data.poster_path}`} alt='picture' />
+                </Link>
             </div>
             <div className='flex flex-col justify-center items-center sm:pr-3'>
-            <h5 className='text-white  sm:text-2xl lg:text-5xl font-bold' >{data.title}</h5>
+            <h5 className='text-white  sm:text-2xl lg:text-5xl font-bold' ><Link to={`/onemovie/${data.id}`}>{data.title}</Link></h5>
             <div className='w-full' >
                 <p className='text-white mt-6 hidden m-auto sm:flex lg:w-128 lg:text-2xl ' >{data.overview.length > 300 ?`${data.overview.substring(0,300)}.....`:data.overview}  </p>
             </div>

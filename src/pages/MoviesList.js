@@ -18,7 +18,7 @@ const MovieList = () => {
     return (
         loading ? <Loading1/> :
         <section className=' h-auto w-11/12 m-auto  pt-20' >
-            <h2 className='text-xl text-secondary md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl mb-5' >Popp List</h2>
+            <h2 className='text-xl text-secondary md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl mb-5' >Popular </h2>
             <div className='grid xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6  xs:gap-1 sm:gap-4'>
 
                 { movie.map((data, index) => (

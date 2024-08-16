@@ -6,7 +6,6 @@ import Footer from './components/Footer';
 import 'swiper/swiper-bundle.css';
 import OneMovie  from './pages/OneMovie';
 import { Outlet, Route, Routes } from 'react-router-dom';
-import MovieList from './pages/MoviesList';
 import { Suspense } from 'react';
 import Actor from './components/Actor';
 import { ScrollToTop, Wrapper } from './style.js/style';
@@ -14,6 +13,7 @@ import Popularpeople from './pages/Popularpeople';
 import { TopRateMovieslist } from './components/ToprateMovie';
 import { NowPlayinglist } from './components/NowPlaying';
 import { UpCominglist } from './components/UpComing';
+import PopularList from './pages/PopularList';
 
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
     <Routes>
       <Route path='/' element={<MainlayOut/>} >
         <Route path='/' element={<Home/>}/>
-        <Route path='/movielist' element={<MovieList/>} />
+        <Route path='/popularlist' element={<PopularList/>} />
         <Route path='/topratelist' element={<TopRateMovieslist/>}/>
         <Route path='/nowplayinglist' element={<NowPlayinglist/>} />
         <Route path='/upcominglist' element={<UpCominglist/>} />

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import MovieList from './MoviesList'
+import MovieList from './PopularList'
 import products, { imagefile } from '../services/products';
 import PopularSwiper from '../components/PopularSwiper';
 import ToprateMovie from '../components/ToprateMovie';

@@ -5,14 +5,28 @@ import { Loading1 } from '../components/Loading'
 export default function Popularpeople() {
     const [loading, setloading]=useState(true)
     const [person, setperson] = useState([])
+    const [totalpage,settotalpage]=useState(0)
+    const [page,setpage]=useState(1)
     useEffect(() => {
-        popularperson()
-            .then((res) => {
-                setperson(res.results)
-                setloading(false)
-                console.log('personnnn', person)
-            })
-    }, [])
+        const popularpeople = async () => {
+            const res = await fetch(`https://api.themoviedb.org/3/person/popular?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US&page=${page}`)
+            return res.json()
+            .then((movies) => {
+                settotalpage(movies.totals_pages);
+                setperson([...person,...movies.results]);
+                setloading(false);
+                console.log('totalpages',movies)
+            });
+    }
+    popularpeople();
+}, [page]);
+    //     popularperson()
+    //         .then((res) => {
+    //             setperson(res.results)
+    //             setloading(false)
+    //             console.log('personnnn', person)
+    //         })
+    // }, [])
     return (
         loading ? <Loading1/> :
         <main className='w-11/12 m-auto'>
@@ -35,6 +49,12 @@ export default function Popularpeople() {
                     )
                 }
             </div>
+            <div className='w-full text-center mt-10'>   
+                    {
+                        totalpage !== page && <button className='text-white border text-secondary hover:bg-slate-800 hover:text-white bg-slate-700 p-3 text-2xl rounded-lg ' onClick={() => setpage(page + 1)}> Load more
+                    </button>
+                    }  
+                </div>
             </section>
         </main>
 

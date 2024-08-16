@@ -10,9 +10,9 @@ export async function movieid(id) {
     const response= await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US&page=1`)
     return response.json()
 }
-const toprate=' https://api.themoviedb.org/3/movie/top_rated?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US&page=1;'
+// const toprate=' https://api.themoviedb.org/3/movie/top_rated?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US&page=1;'
 export async function topratemovie() {
-    const response = await fetch(`${toprate}`)
+    const response = await fetch(`${BASE_URL}/movie/top_rated${API_key}&language=en-US&page=1`)
     return response.json()
 }
 

@@ -11,7 +11,9 @@ import { Loading1 } from './Loading'
 export default function UpComing() {
     const [coming, setcoming] = useState([])
     const [loading, setloading] = useState(true)
+
     useEffect(() => {
+
         upcoming()
             .then((res) => {
                 setcoming(res.results)
@@ -76,13 +78,27 @@ export default function UpComing() {
 export function UpCominglist() {
     const [movie, setcoming] = useState([])
     const [loading, setloading] = useState(true)
+    const[totalpage,settotalpage]=useState(0)
+    const [page,setpage]=useState(1)
     useEffect(() => {
-        upcoming()
-            .then((res) => {
-                setcoming(res.results)
-                setloading(false)
-            })
-    }, [])
+        const fetchmovie = async () => {
+            const res = await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US&page=${page}`)
+            return res.json()
+            .then((movies) => {
+                settotalpage(movies.totals_pages);
+                setcoming([...movie,...movies.results]);
+                setloading(false);
+                console.log('totalpages',movies)
+            });
+      }
+      fetchmovie();
+      }, [page]);
+    //     upcoming()
+    //         .then((res) => {
+    //             setcoming(res.results)
+    //             setloading(false)
+    //         })
+    // }, [])
     return (
         loading ? <Loading1/> :
         <section className=' h-auto w-11/12 m-auto  pt-20' >
@@ -104,6 +120,12 @@ export function UpCominglist() {
     
                 ))}
             </div>
+                  <div className='w-full text-center mt-10'>   
+                    {
+                        totalpage !== page && <button className='text-white border text-secondary hover:bg-slate-800 hover:text-white bg-slate-700 p-3 text-2xl rounded-lg ' onClick={() => setpage(page + 1)}> Load more
+                    </button>
+                    }  
+                </div>
         </section>
       );
     }

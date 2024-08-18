@@ -52,7 +52,7 @@ export default function OneMovie() {
                     ))}
                 </span>
                    </p>
-                <p className=" max-w-2xl text-xs sm:text-xs text-white lg:mb-8 md:text-sm lg:text-sm dark:text-gray-400">
+                <p className=" max-w-2xl text-xs sm:text-xs text-white lg:mb-8 md:text-sm lg:text-base dark:text-gray-400">
                   {onemovie.overview}</p>
               </div>
 

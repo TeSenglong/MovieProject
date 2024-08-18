@@ -34,14 +34,17 @@ html{
   font-family:moulbali ;
   src: url(./font/moulpali/Moulpali-Regular.ttf);
 }
+@font-face {
+  font-family: montserrat;
+  src: url(./font/kohsantepheap/KohSantepheap-Regular.ttf)
+}
 .font-moulbali{
   font-family: moulbali;
 }
-/* html{
-  font-family:cursive;
-} */
 .cursive-font{
-  font-family: cursive;
+  font-family: montserret;
+  font-size: medium;
+  letter-spacing: 2px;
 }
 .hide-scrollbar{
   display:flex;

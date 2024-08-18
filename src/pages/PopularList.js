@@ -28,7 +28,7 @@ const PopularList = () => {
         loading ? <Loading1 /> :
             <section className=' h-auto w-11/12 m-auto  pt-20' >
                 <h2 className='text-xl text-secondary md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl mb-5' >Popular </h2>
-                <div className='grid xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6  xs:gap-1 sm:gap-4'>
+                <div className='grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6  gap-1 sm:gap-4'>
 
                     {movie.map((data, index) => (
                         <div key={index} className="h-auto transition ease-in-out delay-150 flex-none hover:-translate-y-1 hover:scale-110  duration-300  rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -47,7 +47,7 @@ const PopularList = () => {
                 </div>
                 <div className='w-full text-center mt-10'>   
                     {
-                        totalpage !== page && <button className='text-white border text-secondary hover:bg-slate-800 hover:text-white bg-slate-700 p-3 text-2xl rounded-lg ' onClick={() => setpage(page + 1)}> Load more
+                        totalpage !== page && <button className='text-white border text-secondary hover:bg-slate-800 hover:text-white  p-3 text-base md:text-xl rounded-lg ' onClick={() => setpage(page + 1)}> See more
                     </button>
                     }  
                 </div>

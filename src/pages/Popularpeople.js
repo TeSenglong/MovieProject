@@ -3,23 +3,23 @@ import { popularperson } from '../services/products'
 import { Loading1 } from '../components/Loading'
 
 export default function Popularpeople() {
-    const [loading, setloading]=useState(true)
+    const [loading, setloading] = useState(true)
     const [person, setperson] = useState([])
-    const [totalpage,settotalpage]=useState(0)
-    const [page,setpage]=useState(1)
+    const [totalpage, settotalpage] = useState(0)
+    const [page, setpage] = useState(1)
     useEffect(() => {
         const popularpeople = async () => {
             const res = await fetch(`https://api.themoviedb.org/3/person/popular?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US&page=${page}`)
             return res.json()
-            .then((movies) => {
-                settotalpage(movies.totals_pages);
-                setperson([...person,...movies.results]);
-                setloading(false);
-                console.log('totalpages',movies)
-            });
-    }
-    popularpeople();
-}, [page]);
+                .then((movies) => {
+                    settotalpage(movies.totals_pages);
+                    setperson([...person, ...movies.results]);
+                    setloading(false);
+                    console.log('totalpages', movies)
+                });
+        }
+        popularpeople();
+    }, [page]);
     //     popularperson()
     //         .then((res) => {
     //             setperson(res.results)
@@ -28,35 +28,35 @@ export default function Popularpeople() {
     //         })
     // }, [])
     return (
-        loading ? <Loading1/> :
-        <main className='w-11/12 m-auto'>
-            <section className='mt-28' >
-            <p className='text-secondary text-xl ' >Popular Actor </p>
-            <div className=' mt-5 grid grid-cols-2 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4 justify-center' >
-                {
-                    person.map((data,index) => 
+        loading ? <Loading1 /> :
+            <main className='w-11/12 m-auto'>
+                <section className='mt-28' >
+                    <p className='text-secondary text-xl ' >Popular Actor </p>
+                    <div className=' mt-5 grid grid-cols-2 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4 justify-center' >
+                        {
+                            person.map((data, index) =>
 
-                        <div key={index} className="w-auto h-auto bg-slate-800   flex-none mt-5 rounded-lg shadow dark:bg-gray-800">
-                            <div className="grid grid-cols-6 p-5 gap-2 h-full items-center justify-center">
-                                <img className=" col-span-3 w-20 h-20 sm:w-28 sm:h-28 xl:w-36 xl:h-36 2xl:w-48 2xl:h-48  mr-5 rounded-full   shadow-lg" src={`https://image.tmdb.org/t/p/w500${data.profile_path}`} alt="" />
-                                <div className=' col-span-3 flex flex-col xs:gap-2' >
-                                    <p className="mb-1 2xl:text-3xl text-xs sm:text-base md:text-xl sm:font-medium text-gray-100 dark:text-white">{data.name}</p>
-                                    <p className="text-xs 2xl:text-2xl md:text-sm text-gray-100 dark:text-gray-400">{data.known_for_department}</p>
-                                    <p className='text-secondary 2xl:text-xl text-xs md-text-base' > Pop:  {data.popularity}</p>
+                                <div key={index} className="w-auto h-auto bg-slate-800   flex-none mt-5 rounded-lg shadow dark:bg-gray-800">
+                                    <div className="grid grid-cols-6 p-5 gap-2 h-full items-center justify-center">
+                                        <img className=" col-span-3 w-20 h-20 sm:w-28 sm:h-28 xl:w-36 xl:h-36 2xl:w-48 2xl:h-48  mr-5 rounded-full   shadow-lg" src={`https://image.tmdb.org/t/p/w500${data.profile_path}`} alt="" />
+                                        <div className=' col-span-3 flex flex-col xs:gap-2' >
+                                            <p className="mb-1 2xl:text-3xl text-xs sm:text-base md:text-xl sm:font-medium text-gray-100 dark:text-white">{data.name}</p>
+                                            <p className="text-xs 2xl:text-2xl md:text-sm text-gray-100 dark:text-gray-400">{data.known_for_department}</p>
+                                            <p className='text-secondary 2xl:text-xl text-xs md-text-base' > Pop:  {data.popularity}</p>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    )
-                }
-            </div>
-            <div className='w-full text-center mt-10'>   
-                    {
-                        totalpage !== page && <button className='text-white border text-secondary hover:bg-slate-800 hover:text-white bg-slate-700 p-3 text-2xl rounded-lg ' onClick={() => setpage(page + 1)}> Load more
-                    </button>
-                    }  
-                </div>
-            </section>
-        </main>
+                            )
+                        }
+                    </div>
+                    <div className='w-full text-center mt-10'>
+                        {
+                            totalpage !== page && <button className='text-white border text-secondary hover:bg-slate-800 hover:text-white  p-3 text-base md:text-xl rounded-lg ' onClick={() => setpage(page + 1)}> See more
+                            </button>
+                        }
+                    </div>
+                </section>
+            </main>
 
     )
 }

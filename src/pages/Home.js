@@ -15,6 +15,7 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import MainContent from '../components/MainContent';
 import { Loading } from '../components/Loading';
 import { Link } from 'react-router-dom';
+import Search from '../components/Search';
 
 export default function Home() {
     const [loading, setloading]=useState(true)
@@ -34,6 +35,7 @@ export default function Home() {
         <main className='bg-gray-900'>
                 <MainContent/>   
                 <div className='w-11/12 m-auto mb-5' >
+                <Search/>
             <h2 className='text-2xl mt-5 text-white' >Popular Movies</h2>
                 </div>
             <section className='w-11/12 m-auto ' >

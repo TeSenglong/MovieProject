@@ -14,6 +14,7 @@ import { TopRateMovieslist } from './components/ToprateMovie';
 import { NowPlayinglist } from './components/NowPlaying';
 import { UpCominglist } from './components/UpComing';
 import PopularList from './pages/PopularList';
+import Search from './components/Search';
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         <Route path='/upcominglist' element={<UpCominglist/>} />
         <Route path='/onemovie/:id' element={<OneMovie/>} />
         <Route path='/person' element={<Popularpeople/>} />
+        <Route path='/search' element={<Search/>} />
       </Route>
     </Routes>
 

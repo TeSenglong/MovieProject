@@ -8,7 +8,11 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Loading1 } from './Loading'
+import Search, { Searching } from './Search'
+import { useDispatch, useSelector } from 'react-redux'
+import { searchMovieAction } from '../features/products/productsAction'
 export default function UpComing() {
+
     const [coming, setcoming] = useState([])
     const [loading, setloading] = useState(true)
 
@@ -77,6 +81,12 @@ export default function UpComing() {
 }
 
 export function UpCominglist() {
+    const dispatch = useDispatch()
+    const { movies, status, error } = useSelector(state => state.movies)
+    const [query, setquery] = useState("")
+    useEffect(() => {
+        dispatch(searchMovieAction(query))
+    }, [query])
     const [movie, setcoming] = useState([])
     const [loading, setloading] = useState(true)
     const [totalpage, settotalpage] = useState(0)
@@ -103,9 +113,22 @@ export function UpCominglist() {
     return (
         loading ? <Loading1 /> :
             <section className=' h-auto w-11/12 m-auto  pt-20' >
+                <Searching/>
                 <h2 className='text-xl text-secondary md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl mb-5' >UpComing List</h2>
                 <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6  gap-1 sm:gap-4'>
-
+                {movies.map((data, index) => (
+                    <div key={index} className="h-auto transition ease-in-out delay-150 flex-none hover:-translate-y-1 hover:scale-110  duration-300  rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                        <Link to={`/onemovie/${data.id}`} className=''>
+                            <img className="rounded-t-lg  " src={`https://image.tmdb.org/t/p/w300${data.poster_path}`} alt={data.title} />
+                        </Link>
+                        <div className="p-2 text-center">
+                            <a href="#">
+                                <h5 className="mb-2 text-center text-base sm:text-xl md:text-xl lg:text-2xl 2xl:text-3xl  font-bold tracking-tight text-white/75 dark:text-white">{data.title}</h5>
+                            </a>
+                            <p className="mb-3 text-xs sm:text-sm md:text-base  font-normal text-gray-100/50 dark:text-gray-400">{data.release_date}</p>
+                        </div>
+                    </div>
+                ))}
                     {movie.map((data, index) => (
                         <div className="h-auto transition ease-in-out delay-150 flex-none hover:-translate-y-1 hover:scale-110  duration-300  rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                             <Link to={`/onemovie/${data.id}`} className=''>

@@ -18,7 +18,7 @@ import { Link } from 'react-router-dom';
 import Search from '../components/Search';
 
 export default function Home() {
-    const [loading, setloading]=useState(true)
+    const [loading, setloading] = useState(true)
     const [movie, setmovie] = useState([]);
     useEffect(() => {
         products()
@@ -29,41 +29,37 @@ export default function Home() {
             })
     }, [])
     return (
-<>
-{
-    loading ? <Loading/> :
-        <main className='bg-gray-900'>
-                <MainContent/>   
-                <div className='w-11/12 m-auto mb-5' >
-                <Search/>
-            <h2 className='text-2xl mt-5 text-white' >Popular Movies</h2>
-                </div>
-            <section className='w-11/12 m-auto ' >
-                    <div className='hide-scrollbar gap-2' >
-                    <PopularSwiper />
-                    </div>
-                    <div id="pagination_page_1" data-next-page="2" data-current-page="1" class="pagination infinite background_color light_blue">
-      <div class="loading_wrapper hide">
-        <div class="ball-scale-multiple loader">
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-      </div>
-      <p class="load_more"><a className=" text-white no_click load_more" data-next-page="2" data-current-page="1" href="/movie?page=2">Load More</a></p>
-    </div>
-            </section>
-            <section className=' ' >
-            <h2 className='text-2xl w-11/12 m-auto mt-5 text-white ' >Top Rate Movies</h2>
-                <div className='w-11/12  hide-scrollbar m-auto gap-2'>
-                    <div className='flex flex-nowrap mt-10 gap-2' >
-                        <ToprateMovie />
-                    </div>
-                </div>
-            </section>
-        </main>
-}
-</>
+        <>
+            {
+                loading ? <Loading /> :
+                    <main className='bg-gray-900'>
+                        <MainContent />
+                        <div className='w-11/12 m-auto mb-5' >
+                            <Search />
+                        </div>
+                        <section className='w-11/12 m-auto ' >
+                            <h2 className='text-2xl mt-5 text-secondary' >Popular Movies</h2>
+                            <div className='hide-scrollbar mt-10 gap-2' >
+                                <PopularSwiper />
+                            </div>
+                            <div className='flex w-full pt-5 justify-end'>
+                            <Link to='/popularlist' className='text-stone-500 hover:text-stone-300'>see more</Link>
+                            </div>
+                        </section>
+                        <section className=' ' >
+                            <h2 className='text-2xl w-11/12 m-auto mt-5 text-secondary ' >Top Rate Movies</h2>
+                            <div className='w-11/12  hide-scrollbar m-auto gap-2'>
+                                <div className='flex flex-nowrap mt-10 gap-2' >
+                                    <ToprateMovie />
+                                </div>
+                            </div>
+                            <div className='flex w-11/12 m-auto pt-5 justify-end'>
+                            <Link to='/topratelist' className='text-stone-500 hover:text-stone-300'>see more</Link>
+                            </div>  
+                        </section>
+                    </main>
+            }
+        </>
 
     )
 }

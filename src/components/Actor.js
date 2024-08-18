@@ -20,9 +20,9 @@ export default function Actor() {
 {
   actor.map((data)=> 
 
-<div className="w-64 bg-slate-500 h-32 flex-none rounded-lg shadow dark:bg-gray-800">
-    <div className="flex h-full items-center justify-center">
-        <img className="w-24 h-24 mr-5 rounded-full   shadow-lg"  src={`https://image.tmdb.org/t/p/w500${data.profile_path}`} alt=""/>
+<div className="w-auto bg-slate-500 h-32 flex-none rounded-lg shadow dark:bg-gray-800">
+    <div className="flex gap-2 p-3 h-full items-center justify-center">
+        <img className="w-24 h-24  rounded-full   shadow-lg"  src={`https://image.tmdb.org/t/p/w500${data.profile_path}`} alt=""/>
         <div>
         <p className="mb-1 text-xl font-medium text-gray-100 dark:text-white">{data.name}</p>
         <span className="text-sm text-gray-300 dark:text-gray-400">{data.character}</span>

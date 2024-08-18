@@ -20,9 +20,17 @@ html{
   display: block;
 }
 
+.absolute-top{
+  position:absolute;
+  top: -30px;
+  left: -50px;
 
+}
 .text-secondary{
   color:#0cdefa ;
+}
+.bg-secondary{
+  background-color:#0cdefa ;
 }
 .text-primary{
   color: #111827;

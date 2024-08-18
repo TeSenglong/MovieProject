@@ -52,13 +52,13 @@ export default function UpComing() {
                 {
                     loading ? <Loading1 /> : coming.map((movie) =>
                         <SwiperSlide>
-                            <div className=' m-auto w-auto h-auto cursive-font' >
+                            <div className=' m-auto w-auto h-auto cursive-font pt-10 ' >
                                 <div className=" relative top-0 w-auto h-auto mb-10  dark:bg-gray-900 bg-cover  bg-no-repeat"
                                     style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500${movie.poster_path})`, }}  >
                                     <div className="absolute inset-0 bg-opacity-80 bg-slate-900 "></div>
-                                    <div className="flex flex-wrap gap-2 xs:grid xs:grid-cols-8  h-3/4 pb-4 max-w-screen-xl p-5 sm:p-2  relative mx-auto lg:gap-8 xl:gap-0 ">
+                                    <div className="flex flex-col gap-2 xs:grid xs:grid-cols-8  h-3/4 pb-4 max-w-screen-xl p-5 sm:p-2  relative mx-auto lg:gap-8 xl:gap-0 ">
                                         <div className=" m-auto col-span-3 ">
-                                            <img className=' w-52 h-64 sm:w-auto sm:h-auto' src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="mockup" />
+                                            <img className=' sm:absolute sm:-top-10 sm:-left-10 md:w-40 md:h-56 lg:w-52 lg:h-64 xl:w-60 xl:h-80 ' src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="mockup" />
                                         </div>
                                         <div className=" my-5 m-auto place-self-center col-span-5  text-center">
                                             <Link to={`/onemovie/${movie.id}`} >

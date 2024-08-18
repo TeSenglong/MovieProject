@@ -27,7 +27,7 @@ export default function OneMovie() {
     loading ? <Loading /> : <main>
       {
        
-          <section className=" relative cursive-font pb-10 pt-10 top-0 text-white  dark:bg-gray-900 bg-cover  bg-no-repeat"
+          <section className=" relative cursive-font pb-5 pt-10 top-0 text-white  dark:bg-gray-900 bg-cover  bg-no-repeat"
             style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500${onemovie.poster_path})`, }}
           >
             <div className=" absolute inset-0 sm:inset-0 bg-opacity-80 bg-slate-900"></div>
@@ -37,10 +37,10 @@ export default function OneMovie() {
                 <div className="sm:hidden h-auto mb-5 w-full flex justify-center">
                   <img className=' w-60 h-auto sm:w-56 md:w-60 lg:w-60 lg:h-auto xl:w-72  ' src={`https://image.tmdb.org/t/p/w500${onemovie.poster_path}`} alt="mockup" />
                 </div>
-                <h1 className="max-w-2xl mb-4 text-center sm:text-start text-base sm:text-xl font-extrabold tracking-tight leading-none md:text-2xl xl:text-4xl text-white dark:text-white">
+                <h1 className="max-w-2xl mb-4 text-center sm:text-start text-xl sm:text-xl font-extrabold tracking-tight leading-none md:text-2xl xl:text-4xl text-white dark:text-white">
                   {onemovie.title}
                 </h1>
-                <p className='text-xl mb-2' >Overview 
+                <p className='text-xl md-2xl mb-2' >Overview 
                   
                 <span className='sm:hidden text-xs sm:text-sm md:-text-base xl:text-xl flex-wrap mb-3'>
 
@@ -52,7 +52,7 @@ export default function OneMovie() {
                     ))}
                 </span>
                    </p>
-                <p className=" max-w-2xl text-xs sm:text-xs text-white lg:mb-8 md:text-sm lg:text-base dark:text-gray-400">
+                <p className=" max-w-2xl text-sm sm:text-sm text-white lg:mb-8 md:text-sm lg:text-base dark:text-gray-400">
                   {onemovie.overview}</p>
               </div>
 

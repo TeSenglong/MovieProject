@@ -81,7 +81,7 @@ export function TopRateMovieslist() {
         <Searching/>
         <h2 className='text-xl text-secondary md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl mb-5' >TopRate List</h2>
         <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6  gap-1 sm:gap-4'>
-        {movies.map((data, index) => (
+        {loading ? <Loading1 /> : movies.map((data, index) => (
                     <div key={index} className="h-auto transition ease-in-out delay-150 flex-none hover:-translate-y-1 hover:scale-110  duration-300  rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                         <Link to={`/onemovie/${data.id}`} className=''>
                             <img className="rounded-t-lg  " src={`https://image.tmdb.org/t/p/w300${data.poster_path}`} alt={data.title} />

@@ -37,3 +37,7 @@ export async function popularperson() {
     const res = await fetch(`${BASE_URL}/person/popular${API_key}&language=en-US&page=1`)
     return res.json()
 }
+export async function trending(){
+    const res = await fetch(`${BASE_URL}/trending/movie/week${API_key}`)
+    return res.json()
+}

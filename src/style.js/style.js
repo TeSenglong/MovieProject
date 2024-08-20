@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect } from "react";
+import DataTable from "react-data-table-component";
 import { useLocation } from "react-router-dom";
 
  export const Wrapper = ({children}) => {

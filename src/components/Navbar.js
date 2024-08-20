@@ -11,9 +11,9 @@ export default function Navbar() {
     
 
 <nav id='hidenn' className="backdrop-blur-md  fixed z-50 top-0 w-full  bg-white/10 border-gray-200 dark:bg-gray-900">
-  <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+  <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-1 md:p-4">
   <Link to='/' className="flex items-center space-x-3 rtl:space-x-reverse">
-      <span className="self-center  text-2xl font-semibold whitespace-nowrap dark:text-white text-secondary font-moulbali">កម្ពុជា</span>
+      <span className="self-center  md:text-2xl font-semibold whitespace-nowrap dark:text-white text-secondary font-moulbali">មហោរី</span>
   </Link>
   <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
       <button type="button" className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
@@ -28,7 +28,7 @@ export default function Navbar() {
         </div>
         <ul className="py-2" aria-labelledby="user-menu-button">
           <li>
-            <a href="#" className="block px-4 py-2 text-sm text-gray-100 hover:text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
+            <Link to='/dashboard' className="block px-4 py-2 text-sm text-gray-100 hover:text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</Link>
           </li>
           <li>
             <a href="#" className="block px-4 py-2 text-sm text-gray-100 hover:text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
@@ -73,6 +73,9 @@ export default function Navbar() {
                   </li>
                   <li>
                     <Link to="/upcominglist" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">UpComing</Link>
+                  </li>
+                  <li>
+                    <Link to="/trendinglist" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Trending</Link>
                   </li>
                 </ul>
             </div>

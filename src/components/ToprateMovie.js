@@ -62,6 +62,7 @@ export function TopRateMovieslist() {
   const [loading, setloading] = useState(true)
   const [totalpage, settotalpage] = useState(0)
   const [page, setpage] = useState(1)
+  
   useEffect(() => {
     const fetchmovie = async () => {
       const res = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US&page=${page}`)

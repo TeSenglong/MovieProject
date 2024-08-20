@@ -38,7 +38,7 @@ const PopularList = () => {
         loading ? <Loading1 /> :
             <section className=' h-auto w-11/12 m-auto  pt-20' >
           <Searching/>
-                <h2 className='text-xl text-secondary md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl mb-10' >Popular </h2>
+                <h2 className='text-xl text-secondary md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl mb-5' >Popular movies</h2>
               
                 <div className='grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6  gap-1 sm:gap-4'>
                     {movies.map((data, index) => (

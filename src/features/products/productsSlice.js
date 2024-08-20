@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import React from 'react'
-import { searchMovieAction } from './productsAction'
+import { fetchMovieAction, searchMovieAction } from './productsAction'
 
 export const productsSlice= createSlice ({
   name:'movie',
@@ -20,6 +20,15 @@ export const productsSlice= createSlice ({
       state.movies=action.payload
     }).addCase(searchMovieAction.rejected,(state,action)=>{
       state.status='search not found'
+      state.error=action.error.message
+    }).addCase(fetchMovieAction.pending,(state)=>{
+      state.status='loading pending'
+    }).addCase(fetchMovieAction.fulfilled,(state,action)=>{
+      state.fulfilled='fullfiled'
+      console.log('fectmovieactionpayload',action.payload)
+      state.movies=action.payload
+    }).addCase(fetchMovieAction.rejected,(state,action)=>{
+      state.status='not found'
       state.error=action.error.message
     })
   }

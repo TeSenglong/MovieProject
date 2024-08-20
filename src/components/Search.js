@@ -8,7 +8,7 @@ export default function Search() {
     initFlowbite()
     const dispatch = useDispatch()
     const { movies, status, error } = useSelector(state => state.movies)
-    const [query, setquery] = useState("")
+    const [query, setquery] = useState('')
     let handleSubmit = (e) => {
         e.preventDefault()
         // get what user input
@@ -21,7 +21,7 @@ export default function Search() {
         <div>
             <form 
             onSubmit={handleSubmit}
-            className="w-1/2 max-w-screen-md mx-auto mb-10 mt-10">
+            className="w-1/2 max-w-screen-md mx-auto mt-5 lg:mb-10 lg:mt-10">
                 <label for="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                 <div className="relative">
                     <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -34,11 +34,11 @@ export default function Search() {
                             console.log(e)
                             setquery(e.target.value)
                         }}
-                        type="search" id="default-search" className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Movies....." required />
-                    <button type="submit" className="text-gray-800 hidden sm:block absolute end-2.5 bottom-2.5 bg-secondary hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+                        type="search" id="default-search" className="block w-full md:p-4 md:pl-10 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Movies....." required />
+                    <button type="submit" className="text-white hidden sm:block absolute end-2.5 bottom-1 md:bottom-2.5 bg-primary hover:bg-blue-950 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-1 md:px-4 md:py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
                 </div>
             </form>
-            <div className='grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6  gap-1 sm:gap-4'>
+            <div className='grid grid-cols-2 mt-5 md:10 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6  gap-1 sm:gap-4'>
                
                 {movies.map((data, index) => (
                     <div key={index} className="h-auto transition ease-in-out delay-150 flex-none hover:-translate-y-1 hover:scale-110  duration-300  rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -73,9 +73,9 @@ export function Searching() {
     return ( 
             <form
              onSubmit={handleSubmit}
-            className="w-1/2 max-w-screen-md mx-auto bg-slate-600 mb-5 lg:mb-10 mt-5 lg:mt-10">
+            className="w-1/2 max-w-screen-md mx-auto mb-5 lg:mb-10 lg:mt-10">
                 <label for="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
-                <div className="relative bg-slate-600">
+                <div className="relative">
                     <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                         <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
@@ -86,8 +86,8 @@ export function Searching() {
                             console.log(e)
                             setquery(e.target.value)
                         }}
-                        type="text" id="default-search" className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Movies...." required />
-                    <button type="submit" className="text-primary hidden sm:block absolute end-2.5 bottom-2.5 bg-secondary hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+                        type="text" id="default-search" className="block w-full md:p-4 md:pl-10 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Movies...." required />
+                    <button type="submit" className="text-white hidden sm:block absolute end-2.5 bottom-1 md:bottom-2.5 bg-primary hover:bg-blue-950 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-1 md:px-4 md:py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
                 </div>
             </form>
     )

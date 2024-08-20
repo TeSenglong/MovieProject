@@ -32,6 +32,9 @@ html{
 .bg-secondary{
   background-color:#0cdefa ;
 }
+.bg-primary{
+  background-color: #111827 ;
+}
 .text-primary{
   color: #111827;
 }

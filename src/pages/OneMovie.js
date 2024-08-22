@@ -105,13 +105,13 @@ export default function OneMovie() {
         <h3 className='text-secondary lg:text-2xl  font-bold text-xl mt-10 w-11/12 '>
           Movie Top Cast
         </h3>
-        <div className=' hide-scrollbar h-40 m-auto gap-2 mt-10  ' >
+        <div className='  h-40 m-auto gap-2 mt-10  ' >
           <Actor />
         </div>
       </section>
       <section className=' ' >
         <h3 className=' text-xl font-bold text-secondary lg:text-2xl  w-11/12 m-auto mt-10' >Now playing</h3>
-        <div className='w-11/12 hide-scrollbar m-auto gap-2'>
+        <div className='w-11/12  m-auto gap-2'>
           <div className='flex flex-nowrap mt-10 gap-2' >
             <NowPlaying/>
           </div>

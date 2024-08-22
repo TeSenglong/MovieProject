@@ -38,10 +38,10 @@ export default function MainContent() {
     clickable:true,
   }}
   centeredSlides={true}
-//   autoplay={{
-//     delay: 5500,
-//     disableOnInteraction: false,
-//   }}
+  autoplay={{
+    delay: 5500,
+    disableOnInteraction: false,
+  }}
   mousewheel={true}
   keyboard={true}
   modules={[Autoplay,Navigation, Pagination, Mousewheel, Keyboard]}

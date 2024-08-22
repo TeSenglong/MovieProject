@@ -40,7 +40,7 @@ export default function Home() {
                         </div>
                         <section className='w-11/12 m-auto ' >
                             <h2 className='text-2xl mt-5 text-secondary' >Popular Movies</h2>
-                            <div className='hide-scrollbar mt-5 md:mt-10 gap-2' >
+                            <div className=' mt-5 md:mt-10 gap-2' >
                                 <PopularSwiper />
                             </div>
                             <div className='flex w-full pt-5 justify-end'>
@@ -49,7 +49,7 @@ export default function Home() {
                         </section>
                         <section className=' ' >
                             <h2 className='text-2xl w-11/12 m-auto mt-5 text-secondary ' >Top Rate Movies</h2>
-                            <div className='w-11/12  hide-scrollbar m-auto gap-2'>
+                            <div className='w-11/12   m-auto gap-2'>
                                 <div className='flex flex-nowrap mt-5 md:mt-10 gap-2' >
                                     <ToprateMovie />
                                 </div>
@@ -60,7 +60,7 @@ export default function Home() {
                         </section>
                         <section>
                             <h2 className='text-secondary mt-5 w-11/12 m-auto text-2xl '>Trending movies</h2>
-                            <div className='w-11/12 mt-5 md:mt-10 hide-scrollbar m-auto gap-2' >
+                            <div className='w-11/12 mt-5 md:mt-10  m-auto gap-2' >
                             <Trending/>
                             </div>
                             <div className='flex w-11/12 m-auto pt-5 justify-end'>

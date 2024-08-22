@@ -52,8 +52,8 @@ export default function UpComing() {
                 {
                     loading ? <Loading1 /> : coming.map((movie) =>
                         <SwiperSlide>
-                            <div className=' m-auto w-auto h-auto cursive-font pt-10 ' >
-                                <div className=" relative top-0 w-auto h-auto mb-10  dark:bg-gray-900 bg-cover  bg-no-repeat"
+                            <div className=' m-auto w-auto h-full cursive-font pt-10 ' >
+                                <div className=" relative flex top-0 w-auto h-auto mb-10  dark:bg-gray-900 bg-cover  bg-no-repeat"
                                     style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500${movie.poster_path})`, }}  >
                                     <div className="absolute inset-0 bg-opacity-80 bg-slate-900 "></div>
                                     <div className="flex flex-col gap-2 xs:grid xs:grid-cols-8  h-3/4 pb-4 max-w-screen-xl p-5 sm:p-2  relative mx-auto lg:gap-8 xl:gap-0 ">

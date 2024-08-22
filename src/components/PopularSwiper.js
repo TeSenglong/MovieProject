@@ -3,9 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/free-mode';
+import 'swiper/swiper-bundle.css'
 
 // import required modules
 import { FreeMode, Navigation, Pagination } from 'swiper/modules';
@@ -25,22 +23,67 @@ export default function PopularSwiper() {
   }, [])
   return (
     <>
+    <Swiper
+      slidesPerView={2}
+      spaceBetween={10}
+      breakpoints={{
+        400:{
+          slidesPerView: 3,
+          spaceBetween: 5,
+        },
+        440: {
+          slidesPerView: 3,
+          spaceBetween: 10,
+        },
+        640: {
+          slidesPerView: 4,
+          spaceBetween: 10,
+        },
+        768: {
+          slidesPerView: 4,
+          spaceBetween: 20,
+        },
+        1024: {
+          slidesPerView: 5,
+          spaceBetween: 10,
+        },
+        1250:{
+          slidesPerView:6,
+          spaceBetween: 20
+        },
+        1500:{
+          slidesPerView:7,
+          spaceBetween: 20
+        }
+      }}
+      modules={[Pagination]}
+      className="mySwiper"
+    >
       {
-        movie.map((movie, index) =>
-          <div className="w-36 flex-none sm:w-44 md:w-52 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-95  duration-300 border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <Link to={`/onemovie/${movie.id}`} className='' >
-              <img className="rounded-t-lg h-52 sm:h-64 md:h-72 sm:w-full" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="" />
+        movie.map((products) =>
+          <SwiperSlide className="w-36 flex-none transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-95  duration-300 border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <Link
+               onClick={() => {
+                window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+              }} to={`/onemovie/${products.id}`}
+            >
+            <img
+           
+              className="rounded-t-lg h-52 sm:h-64 md:h-72 w-full"
+              src={`https://image.tmdb.org/t/p/w500${products.poster_path}`} alt="" />
             </Link>
+
             <div className="text-center">
               <a href="#">
-                <h5 className="mb-2 text-xs sm:text-sm md:text-base mt-2  tracking-tight text-gray-100 dark:text-white">{movie.title}</h5>
+                <h5 className="mb-2 text-xs sm:text-sm md:text-base mt-2  tracking-tight text-gray-100 dark:text-white">{products.title}</h5>
               </a>
             </div>
-          </div>
+          </SwiperSlide>
         )
       }
 
-    </>
+    </Swiper>
+  </>
   );
 }
 

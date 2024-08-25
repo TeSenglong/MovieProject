@@ -48,8 +48,7 @@ export default function OneMovie() {
               </h1>
               <p className='text-xl md-2xl mb-2' >Overview
 
-                <span className='sm:hidden text-xs sm:text-sm md:-text-base xl:text-xl flex-wrap mb-3'>
-
+                <span className='sm:hidden text-xs sm:text-sm md:-text-base xl:text-xl flex flex-wrap mb-3'>
                   {
                     onemovie.genres.map((data) => (
                       <span className=' text-gray-400' >
@@ -98,7 +97,7 @@ export default function OneMovie() {
               </div>
             </div>
 
-            <div className="hidden w-full sm:w-2/5 h-72 md:w-2/5 md:h-full mb-10 sm:mb-0 sm:flex justify-center items-center ">
+            <div  data-aos="zoom-in" className="hidden w-full sm:w-2/5 h-72 md:w-2/5 md:h-full mb-10 sm:mb-0 sm:flex justify-center items-center ">
               <img className=' w-60 h-auto sm:w-56 md:w-60 lg:w-60 lg:h-auto xl:w-72  ' src={`https://image.tmdb.org/t/p/w500${onemovie.poster_path}`} alt="mockup" />
             </div>
 
@@ -128,8 +127,7 @@ export default function OneMovie() {
           <h3 className='  text-secondary text-xl lg:text-2xl font-bold pt-10 mb-5' >
             UpComing
           </h3 >
-          <div data-aos="fade-right" 
-                 data-aos-delay="100"
+          <div 
           >
 
           <UpComing />

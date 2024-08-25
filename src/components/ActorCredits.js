@@ -9,21 +9,23 @@ export default function ActorCredits() {
 
     const [credits, getCredits] = useState([])
     const { id } = useParams()
-    const [loading,setloading]=useState(true)
+    const [loading, setloading] = useState(true)
     useEffect(() => {
         getactorcredits(id)
             .then((res) => {
                 getCredits(res.cast)
-                setloading(false)
+                setTimeout(() => {
+                    setloading(false)
+                  },1500);
                 console.log('actor Credits', credits)
             })
     }, [id])
 
     return (
         <>
-            <section className='container w-11/12 m-auto'>
-                <div className='mt-20  flex hide-scrollbar gap-4'>
-                    {  loading ? <Loading1/> :
+            <article className='container w-11/12 m-auto'>
+                <div className='pt-10  flex hide-scrollbar gap-4'>
+                    {loading ? <Loading1 /> :
                         credits.slice(10, 25).map((movie, index) =>
                             <div className='flex-none w-40 md:w-72 pb-10 ' >
                                 <Link to={`/onemovie/${movie.id}`}>
@@ -36,7 +38,7 @@ export default function ActorCredits() {
                         )
                     }
                 </div>
-            </section>
+            </article>
         </>
     )
 }
@@ -56,15 +58,13 @@ export function Actorinfo() {
     }
     const [showMoreButton, setshowMoreButton] = useState(false)
     const ref = useRef(null)
-
-
-
-
     useEffect(() => {
         personalactor(id)
             .then((res) => {
                 setactor(res)
-                setloading(false)
+                setTimeout(() => {
+                    setloading(false)
+                  },1500);
                 console.log('actorinfo', actor)
             })
         if (ref.current) {
@@ -101,14 +101,14 @@ export function Actorinfo() {
 
     return (
 
-        <section className=' container w-11/12 m-auto pt-20 text-white'>
+        <article className=' container w-11/12 m-auto pt-20 text-white'>
             {loading ? <Loading1 /> :
                 <div className='flex flex-wrap md:flex-nowrap  justify-center p-5' >
                     <div className='flex-none' >
-                        <img alt={name} className=' relative w-96 h-auto px-5' src={`${img}${profile_path}`} />
+                        <img alt={name} className=' relative w-full h-96  md:w-96 md:h-auto px-5' src={`${img}${profile_path}`} />
                     </div>
                     <div className='flex flex-col mt-2 gap-2'>
-                        <p className='text-3xl text-center dark:text-gray-900'>
+                        <p className='text-3xl text-secondary text-center dark:text-gray-900'>
                             {name}
                         </p>
                         <p className='dark:text-gray-900' ref={ref} style={isOpen ? null : biographystyle}  >{biography}</p>
@@ -116,14 +116,16 @@ export function Actorinfo() {
                             showMoreButton &&
                             <button className='text-base underline underline-offset-2 text-gray-600 hover:text-white dark:text-gray-900' onClick={() => setisOpen(!isOpen)} >{isOpen ? 'read less' : 'read more...'} </button>
                         }
-                        <div className='pt-5 dark:text-gray-900' >
-                            <span id='birthday'>{birthday}</span>
-                            <p>Also known as {also_known_as}</p>
-                            <p className='text-gray-300 dark:text-gray-600' > Known for : <span className='text-white dark:text-gray-900 ' >{known_for_department}</span> </p>
-                            <p>Place of birth :{place_of_birth}</p>
-                            <span>Poppular: {popularity}</span>
-                            <div>
+                        <div className='pt-5 flex gap-2 justify-around   dark:text-gray-900' >
+                            <div className=' flex flex-col gap-3'>
+                                <span id='birthday'>{birthday}</span>
+                                <p>Also known as {also_known_as}</p>
+                                <p>Place of birth :{place_of_birth}</p>
+                            </div>
 
+                            <div className=' flex flex-col gap-3' >
+                                <span>Poppular: {popularity}</span>
+                                <p className='text-gray-300 dark:text-gray-600' > Known for : <span className='text-white dark:text-gray-900 ' >{known_for_department}</span> </p>
                                 <p>
                                     Gender:...
                                     <span>{genderactor}</span>
@@ -134,6 +136,6 @@ export function Actorinfo() {
                 </div>
             }
 
-        </section>
+        </article>
     )
 }

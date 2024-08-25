@@ -25,7 +25,9 @@ export default function MainContent() {
         products()
             .then((res) => {
                 setmovie(res.results)
-                setLoading(false)
+                setTimeout(() => {
+                    setLoading(false)
+                  },1500);
                 console.log('nananan', movie.poster_path)
             })
     }, [])

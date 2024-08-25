@@ -10,19 +10,26 @@ import { FreeMode, Navigation, Pagination } from 'swiper/modules';
 import Card, { Popularmovie, SwiperCard } from './Card';
 import products from '../services/products';
 import { Link } from 'react-router-dom';
+import { Loading1 } from './Loading';
 
 
 export default function PopularSwiper() {
   const [movie, setmovie] = useState([]);
+  const [loading,setloading]=useState(true)
   useEffect(() => {
     products()
       .then((res) => {
         setmovie(res.results)
+        setTimeout(() => {
+          setloading(false)
+        },2000);
         console.log(movie)
       })
   }, [])
   return (
     <>
+    {
+      loading ? <Loading1/> :
     <Swiper
       slidesPerView={2}
       spaceBetween={20}
@@ -83,6 +90,7 @@ export default function PopularSwiper() {
       }
 
     </Swiper>
+    }
   </>
   );
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Card from '../components/Card';
-import { Loading, Loading1 } from '../components/Loading';
+import { Loading, Loading1, Loadinglist } from '../components/Loading';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { increment } from '../features/counter/counterSlice';
@@ -16,10 +16,10 @@ const PopularList = () => {
 
     const dispatch = useDispatch()
     const {movies,status,error}=useSelector(state =>state.movies)
-    const [query,setquery]=useState("")
-    useEffect(()=>{
-        dispatch(searchMovieAction(query))
-    },[query])
+    // const [query,setquery]=useState("")
+    // useEffect(()=>{
+    //     dispatch(searchMovieAction(query))
+    // },[query])
 
     useEffect(() => {
             const fetchmovie = async () => {
@@ -28,20 +28,22 @@ const PopularList = () => {
                     .then((movies) => {
                         settotalpage(movies.totals_pages);
                         setmovie([...movie,...movies.results]);
-                        setloading(false);
+                        setTimeout(() => {
+                            setloading(false)
+                          },1500);
                         console.log('totalpages',movies)
                     });
             }
             fetchmovie();
     }, [page]);
     return (
-        loading ? <Loading1 /> :
-        <section className='dark:bg-gray-300 bg-gray-900'>
-            <article className=' h-auto w-11/12 m-auto  pt-20' >
+        loading ? <Loadinglist /> :
+        <main className='dark:bg-gray-300 bg-gray-900  '>
+            <section className=' h-auto w-11/12 m-auto pb-10  pt-20' >
           <Searching/>
-                <h2 className='text-xl text-secondary md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl mb-5' >Popular movies</h2>
+                <h2 className='text-xl text-secondary md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl mb-5 text-center pb-10' >Popular movies</h2>
               
-                <div className='grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6  gap-1 sm:gap-4'>
+                <article className='grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6  gap-1 sm:gap-4'>
                     {movies.map((data, index) => (
                         <div key={index} className="h-auto transition ease-in-out delay-150 flex-none hover:-translate-y-1 hover:scale-110  duration-300  rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                             <Link to={`/onemovie/${data.id}`} className=''>
@@ -58,7 +60,7 @@ const PopularList = () => {
                     {movie.map((data, index) => (
                         <div key={index} className="h-auto transition ease-in-out delay-150 flex-none hover:-translate-y-1 hover:scale-110  duration-300  rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                             <Link to={`/onemovie/${data.id}`} className=''>
-                                <img loading='lazy' className="rounded-t-lg  " src={`https://image.tmdb.org/t/p/w300${data.poster_path}`} alt={data.title} />
+                                <img className="rounded-t-lg  " src={`https://image.tmdb.org/t/p/w300${data.poster_path}`} alt={data.title} />
                             </Link>
                             <div className="p-2 text-center">
                                 <a href="#">
@@ -68,7 +70,7 @@ const PopularList = () => {
                             </div>
                         </div>
                     ))}
-                </div>
+                </article>
                 
                 <div className='w-full text-center mt-10'>   
                     {
@@ -76,8 +78,8 @@ const PopularList = () => {
                     </button>
                     }  
                 </div>
-            </article>
-        </section>
+            </section>
+        </main>
     )
 }
 export default PopularList;

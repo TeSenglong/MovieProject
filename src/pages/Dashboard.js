@@ -3,8 +3,8 @@ import DataTablee from '../components/admin/DataTable'
 
 export default function Dashboard() {
   return (
-    <section className='bg-gray-900 dark:bg-gray-300'>
+    <main className='bg-gray-900 dark:bg-gray-300'>
         <DataTablee/>
-    </section>
+    </main>
   )
 }

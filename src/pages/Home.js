@@ -36,12 +36,12 @@ export default function Home() {
         <>
             {
                 loading ? <Loading /> :
-                    <main className='bg-gray-900 dark:bg-gray-300 p-10'>
+                    <main className='bg-gray-900 dark:bg-gray-300 p-5 sm:p-10'>
                         <MainContent />
                         <div className='w-11/12 m-auto mb-5 ' >
                             <Search />
                         </div>
-                        <section className='w-11/12 m-auto ' >
+                        <section className=' sm:w-11/12 m-auto ' >
                             <h2 className='text-2xl md:text-3xl text-center mt-5 text-secondary reveal' >Popular Movies</h2>
                             <div data-aos="fade-right"
                                 className=' mt-5 md:mt-10 gap-2' >
@@ -55,7 +55,7 @@ export default function Home() {
                             <h2 className='text-2xl md:text-3xl text-center w-11/12 m-auto mt-5 text-secondary ' >Top Rate Movies</h2>
            
                                 <div data-aos="fade-right"
-                                className='w-11/12   m-auto flex flex-nowrap pt-5 md:pt-10 gap-2' >
+                                className='sm:w-11/12   m-auto flex flex-nowrap pt-5 md:pt-10 gap-2' >
                                     <ToprateMovie />
                                 </div>
                            
@@ -66,7 +66,7 @@ export default function Home() {
                         <section className='' >
                             <h2 className='text-secondary  md:text-3xl text-center mt-5 w-11/12 m-auto text-2xl '>Trending movies</h2>
                             <div data-aos="fade-right"
-                                className='w-11/12 pt-5 md:pt-10   m-auto gap-2' >
+                                className='sm:w-11/12 pt-5 md:pt-10   m-auto gap-2' >
                                 <Trending />
                             </div>
                             <div className='flex w-11/12 m-auto pt-5 justify-end'>

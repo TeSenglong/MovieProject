@@ -25,7 +25,7 @@ export default function PopularSwiper() {
     <>
     <Swiper
       slidesPerView={2}
-      spaceBetween={10}
+      spaceBetween={20}
       breakpoints={{
         400:{
           slidesPerView: 3,
@@ -69,13 +69,13 @@ export default function PopularSwiper() {
             >
             <img
            
-              className="rounded-t-lg h-52 sm:h-64 md:h-72 w-full"
+              className="rounded-t-lg "
               src={`https://image.tmdb.org/t/p/w500${products.poster_path}`} alt="" />
             </Link>
 
             <div className="text-center">
               <a href="#">
-                <h5 className="mb-2 text-xs sm:text-sm md:text-base mt-2  tracking-tight text-gray-100 dark:text-white">{products.title}</h5>
+                <h5 className="mb-2 text-xs sm:text-sm md:text-base mt-2  tracking-tight  text-white">{products.title}</h5>
               </a>
             </div>
           </SwiperSlide>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { popularperson } from '../services/products'
 import { Loading1 } from '../components/Loading'
+import { Link } from 'react-router-dom'
 
 export default function Popularpeople() {
     const [loading, setloading] = useState(true)
@@ -29,14 +30,14 @@ export default function Popularpeople() {
     // }, [])
     return (
         loading ? <Loading1 /> :
-            <main className='w-11/12 m-auto'>
-                <section className='mt-28' >
-                    <p className='text-secondary text-xl ' >Popular Actor </p>
+            <main className='bg-gray-900 dark:bg-gray-300'>
+                <section className='w-11/12 m-auto pt-20' >
+                    <p className='text-secondary pt-5 text-xl md:text-3xl font-bold ' >Popular Actor </p>
                     <div className=' mt-5 grid grid-cols-2 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4 justify-center' >
                         {
                             person.map((data, index) =>
-
                                 <div key={index} className="w-auto h-auto bg-slate-800   flex-none mt-5 rounded-lg shadow dark:bg-gray-800">
+                                    <Link to={`/creditsactor/${data.id}`}>                              
                                     <div className="grid grid-cols-6 p-5 gap-2 h-full items-center justify-center">
                                         <img className=" col-span-3 w-20 h-20 sm:w-28 sm:h-28 xl:w-36 xl:h-36 2xl:w-48 2xl:h-48  mr-5 rounded-full   shadow-lg" src={`https://image.tmdb.org/t/p/w500${data.profile_path}`} alt="" />
                                         <div className=' col-span-3 flex flex-col xs:gap-2' >
@@ -45,11 +46,12 @@ export default function Popularpeople() {
                                             <p className='text-secondary 2xl:text-xl text-xs md-text-base' > Pop:  {data.popularity}</p>
                                         </div>
                                     </div>
+                                    </Link>
                                 </div>
                             )
                         }
                     </div>
-                    <div className='w-full text-center mt-10'>
+                    <div className='w-full text-center mt-10 pb-10'>
                         {
                             totalpage !== page && <button className='text-white border text-secondary hover:bg-slate-800 hover:text-white  p-3 text-base md:text-xl rounded-lg ' onClick={() => setpage(page + 1)}> See more
                             </button>

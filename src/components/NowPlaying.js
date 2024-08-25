@@ -10,7 +10,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/swiper-bundle.css';
 export default function NowPlaying() {
     const [movie, setmovie] = useState([])
-
+    // const [loading,setloading]=useState
     useEffect(() => {
         nowplaying()
             .then((res) => {
@@ -23,7 +23,7 @@ export default function NowPlaying() {
         <>
         <Swiper
           slidesPerView={2}
-          spaceBetween={10}
+          spaceBetween={20}
           breakpoints={{
             400:{
               slidesPerView: 3,
@@ -66,8 +66,8 @@ export default function NowPlaying() {
                   }} to={`/onemovie/${products.id}`}
                 >
                 <img
-               
-                  className="rounded-t-lg h-52 sm:h-64 md:h-72 w-full"
+                // h-52 sm:h-64 md:h-72 w-full
+                  className="rounded-t-lg"
                   src={`https://image.tmdb.org/t/p/w500${products.poster_path}`} alt="" />
                 </Link>
     
@@ -122,7 +122,8 @@ export function NowPlayinglist() {
     // }, [])
     return (
         loading ? <Loading1 /> :
-            <section className=' h-auto w-11/12 m-auto  pt-20' >
+        <section className='dark:bg-gray-300 bg-gray-900'>
+            <article className=' h-auto w-11/12 m-auto  pt-20' >
                 <Searching/>
                 <h2 className='text-xl text-secondary md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl mb-5' >NowPlaying List</h2>
                 <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6  gap-1 sm:gap-4'>
@@ -160,7 +161,8 @@ export function NowPlayinglist() {
                         </button>
                     }
                 </div>
-            </section>
+            </article>
+        </section>
     );
 }
 

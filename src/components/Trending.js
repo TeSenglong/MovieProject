@@ -25,7 +25,7 @@ export default function Trending() {
     <>
       <Swiper
         slidesPerView={2}
-        spaceBetween={10}
+        spaceBetween={20}
         breakpoints={{
           400:{
             slidesPerView: 3,
@@ -75,7 +75,7 @@ export default function Trending() {
 
               <div className="text-center">
                 <a href="#">
-                  <h5 className="mb-2 text-xs sm:text-sm md:text-base mt-2  tracking-tight text-gray-100 dark:text-white">{products.title}</h5>
+                  <h5 className="mb-2 text-xs sm:text-sm md:text-base mt-2  tracking-tight text-white">{products.title}</h5>
                 </a>
               </div>
             </SwiperSlide>
@@ -115,7 +115,8 @@ export function Trendinglist() {
   }, [page]);
   return (
     loading ? <Loading1 /> :
-      <section className=' h-auto w-11/12 m-auto  pt-20' >
+    <section className='dark:bg-gray-300 bg-gray-900'>
+      <article className=' h-auto w-11/12 m-auto  pt-20' >
         <Searching />
         <h2 className='text-xl text-secondary md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl mb-5' >Trending List</h2>
         <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6  gap-1 sm:gap-4'>
@@ -126,7 +127,7 @@ export function Trendinglist() {
               </Link>
               <div className="p-2 text-center">
                 <a href="#">
-                  <h5 className="mb-2 text-center text-base sm:text-xl md:text-xl lg:text-2xl 2xl:text-3xl  font-bold tracking-tight text-white/75 dark:text-white">{data.title}</h5>
+                  <h5 className="mb-2 text-center text-base sm:text-xl md:text-xl lg:text-2xl 2xl:text-3xl  font-bold tracking-tight text-gray-300/75 dark:text-gray-300">{data.title}</h5>
                 </a>
                 <p className="mb-3 text-xs sm:text-sm md:text-base  font-normal text-gray-100/50 dark:text-gray-400">{data.release_date}</p>
               </div>
@@ -139,9 +140,9 @@ export function Trendinglist() {
               </Link>
               <div className="p-2 text-center">
                 <a href="#">
-                  <h5 className="mb-2 text-center text-base sm:text-xl md:text-xl lg:text-2xl 2xl:text-3xl  font-bold tracking-tight text-white/75 dark:text-white">{data.title}</h5>
+                  <h5 className="mb-2 text-center text-base sm:text-xl md:text-xl lg:text-2xl 2xl:text-3xl  font-bold tracking-tight text-gray-300/75 dark:text-white">{data.title}</h5>
                 </a>
-                <p className="mb-3 text-xs sm:text-sm md:text-base  font-normal text-gray-100/50 dark:text-gray-400">{data.release_date}</p>
+                <p className="mb-3 text-xs sm:text-sm md:text-base  font-normal text-gray-300/50 dark:text-gray-400">{data.release_date}</p>
               </div>
             </div>
 
@@ -153,7 +154,8 @@ export function Trendinglist() {
             </button>
           }
         </div>
-      </section>
+      </article>
+    </section>
   );
 }
 

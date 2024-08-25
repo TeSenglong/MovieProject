@@ -39,7 +39,7 @@ export default function MainContent() {
   }}
   centeredSlides={true}
   autoplay={{
-    delay: 5500,
+    delay: 5000,
     disableOnInteraction: false,
   }}
   mousewheel={true}
@@ -56,7 +56,7 @@ export default function MainContent() {
         <div className='flex md:p-10 md:pt-20 gap-2 md:justify-around opacity-95 pt-20 pb-10 flex-col xs:flex sm:flex-row justify-center'>
             <div className='flex-none m-auto sm:m-0' >
                 <Link to={`/onemovie/${data.id}`}>
-            <img className='h-96 w-72  md:h-auto md:w-96' src={`https://image.tmdb.org/t/p/w500${data.poster_path}`} alt='picture' />
+            <img className='h-96 w-auto  md:h-auto md:w-96' src={`https://image.tmdb.org/t/p/w500${data.poster_path}`} alt='picture' />
                 </Link>
             </div>
             <div className='flex flex-col justify-center items-center sm:pr-3'>

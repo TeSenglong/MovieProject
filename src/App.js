@@ -19,6 +19,7 @@ import { Topratelist } from './pages/Topratelist';
 import { Upcominglist } from './pages/Upcominglist';
 import { Trendinglist } from './pages/Tredingist';
 import About from './pages/About';
+import Contact from './components/Contact';
 
 
 
@@ -40,6 +41,7 @@ function App() {
         <Route path='/creditsactor/:id' element={<CreditsActor/>} />
         <Route path='/about' element={<About/>}/>
       </Route>
+      <Route path='/contact' element={<Contact/>} />
     </Routes>
 
   );

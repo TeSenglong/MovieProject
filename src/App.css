@@ -26,6 +26,9 @@
   left: -50px;
 
 }
+.icon-secondary{
+  fill: #0cdefa;
+}
 .text-secondary{
   color:#0cdefa ;
 }
@@ -37,6 +40,12 @@
 }
 .text-primary{
   color: #111827;
+}
+.backgroundImage{
+  background-image: url(../src/icon/image1.jpg);
+  background-repeat: no-repeat;
+  background-size:cover ;
+  --tw-bg-opacity: 0.8;
 }
 .h-vh{
   height: 95vh;

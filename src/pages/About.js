@@ -18,7 +18,7 @@ export default function About() {
                 <div>
                 <h2 className=' text-center font-moulbali mb-4 text-4xl pt-5 font-bold text-secondary' > មហោរី </h2>
                 <p className='text-gray-300 text-xl dark:text-gray-900' >Mohaori -Khmer : មហោរី is one of the traditional musical ensembles of Cambodia. This traditional ensemble is known in full name as Vung Phleng Mohaori- វង់ភ្លេងមហោរី, </p>
-                <p className='text-gray-300 text-xl pt-4 dark:text-gray-900'>This website create since 2024. Develope by Istad student. Final Project Web20 ,About Movie work with api from TMDB. Work on ReactJs. Design, tailwind , swiperjs, AOS animate. </p>
+                <p className='text-gray-300 text-xl pt-4 dark:text-gray-900'>This website is create since 2024. Develope by Istad student. Final Project Web20 ,About Movies work with api from TMDB. Work on ReactJs. Design, tailwind , swiperjs, AOS animate. </p>
                 </div>
                 </div>
 

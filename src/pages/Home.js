@@ -18,6 +18,8 @@ import Search from '../components/Search';
 import Trending from '../components/Trending';
 import 'aos/dist/aos.css';
 import Aos from 'aos';
+import { Helmet } from 'react-helmet';
+import logoimg from '../icon/iconlogo.png';
 export default function Home() {
     const [loading, setloading] = useState(true)
     const [movie, setmovie] = useState([]);
@@ -34,6 +36,17 @@ export default function Home() {
     }, [])
     return (
         <>
+        <Helmet>
+            <meta charSet='UTF-8'/>
+            <link rel='shortcut icon' href='../icon/iconlogo.png' />
+            <title>Mohaori</title>
+            <meta name='title' content='Movies website'/>
+            <meta name='description' content='Demo Movies website មហោរី design from class web-design web20'/>
+            <meta name='thumnail' content='../icon/thumnail.png'/> 
+            <meta property='og:title' content='មហោរី​ Mohaori - movies website'/>
+            <meta property='og:description' content='Demo Movies website មហោរី design from class web-design web20'/>
+            <meta property='og:image' content='../icon/thumnail.png' />
+        </Helmet>
             {
                 loading ? <Loading /> :
                     <main className='bg-gray-900 dark:bg-gray-300 p-5 sm:p-10'>
@@ -41,6 +54,7 @@ export default function Home() {
                         <div className='w-11/12 m-auto mb-5 ' >
                             <Search />
                         </div>
+                        
                         <section className=' sm:w-11/12 m-auto ' >
                             <h2 className='text-2xl md:text-3xl text-center mt-5 text-secondary dark:text-gray-900 reveal font-medium' >Popular Movies</h2>
                             <div data-aos="fade-right"

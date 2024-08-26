@@ -7,7 +7,7 @@ import 'swiper/swiper-bundle.css';
 import OneMovie  from './pages/OneMovie';
 import { Outlet, Route, Routes } from 'react-router-dom';
 import React, { lazy, Suspense, useEffect } from 'react';
-import { ScrollToTop, Wrapper } from './style.js/style';
+// import { ScrollToTop, Wrapper } from './style.js/style';
 import Popularpeople from './pages/Popularpeople';
 
 import PopularList from './pages/PopularList';
@@ -52,9 +52,7 @@ function MainlayOut(){
   return(
  <>
   <Navbar/>
-  <Wrapper>
   <Outlet/>
-  </Wrapper>
   <Footer/>
  </>
   )

@@ -19,6 +19,7 @@ import Trending from '../components/Trending';
 import 'aos/dist/aos.css';
 import Aos from 'aos';
 import { Helmet } from 'react-helmet';
+import thumnail from '../icon/thumnail.png';
 import logoimg from '../icon/iconlogo.png';
 export default function Home() {
     const [loading, setloading] = useState(true)
@@ -38,14 +39,15 @@ export default function Home() {
         <>
         <Helmet>
             <meta charSet='UTF-8'/>
-            <link rel='shortcut icon' href='../icon/iconlogo.png' />
+            <link rel="shortcut icon" href="../icon/iconlogo.png" />
             <title>Mohaori</title>
             <meta name='title' content='Movies website'/>
             <meta name='description' content='Demo Movies website មហោរី design from class web-design web20'/>
-            <meta name='thumnail' content='../icon/thumnail.png'/> 
-            <meta property='og:title' content='មហោរី​ Mohaori - movies website'/>
-            <meta property='og:description' content='Demo Movies website មហោរី design from class web-design web20'/>
-            <meta property='og:image' content='../icon/thumnail.png' />
+            <meta name='thumbnail' content='../icon/thumnail.png'/> 
+            <meta property="og:title" content="មហោរី​ Mohaori - movies website"/>
+            <meta property="og:description" content="Demo Movies website មហោរី design from class web-design web20"/>
+            <meta property='og:image' content="../icon/thumnail.png" />
+            {/* <meta property='og:image' content={thumnail} /> */}
         </Helmet>
             {
                 loading ? <Loading /> :

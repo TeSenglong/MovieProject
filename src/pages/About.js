@@ -6,7 +6,7 @@ export default function About() {
         Aos.init()
     },[])
   return (
-     <main className=' bg-gray-900'>
+     <main className=' bg-gray-900 dark:bg-gray-300'>
         <div className=' relative backgroundImage pt-20' >
         <div className="absolute inset-0 bg-opacity-90 bg-slate-900"></div> 
         <h1 className='text-center text-5xl opacity-85 text-secondary py-10  md:py-20 lg:py-32'>About Us </h1>
@@ -24,8 +24,8 @@ export default function About() {
 
             </article>
         </section>
-        <section className='w-11/12 m-auto'>
-            <article data-aos="fade-up-right" className=' flex-wrap flex gap-5 items-center text-gray-300 p-10  '>
+        <section className='w-11/12 m-auto '>
+            <article data-aos="fade-up-right" className=' flex-wrap flex gap-5 items-center text-gray-300 p-10 dark:text-gray-900  '>
                 <span className='text-white' >
                 <svg className='w-20 h-20  md:w-24 md:h-24 icon-secondary ' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M280 0C408.1 0 512 103.9 512 232c0 13.3-10.7 24-24 24s-24-10.7-24-24c0-101.6-82.4-184-184-184c-13.3 0-24-10.7-24-24s10.7-24 24-24zm8 192a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm-32-72c0-13.3 10.7-24 24-24c75.1 0 136 60.9 136 136c0 13.3-10.7 24-24 24s-24-10.7-24-24c0-48.6-39.4-88-88-88c-13.3 0-24-10.7-24-24zM117.5 1.4c19.4-5.3 39.7 4.6 47.4 23.2l40 96c6.8 16.3 2.1 35.2-11.6 46.3L144 207.3c33.3 70.4 90.3 127.4 160.7 160.7L345 318.7c11.2-13.7 30-18.4 46.3-11.6l96 40c18.6 7.7 28.5 28 23.2 47.4l-24 88C481.8 499.9 466 512 448 512C200.6 512 0 311.4 0 64C0 46 12.1 30.2 29.5 25.4l88-24z"/></svg>
                 </span>
@@ -34,7 +34,7 @@ export default function About() {
                 <span className='md:text-2xl'> Cellcard: 012 ## ## ## </span>
                 </p>
             </article>
-            <article data-aos="zoom-in-up" className=' flex justify-end flex-wrap gap-5 items-center text-gray-300 p-10  '>
+            <article data-aos="zoom-in-up" className=' flex justify-end flex-wrap gap-5 items-center text-gray-300 p-10 dark:text-gray-900 '>
                 <p className='text-xl  md:text-3xl flex flex-col   gap-2' >Internet Contact <br/>
                 <a href='' className='md:text-2xl'>Gmail: WWW.###@gmail.com </a> 
                 <a href='' className='md:text-2xl'> Outlook:www.###@outlook.com </a>
@@ -44,7 +44,7 @@ export default function About() {
                 </span>
             </article>
             <article className='flex justify-around flex-wrap md:flex-nowrap gap-5 py-10'>
-            <article data-aos="fade-up-right" className=' flex justify-start gap-5 items-center text-gray-300 p-10  '>
+            <article data-aos="fade-up-right" className=' flex justify-start gap-5 items-center text-gray-300 p-10 dark:text-gray-900 '>
                 <span className='text-white' >
                 <svg className='w-16 h-20 icon-secondary'  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64h98.2V334.2H109.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H255V480H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64z"/></svg>
                 </span>
@@ -53,7 +53,7 @@ export default function About() {
                 <a href='' className='md:text-2xl'> Pages: PageName...... </a>
                 </p>
             </article>
-            <article data-aos="fade-up-left" className=' flex justify-start gap-5 items-center text-gray-300 p-10  '>
+            <article data-aos="fade-up-left" className=' flex justify-start gap-5 items-center text-gray-300 p-10  dark:text-gray-900'>
                 <p className='text-xl  md:text-3xl flex flex-col gap-2' >Telegram <br/>
                 <a href='' className='md:text-2xl'>UserName... </a> 
                 <a href='' className='md:text-2xl'> Group: grouplink...... </a>

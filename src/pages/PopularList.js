@@ -41,7 +41,7 @@ const PopularList = () => {
         <main className='dark:bg-gray-300 bg-gray-900  '>
             <section className=' h-auto w-11/12 m-auto pb-10  pt-20' >
           <Searching/>
-                <h2 className='text-xl text-secondary md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl mb-5 text-center pb-10' >Popular movies</h2>
+                <h2 className='text-xl text-secondary dark:text-gray-900 md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl mb-5 text-center pb-10' >Popular movies</h2>
               
                 <article className='grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6  gap-1 sm:gap-4'>
                     {movies.map((data, index) => (
@@ -74,7 +74,7 @@ const PopularList = () => {
                 
                 <div className='w-full text-center mt-10'>   
                     {
-                        totalpage !== page && <button className='text-white border text-secondary hover:bg-slate-800 hover:text-white  p-3 text-base md:text-xl rounded-lg ' onClick={() => setpage(page + 1)}> See more
+                        totalpage !== page && <button className='border dark:text-gray-500  text-secondary hover:bg-slate-800 hover:text-white  p-3 text-base md:text-xl rounded-lg ' onClick={() => setpage(page + 1)}> See more
                     </button>
                     }  
                 </div>

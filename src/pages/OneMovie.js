@@ -107,7 +107,7 @@ export default function OneMovie() {
 
       }
       <section className=' m-auto bg-gray-900 dark:bg-gray-300'>
-        <h3 className='w-11/12 m-auto text-secondary lg:text-2xl  font-bold text-xl pt-10 '>
+        <h3 className='w-11/12 m-auto text-secondary lg:text-2xl dark:text-gray-900  font-bold text-xl pt-10 '>
           Movie Top Cast
         </h3>
         <div className='w-11/12 h-40 m-auto gap-2 mt-10  ' >
@@ -115,7 +115,7 @@ export default function OneMovie() {
         </div>
       </section>
       <section className='bg-gray-900 dark:bg-gray-300 ' >
-        <h3 className=' text-xl font-bold text-secondary lg:text-2xl  w-11/12 m-auto pt-10' >Now playing</h3>
+        <h3 className=' text-xl font-bold text-secondary lg:text-2xl dark:text-gray-900  w-11/12 m-auto pt-10' >Now playing</h3>
         <div className='w-11/12  m-auto gap-2'>
           <div className='flex flex-nowrap mt-10 gap-2' >
             <NowPlaying />
@@ -124,7 +124,7 @@ export default function OneMovie() {
       </section>
       <section className=' bg-gray-900 dark:bg-gray-300 pb-10 '>
         <div className='w-11/12 m-auto'>
-          <h3 className='  text-secondary text-xl lg:text-2xl font-bold pt-10 mb-5' >
+          <h3 className=' dark:text-gray-900 text-secondary text-xl lg:text-2xl font-bold pt-10 mb-5' >
             UpComing
           </h3 >
           <div 

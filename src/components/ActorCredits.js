@@ -1,10 +1,9 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { getactorcredits, personalactor } from '../services/products'
 import { Link, useParams } from 'react-router-dom'
-import { referenceEqualityCheck } from 'reselect'
 import { Loading1 } from './Loading'
-import { render } from '@testing-library/react'
-
+import Aos from 'aos'
+import 'aos/dist/aos.css';
 export default function ActorCredits() {
 
     const [credits, getCredits] = useState([])
@@ -59,6 +58,7 @@ export function Actorinfo() {
     const [showMoreButton, setshowMoreButton] = useState(false)
     const ref = useRef(null)
     useEffect(() => {
+        Aos.init()
         personalactor(id)
             .then((res) => {
                 setactor(res)
@@ -104,7 +104,7 @@ export function Actorinfo() {
         <article className=' container w-11/12 m-auto pt-20 text-white'>
             {loading ? <Loading1 /> :
                 <div className='flex flex-wrap md:flex-nowrap  justify-center p-5' >
-                    <div className='flex-none' >
+                    <div data-aos="zoom-in" className='flex-none' >
                         <img alt={name} className=' relative w-full h-96  md:w-96 md:h-auto px-5' src={`${img}${profile_path}`} />
                     </div>
                     <div className='flex flex-col mt-2 gap-2'>

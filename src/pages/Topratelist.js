@@ -38,7 +38,7 @@ export function Topratelist() {
       <main className='dark:bg-gray-300 bg-gray-900'>
         <section className=' h-auto w-11/12 m-auto pb-10 pt-20' >
           <Searching/>
-          <h2 className='text-xl text-secondary md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl mb-5 text-center pb-10' >TopRate List</h2>
+          <h2 className='text-xl text-secondary dark:text-gray-900 md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl mb-5 text-center pb-10' >TopRate List</h2>
           <article className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6  gap-1 sm:gap-4'>
           { movies.map((data, index) => (
                       <div key={index} className="h-auto transition ease-in-out delay-150 flex-none hover:-translate-y-1 hover:scale-110  duration-300  rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -70,7 +70,7 @@ export function Topratelist() {
           </article>
           <div className='w-full text-center mt-10'>
             {
-              totalpage !== page && <button className='text-white border text-secondary hover:bg-slate-800 hover:text-white  p-3 text-base md:text-xl rounded-lg ' onClick={() => setpage(page + 1)}> See more
+              totalpage !== page && <button className='dark:text-gray-500   border text-secondary hover:bg-slate-800 hover:text-white  p-3 text-base md:text-xl rounded-lg ' onClick={() => setpage(page + 1)}> See more
               </button>
             }
           </div>

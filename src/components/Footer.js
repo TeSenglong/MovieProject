@@ -8,8 +8,8 @@ export default function Footer() {
     })
     return (
         <footer className="shadow-xl shadow-white bg-gray-900 py-10 px-14">
-            <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
-                <article className='flex justify-around flex-wrap md:flex-nowrap gap-5 py-10'>
+            <div className="w-full max-w-screen-xl mx-auto p-4 ">
+                <article className='flex justify-center flex-wrap md:flex-nowrap gap-5 py-10'>
                     <article data-aos="fade-up-right" className=' flex justify-start gap-5 items-center text-gray-300 p-10  '>
                         <span className='text-white' >
                             <a href='#' >

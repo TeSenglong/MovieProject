@@ -34,7 +34,7 @@ export default function Popularpeople() {
         loading ? <Loading22 /> :
             <main className='bg-gray-900 dark:bg-gray-300  pb-10'>
                 <section className='w-11/12 m-auto pt-20' >
-                    <p className='text-secondary pt-5 text-xl md:text-3xl font-bold ' >Popular Actor </p>
+                    <p className='text-secondary pt-5 text-xl md:text-3xl font-bold dark:text-gray-900 ' >Popular Actor </p>
                     <article className=' mt-5 grid grid-cols-2 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4 justify-center' >
                         {
                             person.map((data, index) =>
@@ -55,7 +55,7 @@ export default function Popularpeople() {
                     </article>
                     <div className='w-full text-center mt-10 pb-10'>
                         {
-                            totalpage !== page && <button className='text-white border text-secondary hover:bg-slate-800 hover:text-white  p-3 text-base md:text-xl rounded-lg ' onClick={() => setpage(page + 1)}> See more
+                            totalpage !== page && <button className='dark:text-gray-500 text-white border text-secondary hover:bg-slate-800 hover:text-white  p-3 text-base md:text-xl rounded-lg ' onClick={() => setpage(page + 1)}> See more
                             </button>
                         }
                     </div>

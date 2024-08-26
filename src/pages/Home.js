@@ -38,7 +38,16 @@ export default function Home() {
     return (
         <>
         <Helmet>
-            <meta charSet='UTF-8'/>
+        <meta charSet="utf-8" />
+        <title>CSTAD - Web Class</title>
+        <link rel="canonical" href="https://istad.co/" />
+        <meta name="title" content="Web Design" />
+        <meta name="description" content="Web Design course is designed for students to get started with Design Website Concepts. This course will focus on basic and advanced layout of website plus responsive design including UI/UX Design Concept. Moreover, CMS &amp; Dynamic content with hosting application to access in public." />
+        <meta name="thumbnail" content="https://api.istad.co/media/image/3a3d2bf2-670b-4f2f-a72a-b9b8ba3a0f38.png" />
+        <meta property="og:title" content="Available Courses" />
+        <meta property="og:description" content="There are many courses of ISTAD that you can see" />
+        <meta property="og:image" content="https://www.istad.co/resources/img/istad-thumbnail.png" />
+            {/* <meta charSet='UTF-8'/>
             <link rel="shortcut icon" href="../icon/iconlogo.png" />
             <title>Mohaori</title>
             <meta name='title' content='Movies website'/>
@@ -46,7 +55,7 @@ export default function Home() {
             <meta name='thumbnail' content='../icon/thumnail.png'/> 
             <meta property="og:title" content="មហោរី​ Mohaori - movies website"/>
             <meta property="og:description" content="Demo Movies website មហោរី design from class web-design web20"/>
-            <meta property='og:image' content="../icon/thumnail.png" />
+            <meta property='og:image' content="../icon/thumnail.png" /> */}
             {/* <meta property='og:image' content={thumnail} /> */}
         </Helmet>
             {

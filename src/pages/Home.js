@@ -47,6 +47,8 @@ export default function Home() {
             <meta property="og:title" content="មហោរី​ Mohaori - movies website"/>
             <meta property="og:description" content="Demo Movies website មហោរី design from class web-design web20"/>
             <meta property='og:image' content="https://movieproject-ashen.vercel.app/logo.png" />
+            <meta property="og:url" content=" https://movieproject-ashen.vercel.app/Mohaori/thumnail.png " />
+            <meta property="og:type" content="Movies-project" />
         </Helmet>
                     <main className='bg-gray-900 dark:bg-gray-300 '>
                         <MainContent />

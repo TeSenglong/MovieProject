@@ -50,3 +50,7 @@ export async function trending(){
     const res = await fetch(`${BASE_URL}/trending/movie/week${API_key}`)
     return res.json()
 }
+export async function videoid(id) {
+        const res = await fetch(`${BASE_URL}/movie/${id}/videos${API_key}`)
+        return res.json()
+}

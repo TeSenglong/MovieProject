@@ -37,9 +37,10 @@ export function Upcominglist() {
     //         })
     // }, [])
     return (
-        loading ? <Loadinglist/> :
-        <main className='dark:bg-gray-300  bg-gray-900 '>
-            <section className=' h-auto w-11/12 m-auto pb-10 pt-20' >
+        <main className='dark:bg-gray-300 bg-gray-900 pb-10 pt-20'>
+        {
+            loading ? <Loadinglist /> :
+            <section className=' h-auto w-11/12 m-auto ' >
                 <Searching/>
                 <h2 className='text-xl text-secondary dark:text-gray-900 md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl mb-5 text-center pb-10' >UpComing List</h2>
                 <article className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6  gap-1 sm:gap-4'>
@@ -78,6 +79,7 @@ export function Upcominglist() {
                     }
                 </div>
             </section>
+            }
         </main>
     );
 }

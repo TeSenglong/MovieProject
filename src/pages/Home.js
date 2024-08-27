@@ -48,9 +48,7 @@ export default function Home() {
             <meta property="og:description" content="Demo Movies website មហោរី design from class web-design web20"/>
             <meta property='og:image' content="https://movieproject-ashen.vercel.app/logo.png" />
         </Helmet>
-            {
-                loading ? <Loading /> :
-                    <main className='bg-gray-900 dark:bg-gray-300 p-5 sm:p-10'>
+                    <main className='bg-gray-900 dark:bg-gray-300 '>
                         <MainContent />
                         <div className='w-11/12 m-auto mb-5 ' >
                             <Search />
@@ -89,7 +87,6 @@ export default function Home() {
                             </div>
                         </section>
                     </main>
-            }
         </>
 
     )

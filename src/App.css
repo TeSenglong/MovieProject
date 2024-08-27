@@ -95,6 +95,21 @@ html::-webkit-scrollbar-thumb{
   border-radius: 10px;
 
 }
-/* .pp-1{
-  background:linear-gradient(to right  ,red, blue);
-} */
+@media (min-width: 340px) {
+  .container-youtube {
+      width: 300px;
+      height: 200px;
+  }
+}
+@media (min-width: 640px) {
+  .container-youtube {
+    width: 500px;
+    height: 300px;
+  }
+}
+@media (min-width: 1150px) {
+  .container-youtube {
+    width: 700px;
+    height: 400px;
+  }
+}

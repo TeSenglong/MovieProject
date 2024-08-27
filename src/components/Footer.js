@@ -7,7 +7,7 @@ export default function Footer() {
         Aos.init()
     })
     return (
-        <footer className="shadow-xl shadow-white bg-gray-900 py-10 px-14">
+        <footer className="shadow-xl shadow-white bg-gray-900 sm:py-10 sm:px-14">
             <div className="w-full max-w-screen-xl mx-auto p-4 ">
                 <article className='flex justify-center flex-wrap md:flex-nowrap gap-5 py-10'>
                     <article data-aos="fade-up-right" className=' flex justify-start gap-5 items-center text-gray-300 p-10  '>
@@ -49,21 +49,36 @@ export default function Footer() {
                     </article>
                 </article>
                 <article className="sm:flex sm:items-center sm:justify-between">
-                    <Link to='/' className="flex  items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+                    <Link onClick={() => {
+                        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+                    }}
+                        to='/' className="flex  items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
                         <span className="self-center text-secondary text-2xl font-semibold whitespace-nowrap  font-moulbali">មហោរី</span>
                     </Link>
                     <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
                         <li>
-                            <Link to='/about' className="hover:underline me-4 md:me-6">About</Link>
+                            <Link onClick={() => {
+                                window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+                            }}
+                                to='/about' className="hover:underline me-4 md:me-6">About</Link>
                         </li>
                         <li>
-                            <Link to='/' className="hover:underline me-4 md:me-6">Home</Link>
+                            <Link onClick={() => {
+                                window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+                            }}
+                                to='/' className="hover:underline me-4 md:me-6">Home</Link>
                         </li>
                         <li>
-                            <Link to='/popularlist' className="hover:underline me-4 md:me-6">Movie</Link>
+                            <Link onClick={() => {
+                                window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+                            }}
+                                to='/popularlist' className="hover:underline me-4 md:me-6">Movie</Link>
                         </li>
                         <li>
-                            <Link to='/contact' className="hover:underline">Contact</Link>
+                            <Link onClick={() => {
+                                window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+                            }}
+                                to='/contact' className="hover:underline">Contact</Link>
                         </li>
                     </ul>
                 </article>

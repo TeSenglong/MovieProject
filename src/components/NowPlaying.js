@@ -63,8 +63,8 @@ export default function NowPlaying() {
               <SwiperSlide className="w-36 flex-none transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-95  duration-300 border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <Link
                    onClick={() => {
-                    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-                  }} to={`/onemovie/${products.id}`}
+                    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });}}
+                     to={`/onemovie/${products.id}`}
                 >
                 <img
                 // h-52 sm:h-64 md:h-72 w-full

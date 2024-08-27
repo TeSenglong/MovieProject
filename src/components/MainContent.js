@@ -68,9 +68,9 @@ export default function MainContent() {
                 <p className='text-white mt-6 hidden m-auto sm:flex lg:w-128 lg:text-2xl ' >{data.overview.length > 300 ?`${data.overview.substring(0,300)}.....`:data.overview}  </p>
             </div>
             <div className='mt-4' >
-            <a href="#" className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-black focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
-              Watch now
-            </a>
+            <Link to={`/onemovie/${data.id}`} className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-black focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
+              View More
+            </Link>
             </div>
             </div>
         </div>

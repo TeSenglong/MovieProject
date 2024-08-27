@@ -24,7 +24,9 @@ export default function OneMovie() {
       // getactor(id)
       .then((res) => {
         setonemovie(res)
-        setloading(false)
+        setTimeout(() => {
+          setloading(false)
+        },1500);
         console.log('onemovie', onemovie)
       })
   }, [id])

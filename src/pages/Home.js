@@ -39,15 +39,14 @@ export default function Home() {
         <>
         <Helmet>
             <meta charSet='UTF-8'/>
-            <link rel="shortcut icon" href="../icon/iconlogo.png" />
+            <link rel="shortcut icon" href={logoimg} />
             <title>Mohaori</title>
             <meta name='title' content='Movies website'/>
             <meta name='description' content='Demo Movies website មហោរី design from class web-design web20'/>
-            <meta name='thumbnail' content='https://movieproject-ashen.vercel.app/thumnail.png'/> 
+            <meta name='thumbnail' content={thumnail}/> 
             <meta property="og:title" content="មហោរី​ Mohaori - movies website"/>
             <meta property="og:description" content="Demo Movies website មហោរី design from class web-design web20"/>
             <meta property='og:image' content="https://movieproject-ashen.vercel.app/logo.png" />
-            {/* <meta property='og:image' content={thumnail} /> */}
         </Helmet>
             {
                 loading ? <Loading /> :

@@ -37,6 +37,7 @@ const PopularList = () => {
             fetchmovie();
     }, [page]);
     return (
+        
         loading ? <Loadinglist /> :
         <main className='dark:bg-gray-300 bg-gray-900  '>
             <section className=' h-auto w-11/12 m-auto pb-10  pt-20' >

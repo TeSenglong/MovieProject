@@ -61,7 +61,7 @@ export default function OneMovie() {
             <title>{`Mohaori-${onemovie.title}`}</title>
             <meta name='title' content='Movies website'/>
             <meta name='description' content='Demo Movies website មហោរី design from class web-design web20'/>
-            <meta name='thumbnail' content={thumnail}/> 
+            <meta name='thumbnail' content={`https://image.tmdb.org/t/p/w500${onemovie.poster_path}`}/> 
             <meta property="og:title" content="មហោរី​ Mohaori - movies website"/>
             <meta property="og:description" content="Demo Movies website មហោរី design from class web-design web20"/>
             <meta property='og:image' content="https://movieproject-ashen.vercel.app/logo.png" />

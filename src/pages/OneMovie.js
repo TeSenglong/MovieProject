@@ -10,7 +10,9 @@ import Aos from 'aos'
 import 'aos/dist/aos.css';
 import Trailer from '../components/Trailer'
 import YouTube from 'react-youtube'
-
+import { Helmet } from 'react-helmet'
+import thumnail from '../icon/thumnail.png';
+import logoimg from '../icon/iconlogo.png';
 export default function OneMovie() {
   const [onemovie, setonemovie] = useState([])
   const [loading, setloading] = useState(true)
@@ -52,9 +54,20 @@ export default function OneMovie() {
   }
   const [playtrailer, setplaytrailer] = useState(false)
   return (
+    <>
+            <Helmet>
+            <meta charSet='UTF-8'/>
+            <link rel="shortcut icon" href={logoimg} />
+            <title>{`Mohaori-${onemovie.title}`}</title>
+            <meta name='title' content='Movies website'/>
+            <meta name='description' content='Demo Movies website មហោរី design from class web-design web20'/>
+            <meta name='thumbnail' content={thumnail}/> 
+            <meta property="og:title" content="មហោរី​ Mohaori - movies website"/>
+            <meta property="og:description" content="Demo Movies website មហោរី design from class web-design web20"/>
+            <meta property='og:image' content="https://movieproject-ashen.vercel.app/logo.png" />
+        </Helmet>
+    {
     loading ? <Loading /> : <main>
-      {
-
         <section className=" relative cursive-font pb-5 pt-10 top-0 text-white  dark:bg-gray-300 bg-gray-900 bg-cover  bg-no-repeat"
           style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500${onemovie.poster_path})`, }}
         >
@@ -131,7 +144,7 @@ export default function OneMovie() {
               </div>
         </section>
 
-      }
+      
       <section className=' m-auto bg-gray-900 dark:bg-gray-300'>
         <h3 className='w-11/12 m-auto text-secondary lg:text-2xl dark:text-gray-900  font-bold text-xl pt-10 '>
           Movie Top Cast
@@ -161,6 +174,8 @@ export default function OneMovie() {
         </div>
       </section>
     </main>
+    }
+    </>
   )
 }
 

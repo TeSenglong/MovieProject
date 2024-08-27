@@ -4,6 +4,9 @@ import { searchMovieAction } from "../features/products/productsAction"
 import { Loading1, Loadinglist } from "../components/Loading"
 import { Link } from "react-router-dom"
 import { Searching } from "../components/Search"
+import { Helmet } from 'react-helmet'
+import thumnail from '../icon/thumnail.png';
+import logoimg from '../icon/iconlogo.png';
 export function Upcominglist() {
     const dispatch = useDispatch()
     const { movies, status, error } = useSelector(state => state.movies)
@@ -37,6 +40,21 @@ export function Upcominglist() {
     //         })
     // }, [])
     return (
+        <>
+            <Helmet>
+                <meta charSet='UTF-8' />
+                <link rel="shortcut icon" href={logoimg} />
+                <title>Mohaori-UpcomingMovie</title>
+                <meta name='title' content='About Mohaori' />
+                <meta name='description' content='About Demo Movies website មហោរី design from class web-design web20' />
+                <meta name='thumbnail' content={thumnail} />
+                <meta property="og:title" content="About មហោរី​ Mohaori - movies website" />
+                <meta property="og:description" content="Demo Movies website មហោរី design from class web-design web20" />
+                <meta property='og:image' content="https://movieproject-ashen.vercel.app/logo.png" />
+                <meta property='og:image:width' content="400" />
+                <meta property='og:image:height' content='300' />
+            </Helmet>    
+        
         <main className='dark:bg-gray-300 bg-gray-900 pb-10 pt-20'>
         {
             loading ? <Loadinglist /> :
@@ -81,5 +99,6 @@ export function Upcominglist() {
             </section>
             }
         </main>
+        </>
     );
 }

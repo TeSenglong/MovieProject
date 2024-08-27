@@ -27,6 +27,9 @@ export default function About() {
                 <meta property='og:image' content="https://movieproject-ashen.vercel.app/logo.png" />
                 <meta property='og:image:width' content="400" />
                 <meta property='og:image:height' content='300' />
+                <meta property="og:url" content=" https://movieproject-ashen.vercel.app/Mohaori/thumnail.png " />
+                <meta property="og:type" content="Movies-project" />
+                <meta property='fb:app_id' content='1226113552034640' />
             </Helmet>
 
 

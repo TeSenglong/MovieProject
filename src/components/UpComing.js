@@ -59,13 +59,17 @@ export default function UpComing() {
                                     <div className="absolute inset-0 bg-opacity-80 bg-slate-900 "></div>
                                     <div className="flex flex-col gap-2 xs:grid xs:grid-cols-8  h-3/4 pb-4 max-w-screen-xl p-5 sm:p-2  relative mx-auto lg:gap-8 xl:gap-0 ">
                                         <div className=" m-auto col-span-3 ">
-                                            <img className=' sm:absolute sm:-top-10 sm:-left-10 md:w-40 md:h-56 lg:w-52 lg:h-64 xl:w-60 xl:h-80 ' src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="mockup" />
+                                            <Link onClick={() => {
+                                                window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+                                            }} to={`/onemovie/${movie.id}`}>
+                                                <img className=' sm:absolute sm:-top-10 sm:-left-10 md:w-40 md:h-56 lg:w-52 lg:h-64 xl:w-60 xl:h-80 ' src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="mockup" />
+                                            </Link>
                                         </div>
                                         <div className=" my-5 m-auto place-self-center col-span-5  text-center">
-                                            <Link  onClick={() => {
+                                            <Link onClick={() => {
                                                 window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
                                             }}
-                                             to={`/onemovie/${movie.id}`} >
+                                                to={`/onemovie/${movie.id}`} >
                                                 <h1 className=" mb-4 text-xl font-extrabold tracking-tight leading-none md:text-2xl xl:text-6xl text-white dark:text-white">{movie.title}</h1>
                                             </Link>
                                             <p className="hidden xs:block max-w-2xl mb-6 font-light text-white lg:mb-8 text-base md:text-base lg:text-lg xl:text-xl 2xl:text-2xl dark:text-gray-400">{movie.overview.length > 150 ? `${movie.overview.substring(0, 150)}....` : movie.overview}</p>

@@ -4,7 +4,7 @@ import { Loading1, Loading22 } from '../components/Loading'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import thumnail from '../icon/thumnail.png';
-import logoimg from '../icon/iconlogo.png'; 
+import logoimg from '../icon/iconlogo.png';
 export default function Popularpeople() {
     const [loading, setloading] = useState(true)
     const [person, setperson] = useState([])
@@ -56,7 +56,10 @@ export default function Popularpeople() {
                                 {
                                     person.map((data, index) =>
                                         <div key={index} className="w-auto h-auto bg-slate-800   flex-none mt-5 rounded-lg shadow dark:bg-gray-800">
-                                            <Link to={`/creditsactor/${data.id}`}>
+                                            <Link onClick={() => {
+                                                window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+                                            }}
+                                                to={`/creditsactor/${data.id}`}>
                                                 <div className="grid grid-cols-6 p-5 gap-2 h-full items-center justify-center">
                                                     <img className=" col-span-3 w-20 h-20 sm:w-28 sm:h-28 xl:w-36 xl:h-36 2xl:w-48 2xl:h-48  mr-5 rounded-full   shadow-lg" src={`https://image.tmdb.org/t/p/w500${data.profile_path}`} alt="" />
                                                     <div className=' col-span-3 flex flex-col xs:gap-2' >

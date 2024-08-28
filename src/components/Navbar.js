@@ -77,19 +77,34 @@ export default function Navbar() {
               <div id="dropdownNavbar" className="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
                 <ul className="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
                   <li>
-                    <Link to="/popularlist" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Popular</Link>
+                    <Link onClick={() => {
+                window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+              }}
+                    to="/popularlist" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Popular</Link>
                   </li>
                   <li>
-                    <Link to="/nowplayinglist" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Nowplaying</Link>
+                    <Link onClick={() => {
+                window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+              }}
+                    to="/nowplayinglist" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Nowplaying</Link>
                   </li>
                   <li>
-                    <Link to='/topratelist' className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">TopRate</Link>
+                    <Link onClick={() => {
+                window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+              }}
+                    to='/topratelist' className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">TopRate</Link>
                   </li>
                   <li>
-                    <Link to="/upcominglist" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">UpComing</Link>
+                    <Link onClick={() => {
+                window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+              }}
+                    to="/upcominglist" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">UpComing</Link>
                   </li>
                   <li>
-                    <Link to="/trendinglist" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Trending</Link>
+                    <Link onClick={() => {
+                window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+              }}
+                    to="/trendinglist" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Trending</Link>
                   </li>
                 </ul>
               </div>
@@ -101,10 +116,16 @@ export default function Navbar() {
               <div id="dropdownNavbarr" className="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
                 <ul className="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
                   <li>
-                    <Link to="/about" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">About</Link>
+                    <Link onClick={() => {
+                window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+              }}
+                    to="/about" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">About</Link>
                   </li>
                   <li>
-                    <Link to="/dashboard" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</Link>
+                    <Link onClick={() => {
+                window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+              }}
+                    to="/dashboard" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</Link>
                   </li>
                 </ul>
               </div>

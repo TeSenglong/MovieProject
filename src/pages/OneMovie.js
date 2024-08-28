@@ -153,7 +153,7 @@ export default function OneMovie() {
 
             <div className=' hidden sm:block w-full opacity-85 text-center' >
               <button className="text-secondary w-auto inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-black  dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 "
-                onClick={() => setplaytrailer(true)} >
+                onClick={() => {setplaytrailer(true);window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })}}  >
                 Watch Trailer
               </button>
             </div>

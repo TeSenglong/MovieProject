@@ -103,7 +103,7 @@ html::-webkit-scrollbar-thumb{
 @media (max-width: 640px) {
   .container-youtube {
       width: 100%;
-      height: 70%;
+      height: 80%;
       z-index: auto;
   }
 }

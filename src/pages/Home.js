@@ -51,7 +51,7 @@ export default function Home() {
             <meta property="og:type" content="Movies-project" />
             <meta property='fb:app_id' content='1226113552034640' />
         </Helmet>
-                    <main className='bg-gray-900 dark:bg-gray-300 '>
+                    <main className='bg-gray-900 contianer dark:bg-gray-300 '>
                         <MainContent />
                         <div className='w-11/12 m-auto mb-5 ' >
                             <Search />
@@ -63,7 +63,7 @@ export default function Home() {
                                 className=' mt-5 md:mt-10 gap-2' >
                                 <PopularSwiper />
                             </div>
-                            <div className='flex w-full pt-5 justify-end'>
+                            <div className='flex  w-11/12 sm:w-full m-auto pt-5 justify-end'>
                                 <Link to='/popularlist' className='text-stone-500 hover:text-sky-500'><u>see more</u></Link>
                             </div>
                         </section>

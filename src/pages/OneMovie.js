@@ -41,7 +41,7 @@ export default function OneMovie() {
   }, [id])
   const rendertrailer = () => {
     const trailer = movie.find(vid => vid.name === 'Official Trailer')
-    const key = trailer ? trailer.key : movie[0]
+    const key = trailer ? trailer.key : movie[0].key
     console.log('trailer', trailer)
     return (
       <YouTube
@@ -158,7 +158,7 @@ export default function OneMovie() {
               </button>
             </div>
             {
-              playtrailer ? <button className=' absolute bottom-96 sm:bottom-20 right-10 z-50  text-white border border-gray-300 rounded-md p-2 hover:text-gray-600 hover:bg-gray-200' onClick={() => setplaytrailer(false)} >Close</button> : null
+              playtrailer ? <button className=' absolute bottom-80 sm:bottom-20 right-10 z-50  text-white border border-gray-300 rounded-md p-2 hover:text-gray-600 hover:bg-gray-200' onClick={() => setplaytrailer(false)} >Close</button> : null
             }
           </section>
           {/* /*  onClick={() => setplaytrailer(!playtrailer)} > {playtrailer ? 'Close' : 'Watch Traler'} */}

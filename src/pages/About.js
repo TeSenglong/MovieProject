@@ -46,7 +46,7 @@ export default function About() {
                                     <div className='flex justify-around flex-wrap md:flex-nowrap gap-5 '>
                                         <img className=' h-60 md:h-64 lg:h-72 w-auto' src={image1} />
                                         <div>
-                                            <h2 className=' text-center font-moulbali mb-4 text-4xl pt-5 font-bold text-secondary dark:text-gray-900' > មហោរី </h2>
+                                            <h2 className=' text-center font-moulbali mb-4 text-4xl pt-5 font-bold text-secondary dark:text-gray-900' > មហោរី - Mohaori </h2>
                                             <p className='text-gray-300 text-xl dark:text-gray-900' >Mohaori -Khmer : មហោរី is one of the traditional musical ensembles of Cambodia. This traditional ensemble is known in full name as Vung Phleng Mohaori- វង់ភ្លេងមហោរី, </p>
                                             <p className='text-gray-300 text-xl pt-4 dark:text-gray-900'>This website is create since 2024. Develope by Istad student. Final Project Web20 ,About Movies work with api from TMDB. Work on ReactJs. Design, tailwind , swiperjs, AOS animate. </p>
                                         </div>

@@ -22,7 +22,7 @@ export default function Navbar() {
     }
   };
   return (
-    <nav id='hidenn' className="backdrop-blur-md  fixed z-50 top-0 w-full  bg-white/10 border-gray-200 dark:bg-gray-900">
+    <nav id='hidenn' className="backdrop-blur-md  fixed z-30 top-0 w-full  bg-white/10 border-gray-200 dark:bg-gray-900">
       <div className=" flex flex-wrap items-center justify-between mx-auto p-1 md:p-4">
         <Link to='/' className="flex items-center space-x-3 rtl:space-x-reverse">
           <span className="self-center pl-4 md:pl-2  md:text-2xl font-semibold whitespace-nowrap text-secondary font-moulbali">មហោរី</span>

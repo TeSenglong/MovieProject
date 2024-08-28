@@ -3,7 +3,7 @@ import ActorCredits, { Actorinfo } from '../components/ActorCredits'
 import { Loading1 } from '../components/Loading';
 import { personalactor } from '../services/products';
 import Aos from 'aos';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet'
 import thumnail from '../icon/thumnail.png';
 import logoimg from '../icon/iconlogo.png';
@@ -59,7 +59,10 @@ export default function CreditsActor() {
     };
     console.log(gender)
     const genderactor = actorgender;
-
+    const navigate = useNavigate()
+    const goBack=()=>{
+        navigate(-1);
+      }
     const { name, biography, also_known_as, known_for_department, place_of_birth, popularity, profile_path } = actor;
 
 
@@ -122,6 +125,9 @@ export default function CreditsActor() {
                     <p className='w-11/12 text-center m-auto text-3xl text-secondary dark:text-gray-900'> Actor Credits </p>
                     <ActorCredits />
                 </section>
+                <div className='w-11/12 m-auto flex justify-center p-10' >
+                <button type="click" className=" py-3 px-5 text-sm font-medium text-center text-gray-900 rounded-lg bg-gray-600 sm:w-fit hover:bg-sky-500 dark:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-gray-500 dark:hover:bg-blue-600 dark:focus:ring-primary-800" onClick={()=>goBack()}>Back</button>
+                </div>
             </main>
             }
         </>

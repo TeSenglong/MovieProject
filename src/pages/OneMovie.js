@@ -44,11 +44,9 @@ export default function OneMovie() {
     return (
       <YouTube
         videoId={trailer.key}
-        className='absolute left-0 right-0 m-auto top-50 sm:m-1 bottom-0 sm:top-20 sm:left-10 w-72 h-72 '
+        className='absolute left-0 z-50 right-0 m-auto -top-8   bottom-0 '
         iframeClassName='container-youtube'
-      // opts={{
-      //   width: "300px"
-      // }}
+        title={onemovie.title}
       />
     )
   }
@@ -61,12 +59,11 @@ export default function OneMovie() {
             <title>{`Mohaori-${onemovie.title}`}</title>
             <meta name='title' content='Movies website'/>
             <meta name='description' content='Demo Movies website មហោរី design from class web-design web20'/>
-            <meta name='thumbnail' content={`https://image.tmdb.org/t/p/w500${onemovie.poster_path}`}/> 
+            <meta name='thumbnail' content={thumnail}/> 
             <meta property="og:title" content="មហោរី​ Mohaori - movies website"/>
             <meta property="og:description" content="Demo Movies website មហោរី design from class web-design web20"/>
             <meta property='og:image' content="https://movieproject-ashen.vercel.app/logo.png" />
-            <meta property="og:url" content={`https://image.tmdb.org/t/p/w500${onemovie.poster_path}`} />
-            {/* <meta property="og:url" content=" https://movieproject-ashen.vercel.app/Mohaori/thumnail.png" /> */}
+            <meta property="og:url" content=" https://movieproject-ashen.vercel.app/Mohaori/thumnail.png" />
             <meta property="og:type" content="Movies-project" />
             <meta property='fb:app_id' content='1226113552034640' />
         </Helmet>

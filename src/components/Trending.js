@@ -61,13 +61,13 @@ export default function Trending() {
       >
         {
           movie.map((products) =>
-            <SwiperSlide className="w-36 flex-none transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-95  duration-300 border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <SwiperSlide  className="w-36 flex-none transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-95  duration-300 border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
               <Link
                  onClick={() => {
                   window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
                 }} to={`/onemovie/${products.id}`}
               >
-              <img
+              <img data-aos="zoom-in"
              
                 className="rounded-t-lg "
                 src={`https://image.tmdb.org/t/p/w500${products.poster_path}`} alt="" />

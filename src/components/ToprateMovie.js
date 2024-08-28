@@ -75,7 +75,7 @@ export default function ToprateMovie() {
                 window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
               }} to={`/onemovie/${products.id}`}
             >
-            <img
+            <img data-aos="zoom-in"
               className="rounded-t-lg "
               src={`https://image.tmdb.org/t/p/w500${products.poster_path}`} alt="" />
             </Link>

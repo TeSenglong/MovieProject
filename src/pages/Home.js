@@ -59,7 +59,7 @@ export default function Home() {
                         
                         <section className=' sm:w-11/12 m-auto ' >
                             <h2 className='text-2xl md:text-3xl text-center mt-5 text-secondary dark:text-gray-900 reveal font-medium' >Popular Movies</h2>
-                            <div data-aos="fade-right"
+                            <div 
                                 className=' mt-5 md:mt-10 gap-2' >
                                 <PopularSwiper />
                             </div>
@@ -70,7 +70,7 @@ export default function Home() {
                         <section className='' >
                             <h2 className='text-2xl md:text-3xl text-center w-11/12 m-auto mt-5 text-secondary dark:text-gray-900 font-medium' >Top Rate Movies</h2>
            
-                                <div data-aos="fade-right"
+                                <div 
                                 className='sm:w-11/12   m-auto flex flex-nowrap pt-5 md:pt-10 gap-2' >
                                     <ToprateMovie />
                                 </div>
@@ -81,7 +81,7 @@ export default function Home() {
                         </section>
                         <section className='' >
                             <h2 className='text-secondary  md:text-3xl text-center mt-5 w-11/12 m-auto text-2xl dark:text-gray-900 font-medium '>Trending movies</h2>
-                            <div data-aos="fade-right"
+                            <div 
                                 className='sm:w-11/12 pt-5 md:pt-10   m-auto gap-2' >
                                 <Trending />
                             </div>

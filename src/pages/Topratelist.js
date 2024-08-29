@@ -6,7 +6,7 @@ import { Link } from "react-router-dom"
 import { Searching } from "../components/Search"
 import { Helmet } from 'react-helmet'
 import thumnail from '../icon/thumnail.png';
-import logoimg from '../icon/iconlogo.png';
+import logoimg from '../icon/small logo.jpg';
 
 export function Topratelist() {
 

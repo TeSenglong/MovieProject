@@ -6,7 +6,7 @@ import Aos from 'aos';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet'
 import thumnail from '../icon/thumnail.png';
-import logoimg from '../icon/iconlogo.png';
+import logoimg from '../icon/small logo.jpg';
 export default function CreditsActor() {
     const [actor, setactor] = useState([])
     const { id } = useParams()

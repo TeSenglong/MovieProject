@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import image1 from '../icon/330px-Cambodian_Mohaori_Orchestra.jpg';
 import { Helmet } from 'react-helmet';
 import thumnail from '../icon/thumnail.png';
-import logoimg from '../icon/iconlogo.png';
+import logoimg from '../icon/small logo.jpg';
 import { Loading, Loading1 } from '../components/Loading';
 export default function About() {
     const [loading, setloading] = useState(true)

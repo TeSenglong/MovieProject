@@ -9,7 +9,7 @@ import Search, { Searching } from '../components/Search';
 import { searchMovieAction } from '../features/products/productsAction';
 import { Helmet } from 'react-helmet'
 import thumnail from '../icon/thumnail.png';
-import logoimg from '../icon/iconlogo.png';
+import logoimg from '../icon/small logo.jpg';
 const PopularList = () => {
     const [movie, setmovie] = useState([]);
     const [loading, setloading] = useState(true)

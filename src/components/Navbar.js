@@ -3,7 +3,7 @@ import { initFlowbite } from 'flowbite';
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import secureLocalStorage from 'react-secure-storage'
-import logo from '../icon/Mohaori.png'
+import logo from '../icon/bestlogo.jpg'
 export default function Navbar() {
 
   useEffect(() => {
@@ -23,10 +23,10 @@ export default function Navbar() {
     }
   };
   return (
-    <nav id='hidenn' className="backdrop-blur-md  fixed z-30 top-0 w-full  bg-primary border-gray-200 dark:bg-gray-900">
+    <nav id='hidenn' className="backdrop-blur-xl  fixed z-30 top-0 w-full   border-gray-200 dark:bg-gray-900">
       <div className=" flex flex-wrap items-center justify-between mx-auto p-1 ">
         <Link to='/' className="flex items-center space-x-3 rtl:space-x-reverse">
-        <img className='pl-5 w-28  sm:w-40 sm:h-20' src={logo} />
+        <img className='pl-5 w-28  sm:w-40 sm:h-16' src={logo} />
           {/* <span className="self-center pl-4 md:pl-2  md:text-2xl font-semibold whitespace-nowrap text-secondary font-moulbali">មហោរី</span> */}
         </Link>
          <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">

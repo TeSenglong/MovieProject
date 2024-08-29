@@ -4,7 +4,7 @@ import { Loading1, Loading22 } from '../components/Loading'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import thumnail from '../icon/thumnail.png';
-import logoimg from '../icon/iconlogo.png';
+import logoimg from '../icon/small logo.jpg';
 export default function Popularpeople() {
     const [loading, setloading] = useState(true)
     const [person, setperson] = useState([])

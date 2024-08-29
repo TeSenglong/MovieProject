@@ -2,7 +2,7 @@ import Aos from 'aos'
 import React, { useEffect } from 'react'
 import 'aos/dist/aos.css';
 import { Link } from 'react-router-dom';
-import logo from '../icon/Mohaori.png'
+import logo from '../icon/bestlogo.jpg'
 
 export default function Footer() {
     useEffect(() => {

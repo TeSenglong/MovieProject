@@ -12,7 +12,7 @@ import Trailer from '../components/Trailer'
 import YouTube from 'react-youtube'
 import { Helmet } from 'react-helmet'
 import thumnail from '../icon/thumnail.png';
-import logoimg from '../icon/iconlogo.png';
+import logoimg from '../icon/small logo.jpg';
 export default function OneMovie() {
   const [onemovie, setonemovie] = useState([])
   const [loading, setloading] = useState(true)

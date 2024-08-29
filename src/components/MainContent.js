@@ -55,7 +55,7 @@ export default function MainContent() {
             <SwiperSlide >
         <div className=' relative top-0  h-full  bg-cover  bg-no-repeat cursive-font' style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500${data.backdrop_path})`, }} >
         <div className="absolute inset-0 bg-opacity-80 bg-slate-900"></div>
-        <div className='flex md:p-10 md:pt-20 gap-2 md:justify-around opacity-95 pt-20 pb-10 flex-col xs:flex sm:flex-row justify-center'>
+        <div className='flex p-5 md:p-10 md:pt-20 gap-2 md:justify-around opacity-95 pt-20 pb-10 flex-col xs:flex sm:flex-row justify-center'>
             <div className='flex-none m-auto sm:m-0' >
                 <Link to={`/onemovie/${data.id}`}>
             <img className='h-96 w-auto  md:h-auto md:w-96' src={`https://image.tmdb.org/t/p/w500${data.poster_path}`} alt='picture' />

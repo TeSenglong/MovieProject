@@ -119,3 +119,36 @@ html::-webkit-scrollbar-thumb{
     height: 400px;
   }
 } */
+.custom-select {
+	position: relative;
+	display: inline-block;
+}
+
+.select-selected {
+	background-color: #f7f7f7;
+	color: #333333;
+	padding: 5px 10px;
+	cursor: pointer;
+}
+
+/* Style the dropdown items */
+.select-items {
+	position: absolute;
+	display: none;
+	background-color: #d88181;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	border-radius: 4px;
+	z-index: 1;
+	width: 100%;
+}
+
+/* Style the dropdown items */
+.select-items div {
+	padding: 10px;
+	cursor: pointer;
+}
+
+/* Style the dropdown items on hover */
+.select-items div:hover {
+	background-color: #c69c9c;
+}

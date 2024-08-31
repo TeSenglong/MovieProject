@@ -78,7 +78,7 @@ export default function OneMovie() {
       </Helmet>
       {
         loading ? <Loading /> : <main>
-          <section className=" relative cursive-font pb-5 pt-10 top-0 text-white  dark:bg-gray-300 bg-gray-900 bg-cover  bg-no-repeat"
+          <section key={onemovie.key} className=" relative  pb-5 pt-10 top-0 text-white  dark:bg-gray-300 bg-gray-900 bg-cover  bg-no-repeat"
             style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500${onemovie.poster_path})`, }}
           >
             <div className=" absolute inset-0 sm:inset-0 bg-opacity-80 bg-slate-900"></div>

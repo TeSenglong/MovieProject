@@ -3,7 +3,7 @@ import { initFlowbite } from 'flowbite';
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import secureLocalStorage from 'react-secure-storage'
-import logo from '../icon/bestlogo.jpg'
+import logo from '../icon/another logo .jpg'
 export default function Navbar() {
 
   useEffect(() => {
@@ -12,7 +12,7 @@ export default function Navbar() {
   const [theme, setTheme] = useState("light");
   const handleSwitchTheme = () => {
     console.log(secureLocalStorage.getItem("color-theme"));
-    if (secureLocalStorage.getItem("color-theme") == "light") {
+    if (secureLocalStorage.getItem("color-theme") == "light"){
       secureLocalStorage.setItem("color-theme", "dark");
       document.documentElement.classList.add("dark");
       setTheme("dark");
@@ -66,11 +66,17 @@ export default function Navbar() {
         </div> 
         <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
           <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-            <li>
-              <Link to="/" className="block py-2 px-3 text-xl  text-secondary dark:text-white rounded md:bg-transparent md:hover:text-blue-700  md:p-0" >Home</Link>
+            <li> 
+              <Link onClick={() => {
+                window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+              }}
+              to="/" className="block py-2 px-3 text-xl  text-secondary dark:text-white rounded md:bg-transparent md:hover:text-blue-700  md:p-0" >Home</Link>
             </li>
             <li>
-              <Link to="/person" className="block text-xl  py-2 px-3 text-secondary rounded hover:bg-gray-500 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">People</Link>
+              <Link onClick={() => {
+                window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+              }}
+              to="/person" className="block text-xl  py-2 px-3 text-secondary rounded hover:bg-gray-500 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">People</Link>
             </li>
             <li>
               <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" className="flex items-center justify-between w-full py-2 px-3 text-secondary rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent text-xl  ">Movie <svg className="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">

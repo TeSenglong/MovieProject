@@ -54,3 +54,12 @@ export async function videoid(id) {
         const res = await fetch(`${BASE_URL}/movie/${id}/videos${API_key}`)
         return res.json()
 }
+export async function discoverMovies() {
+    const res = await fetch(`${BASE_URL}/discover/movie${API_key}`)
+    return res.json()
+}
+
+export async function  genrekeys() {
+    const res = await fetch(`${BASE_URL}/genre/movie/list${API_key}`)
+    return res.json()
+}

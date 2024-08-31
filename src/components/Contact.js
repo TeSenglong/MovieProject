@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 export default function Contact() {
     const navigate = useNavigate()
     const goBack=()=>{
-        navigate(-1);
+        navigate('/');
       }
     //   const gotToNewPage=()=>{
     //     navigate("/customer");

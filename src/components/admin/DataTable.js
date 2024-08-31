@@ -46,24 +46,24 @@ export default function DataTablee() {
     const dispatch = useDispatch()
     const [query, setquery] = useState("")
     const data = useState([])
-
+    const page = 1;
     // useEffect(()=>{
     //     dispatch(fetchMovieAction())
     // },[])
 
     useEffect(() => {
-        if (query == 0) {
+        if (query) {
             console.log('no result')
-            dispatch(fetchMovieAction())
-        } else {
             dispatch(searchMovieAction(query))
+        } else {
+            dispatch(fetchMovieAction({page}))
         }
-    }, [query])
+    }, [query,page])
     return (
         <article className='mt-20 w-11/12 m-auto'>
             <DataTable
                 columns={columns}
-                data={movies && movies}
+                data={movies}
                 pagination
                 subHeader
                 subHeaderComponent={

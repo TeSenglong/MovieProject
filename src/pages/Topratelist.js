@@ -94,7 +94,7 @@ export function Topratelist() {
               </article>
               <div className='w-full text-center mt-10'>
                 {
-                  totalpage !== page && <button className='dark:text-gray-500   border text-secondary hover:bg-slate-800 hover:text-white  p-3 text-base md:text-xl rounded-lg ' onClick={() => setpage(page + 1)}> See more
+                  totalpage !== page && <button className='dark:text-gray-900  border-sky-500 dark:border-gray-800  border text-secondary hover:bg-slate-400 hover:text-gray-900  p-3 text-base md:text-xl rounded-lg ' onClick={() => setpage(page + 1)}> See more
                   </button>
                 }
               </div>

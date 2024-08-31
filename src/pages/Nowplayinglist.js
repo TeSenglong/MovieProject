@@ -7,18 +7,14 @@ import { Searching } from "../components/Search"
 import { Helmet } from 'react-helmet'
 import thumnail from '../icon/thumnail.png';
 import logoimg from '../icon/small logo.jpg';
+import { upcoming } from "../services/products"
 export function Nowplayinglist() {
 
-    const dispatch = useDispatch()
     const { movies, status, error } = useSelector(state => state.movies)
     const [query, setquery] = useState("")
-    useEffect(() => {
-        dispatch(searchMovieAction(query))
-    }, [query])
-
 
     const [movie, setmovie] = useState([])
-    const [loading, setloading] = useState(true)
+    const [loading, setloading] = useState(false)
     const [totalpage, settotalpage] = useState(0)
     const [page, setpage] = useState(1)
     useEffect(() => {
@@ -36,6 +32,7 @@ export function Nowplayinglist() {
         }
         fetchmovie();
     }, [page]);
+
     return (
         <>
             <Helmet>
@@ -97,7 +94,7 @@ export function Nowplayinglist() {
                             </article>
                             <div className='w-full text-center mt-10'>
                                 {
-                                    totalpage !== page && <button className='border text-secondary dark:text-gray-600 hover:bg-slate-800 hover:text-white  p-3 text-base md:text-xl rounded-lg ' onClick={() => setpage(page + 1)}> See more
+                                    totalpage !== page && <button className='border text-secondary dark:text-gray-600 hover:bg-slate-400 hover:text-gray-800  p-3 text-base md:text-xl rounded-lg ' onClick={() => setpage(page + 1)}> See more
                                     </button>
                                 }
                             </div>

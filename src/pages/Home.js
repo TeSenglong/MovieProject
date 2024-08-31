@@ -14,7 +14,7 @@ import 'swiper/css/navigation';
 import MainContent from '../components/MainContent';
 import { Loading } from '../components/Loading';
 import { Link } from 'react-router-dom';
-import Search from '../components/Search';
+import Search, { Searching } from '../components/Search';
 import Trending from '../components/Trending';
 import 'aos/dist/aos.css';
 import Aos from 'aos';
@@ -55,6 +55,7 @@ export default function Home() {
                         <MainContent />
                         <div className='w-11/12 m-auto mb-5 ' >
                             <Search />
+                            {/* <Searching/> */}
                         </div>
                         
                         <section className=' w-11/12 m-auto ' >
@@ -71,7 +72,7 @@ export default function Home() {
                             <h2 className='text-2xl md:text-3xl text-center w-11/12 m-auto mt-5 text-secondary dark:text-gray-900 font-medium' >Top Rate Movies</h2>
            
                                 <div 
-                                className='w-11/12   m-auto flex flex-nowrap pt-5 md:pt-10 gap-2' >
+                                className='w-11/12   m-auto  pt-5 md:pt-10 gap-2' >
                                     <ToprateMovie />
                                 </div>
                            

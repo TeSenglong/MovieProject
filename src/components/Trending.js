@@ -23,9 +23,16 @@ export default function Trending() {
   return (
 
     <>
-      <Swiper
+      <Swiper style={{
+      "--swiper-pagination-color": "#0cdefa",
+      "--swiper-pagination-bullet-inactive-color": "#999999",
+      "--swiper-pagination-bullet-inactive-opacity": "1",
+     // "--swiper-pagination-bullet-size": "10px",
+     // "--swiper-pagination-bullet-horizontal-gap": "2px"
+    }}
         slidesPerView={2}
         spaceBetween={20}
+        pagination={{ clickable: true }}
         breakpoints={{
           400:{
             slidesPerView: 3,
@@ -60,8 +67,8 @@ export default function Trending() {
         className="mySwiper"
       >
         {
-          movie.map((products) =>
-            <SwiperSlide  className="w-36 flex-none transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-95  duration-300 border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+          movie.map((products,index) =>
+            <SwiperSlide key={index}  className="w-36 flex-none transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-95  duration-300 rounded-lg   ">
               <Link
                  onClick={() => {
                   window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
@@ -75,8 +82,9 @@ export default function Trending() {
 
               <div className="text-center">
                 <a href="#">
-                  <h5 className="mb-2 text-xs sm:text-sm md:text-base mt-2  tracking-tight text-white">{products.title}</h5>
+                  <h5 className="mb-2 text-xs sm:text-sm md:text-base mt-2 sm:font-bold dark:text-sky-800 tracking-tight text-white">{products.title}</h5>
                 </a>
+                <div className='p-2 sm:p-2' ></div>
               </div>
             </SwiperSlide>
           )

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import ActorCredits, { Actorinfo } from '../components/ActorCredits'
 import { Loading1 } from '../components/Loading';
 import { personalactor } from '../services/products';
@@ -7,6 +7,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet'
 import thumnail from '../icon/thumnail.png';
 import logoimg from '../icon/small logo.jpg';
+import { useLayoutEffect } from 'react';
 export default function CreditsActor() {
     const [actor, setactor] = useState([])
     const { id } = useParams()
@@ -31,15 +32,18 @@ export default function CreditsActor() {
                 }, 1500);
                 console.log('actorinfo', actor)
             })
-        if (ref.current) {
-            console.log(ref.current.scrollHeight, ref.current.clientHeight)
+    }, [id])
+    const setRef = useCallback((node) => {
+        if (node) {
+            ref.current = node;
+            console.log('ref.current:', ref.current);
+            console.log('scrollHeight:', ref.current.scrollHeight);
+            console.log('clientHeight:', ref.current.clientHeight);
             setshowMoreButton(
                 ref.current.scrollHeight !== ref.current.clientHeight
-            )
-        };
-
-    }, [id, ref.current])
-
+            );
+        }
+    }, [actor]);
     let obj = new Date(actor.birthday);
     let day = obj.getDate();
     let year = obj.getFullYear();
@@ -94,7 +98,7 @@ export default function CreditsActor() {
                                     <p className='text-3xl text-secondary text-center dark:text-gray-900'>
                                         {name}
                                     </p>
-                                    <p className='dark:text-gray-900' ref={ref} style={isOpen ? null : biographystyle}  >{biography}</p>
+                                    <p className='dark:text-gray-900' ref={setRef} style={isOpen ? null : biographystyle}  >{biography}</p>
                                     {
                                         showMoreButton &&
                                         <button className='text-base underline underline-offset-2 text-gray-600 hover:text-white dark:text-gray-900' onClick={() => setisOpen(!isOpen)} >{isOpen ? 'read less' : 'read more...'} </button>

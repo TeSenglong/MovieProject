@@ -152,3 +152,21 @@ html::-webkit-scrollbar-thumb{
 .select-items div:hover {
 	background-color: #c69c9c;
 }
+.bg-logo{
+  -webkit-filter: brightness(0.8);
+  filter: brightness(0.8);
+  background-image: url(./icon/bestlogo.jpg);
+  height: 150px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+@media (min-width: 350px) {
+  .bg-logo{
+    height:180px;
+  }
+}
+@media (min-width:650px) {
+  .bg-logo{
+    height: 250px;
+  }
+}

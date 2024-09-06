@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { searchMovieAction } from "../features/products/productsAction"
+import { Nowplayingfetch, searchMovieAction } from "../features/products/productsAction"
 import { Loading1, Loadinglist } from "../components/Loading"
 import { Link } from "react-router-dom"
 import { Searching } from "../components/Search"
@@ -8,22 +8,23 @@ import { Helmet } from 'react-helmet'
 import thumnail from '../icon/thumnail.png';
 import logoimg from '../icon/small logo.jpg';
 import { upcoming } from "../services/products"
+import { LazyLoadImage } from "react-lazy-load-image-component"
+import 'react-lazy-load-image-component/src/effects/blur.css';
+import GenreDropdown from "../components/Genres"
+import { MovieCard } from "../components/Card"
 export function Nowplayinglist() {
-
-    const { movies, status, error } = useSelector(state => state.movies)
-    const [query, setquery] = useState("")
-
-    const [movie, setmovie] = useState([])
-    const [loading, setloading] = useState(false)
+    const [movie, setcoming] = useState([])
+    const [loading, setloading] = useState(true)
     const [totalpage, settotalpage] = useState(0)
+    const [loading2, setloading2] = useState(false)
     const [page, setpage] = useState(1)
     useEffect(() => {
         const fetchmovie = async () => {
-            const res = await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US&page=${page}`)
+            const res = await fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US&page=${page}`)
             return res.json()
                 .then((movies) => {
                     settotalpage(movies.totals_pages);
-                    setmovie([...movie, ...movies.results]);
+                    setcoming(movie => [...movie, ...movies.results]);
                     setTimeout(() => {
                         setloading(false)
                     }, 1500);
@@ -32,13 +33,68 @@ export function Nowplayinglist() {
         }
         fetchmovie();
     }, [page]);
+    const [genresMovie, setGenresMovie] = useState([]); //state use to hold data from (fetchGenres)
+    const [selected, getSelected] = useState('');//state use to hold data from onClick (genre.js)
+    const [isInitialRender, setIsInitialRender] = useState(true);
+    const fetchGenres = async (page) => {     //fetch data to select genre movies
+        try {
+            const res = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=4113f3ad734e747a5b463cde8c55de42&with_genres=${selected}&page=${page}&sort_by=popularity.desc`);
+            const data = await res.json();
+            settotalpage(data.totals_pages);
+            setGenresMovie(prevGenres => [...prevGenres, ...data.results]);
+            console.log('genresmoiveee', data)
+        } catch (error) {
+            console.error('Error fetching genres:', error);
+        }
+    };
+    useEffect(() => {
+        if (!isInitialRender) {
+            fetchGenres(page);
+        } else {
+            setIsInitialRender(false);
+        }
+    }, [selected, page]);
 
+    const [genrename, setgenrename] = useState('')//get name of genres from selected
+
+    const handleGenreSelect = (genreId, name) => {
+        if (genreId !== selected) {
+            setloading2(true)
+            getSelected(genreId);//get id to fetch data
+            setgenrename(name)//get name
+            setpage(1); // Reset to first page on new selection
+            setGenresMovie([]); // Clear previous results
+        }
+        setTimeout(() => {
+            setloading2(false)
+        }, 1000)
+    };
+
+    const handleCloseGenres = () => {
+        getSelected('');
+        setGenresMovie([]); // Clear genre results
+        setpage(1);
+    };
+    const handleScroll = () => {
+        if (
+            window.innerHeight + document.documentElement.scrollTop + 20 >= document.documentElement.scrollHeight
+        ) {
+            setTimeout(() => {
+                setpage((prev) => prev + 1);
+            }, 1000)
+        }
+    }
+    const nextpage = () => {
+        setpage(page + 1)
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }
     return (
         <>
             <Helmet>
                 <meta charSet='UTF-8' />
                 <link rel="shortcut icon" href={logoimg} />
-                <title>Mohaori-NowPlayingMovie</title>
+                <title>Mohaori-UpcomingMovie</title>
                 <meta name='title' content='About Mohaori' />
                 <meta name='description' content='About Demo Movies website មហោរី design from class web-design web20' />
                 <meta name='thumbnail' content={thumnail} />
@@ -47,54 +103,53 @@ export function Nowplayinglist() {
                 <meta property='og:image' content="https://movieproject-ashen.vercel.app/logo.png" />
                 <meta property='og:image:width' content="400" />
                 <meta property='og:image:height' content='300' />
-                <meta property="og:url" content=" https://movieproject-ashen.vercel.app/Mohaori/thumnail.png " />
-                <meta property="og:type" content="Movies-project" />
-                <meta property='fb:app_id' content='1226113552034640' />
             </Helmet>
+
             <main className='dark:bg-gray-300 bg-gray-900 pb-10 pt-20'>
                 {
                     loading ? <Loadinglist /> :
-                        <section className=' h-auto w-11/12 m-auto ' >
-                            <Searching />
-                            <h2 className='text-xl text-secondary dark:text-gray-900 md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl mb-5 text-center pb-10' >NowPlaying List</h2>
-                            <article className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6  gap-1 sm:gap-4'>
-                                {movies.map((data, index) => (
-                                    <div key={index} className="h-auto transition ease-in-out delay-150 flex-none hover:-translate-y-1 hover:scale-110  duration-300  rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                                        <Link onClick={() => {
-                                            window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-                                        }}
-                                            to={`/onemovie/${data.id}`} className=''>
-                                            <img className="rounded-t-lg  " src={`https://image.tmdb.org/t/p/w300${data.poster_path}`} alt={data.title} />
-                                        </Link>
-                                        <div className="p-2 text-center">
-                                            <a href="#">
-                                                <h5 className="mb-2 text-center text-base sm:text-xl md:text-xl lg:text-2xl 2xl:text-3xl  font-bold tracking-tight text-white/75 dark:text-white">{data.title}</h5>
-                                            </a>
-                                            <p className="mb-3 text-xs sm:text-sm md:text-base  font-normal text-gray-100/50 dark:text-gray-400">{data.release_date}</p>
-                                        </div>
-                                    </div>
-                                ))}
-                                {movie.map((data, index) => (
-                                    <div className="h-auto transition ease-in-out delay-150 flex-none hover:-translate-y-1 hover:scale-110  duration-300  rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                                        <Link onClick={() => {
-                                            window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-                                        }}
-                                            to={`/onemovie/${data.id}`} className=''>
-                                            <img className="rounded-t-lg  " src={`https://image.tmdb.org/t/p/w300${data.poster_path}`} alt={data.title} />
-                                        </Link>
-                                        <div className="p-2 text-center">
-                                            <a href="#">
-                                                <h5 className="mb-2 text-center text-base sm:text-xl md:text-xl lg:text-2xl 2xl:text-3xl  font-bold tracking-tight text-white/75 dark:text-white">{data.title}</h5>
-                                            </a>
-                                            <p className="mb-3 text-xs sm:text-sm md:text-base  font-normal text-gray-100/50 dark:text-gray-400">{data.release_date}</p>
-                                        </div>
-                                    </div>
+                        <section className=' h-auto w-11/12 m-auto sm:mt-32 md:mt-40' >
+                            <div className='w-4/5 absolute top-0 left-1/2 transform -translate-x-1/2  bg-logo m-auto h-3/5' >
+                            </div>
+                            <div className='flex justify-start items-center mt-5 lg:mb-10 lg:mt-10'>
 
-                                ))}
+                                <div className='flex flex-col z-10 mt-2 sm:mt-10 sm:flex-row flex-wrap gap-2'>
+                                    <div className='' >
+                                        <GenreDropdown onSelect={handleGenreSelect} />
+                                    </div>
+                                    {selected && (
+                                        <button onClick={handleCloseGenres} className="text-gray-300 z-10 ml-5 h-full hover:bg-sky-600 dark:text-sky-400">
+                                            Close Genre
+                                        </button>
+                                    )}
+                                </div>
+
+                            </div>
+                            <div className='flex  justify-center mt-2 sm:mt-0 lg:mt-0 items-center'>
+                                {
+                                    selected ?
+                                        <h2 className='text-xl z-10 text-secondary dark:text-gray-900 md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl sm:mb-10 mb-5  text-center ' >{genrename}</h2>
+
+                                        : <h2 className='text-xl font-bold z-10 text-secondary dark:text-gray-900 md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl sm:mb-10 mb-5 text-center' >NowPlaying movies </h2>
+                                }
+
+                            </div>
+
+                            {loading2 ? <Loadinglist /> : <article
+                                className='grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-6  gap-1 sm:gap-4'>
+                                {selected ? (genresMovie.map((data, index) => (
+                                    <MovieCard key={index} data={data} />
+                                ))) : (movie.map((data, index) => (
+                                    <MovieCard key={index} data={data} />
+                                )))
+                                }
                             </article>
+                            }
+
+
                             <div className='w-full text-center mt-10'>
                                 {
-                                    totalpage !== page && <button className='border text-secondary dark:text-gray-600 hover:bg-slate-400 hover:text-gray-800  p-3 text-base md:text-xl rounded-lg ' onClick={() => setpage(page + 1)}> See more
+                                    totalpage !== page && <button className='dark:text-gray-900 border-sky-500 dark:border-gray-800  border text-secondary hover:bg-slate-400 hover:text-gray-900  p-3 text-base md:text-xl rounded-lg ' onClick={nextpage}> See more
                                     </button>
                                 }
                             </div>
@@ -104,4 +159,3 @@ export function Nowplayinglist() {
         </>
     );
 }
-

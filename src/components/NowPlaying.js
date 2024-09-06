@@ -66,7 +66,7 @@ export default function NowPlaying() {
                     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });}}
                      to={`/onemovie/${products.id}`}
                 >
-                <img
+                <img data-aos="zoom-in"
                 // h-52 sm:h-64 md:h-72 w-full
                   className="rounded-t-lg"
                   src={`https://image.tmdb.org/t/p/w500${products.poster_path}`} alt="" />

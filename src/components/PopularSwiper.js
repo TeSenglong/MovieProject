@@ -7,11 +7,12 @@ import 'swiper/swiper-bundle.css'
 
 // import required modules
 import { FreeMode, Navigation, Pagination } from 'swiper/modules';
-import Card, { Popularmovie, SwiperCard } from './Card';
+import Card, { CardSwiper, Popularmovie, SwiperCard } from './Card';
 import products from '../services/products';
 import { Link } from 'react-router-dom';
 import { Loading1 } from './Loading';
-
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 export default function PopularSwiper() {
   const [movie, setmovie] = useState([]);
@@ -30,16 +31,17 @@ export default function PopularSwiper() {
     <article>
     {
       loading ? <Loading1/> :
-    <Swiper style={{
-      "--swiper-pagination-color": "#0cdefa",
-      "--swiper-pagination-bullet-inactive-color": "#999999",
-      "--swiper-pagination-bullet-inactive-opacity": "1",
-     // "--swiper-pagination-bullet-size": "10px",
-     // "--swiper-pagination-bullet-horizontal-gap": "2px"
-    }}
+    <Swiper 
+    // style={{
+    //   "--swiper-pagination-color": "#0cdefa",
+    //   "--swiper-pagination-bullet-inactive-color": "#999999",
+    //   "--swiper-pagination-bullet-inactive-opacity": "1",
+    //  // "--swiper-pagination-bullet-size": "10px",
+    //  // "--swiper-pagination-bullet-horizontal-gap": "2px"
+    // }}
       slidesPerView={2}
       spaceBetween={20}
-      pagination={{ clickable: true }}
+      // pagination={{ clickable: true }}
       breakpoints={{
         400:{
           slidesPerView: 3,
@@ -63,36 +65,20 @@ export default function PopularSwiper() {
         },
         1250:{
           slidesPerView:6,
-          spaceBetween: 20
+          spaceBetween: 20,
         },
         1500:{
           slidesPerView:7,
-          spaceBetween: 20
+          spaceBetween: 20,
         }
       }}
       modules={[Pagination]}
       className="mySwiper"
     >
       {
-        movie.map((products,index) =>
-          <SwiperSlide key={index} className=" flex-none transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-95  duration-300 rounded-lg  ">
-            <Link
-               onClick={() => {
-                window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-              }} to={`/onemovie/${products.id}`}
-            >
-            <img data-aos="zoom-in"
-           
-              className="rounded-t-lg "
-              src={`https://image.tmdb.org/t/p/w500${products.poster_path}`} alt="" />
-            </Link>
-
-            <div className="text-center">
-              <a href="#">
-                <h5 className="mb-2 text-xs sm:text-sm md:text-base mt-2 dark:text-sky-900 sm:font-bold tracking-tight  text-white">{products.title}</h5>
-              </a>
-              <div className='p-2 sm:p-2' ></div>
-            </div>
+        movie.map((movies,index) =>
+          <SwiperSlide  key={index}  className=' flex-none transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-95  duration-300  rounded-lg' >
+     <CardSwiper key={index} data={movies}/>
           </SwiperSlide>
         )
       }

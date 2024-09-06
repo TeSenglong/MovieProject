@@ -9,6 +9,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import 'swiper/swiper-bundle.css';
 import 'swiper/css/pagination';
+import { CardSwiper } from './Card';
 export default function Trending() {
   const [movie, setmovie] = useState([]);
 
@@ -16,7 +17,7 @@ export default function Trending() {
     trending()
       .then((res) => {
         setmovie(res.results)
-        console.log('trending', movie)
+        // console.log('trending', movie)
       })
   }, [])
 
@@ -64,28 +65,12 @@ export default function Trending() {
           }
         }}
         modules={[Pagination]}
-        className="mySwiper"
+        // className="mySwiper"
       >
         {
           movie.map((products,index) =>
-            <SwiperSlide key={index}  className="w-36 flex-none transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-95  duration-300 rounded-lg   ">
-              <Link
-                 onClick={() => {
-                  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-                }} to={`/onemovie/${products.id}`}
-              >
-              <img data-aos="zoom-in"
-             
-                className="rounded-t-lg "
-                src={`https://image.tmdb.org/t/p/w500${products.poster_path}`} alt="" />
-              </Link>
-
-              <div className="text-center">
-                <a href="#">
-                  <h5 className="mb-2 text-xs sm:text-sm md:text-base mt-2 sm:font-bold dark:text-sky-800 tracking-tight text-white">{products.title}</h5>
-                </a>
-                <div className='p-2 sm:p-2' ></div>
-              </div>
+            <SwiperSlide key={index} className="w-36 flex-none transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-95  duration-300 rounded-lg   ">
+       <CardSwiper key={index} data={products}/>
             </SwiperSlide>
           )
         }

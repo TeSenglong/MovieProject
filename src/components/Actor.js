@@ -7,7 +7,8 @@ import { Pagination } from 'swiper/modules'
 import 'swiper/swiper-bundle.css'
 import Aos from 'aos'
 import 'aos/dist/aos.css';
-
+import { LazyLoadImage } from 'react-lazy-load-image-component'
+import 'react-lazy-load-image-component/src/effects/blur.css';
 export default function Actor() {
   const [actor, setactor] = useState([])
   const [loading, setloding] = useState(true)
@@ -70,7 +71,15 @@ export default function Actor() {
                 }}
                   to={`/creditsactor/${data.id}`}>
                   <div className="flex gap-2 p-3 h-full items-center justify-center">
-                    <img className=" w-20 h-20 md:w-24  md:h-24  rounded-full   shadow-lg" src={`https://image.tmdb.org/t/p/w500${data.profile_path}`} alt="" />
+                    <LazyLoadImage
+                      effect="blur"
+                      wrapperProps={{
+                        // If you need to, you can tweak the effect transition using the wrapper style.
+                        style: { transitionDelay: "1s" },
+                      }}
+                      className=" w-20 h-20 md:w-24  md:h-24  rounded-full   shadow-lg"
+                      src={`https://image.tmdb.org/t/p/w500${data.profile_path}`}
+                      alt={data.name} />
                     <div>
                       <p className="mb-1 text-base md:text-base font-medium text-gray-100 dark:text-white">{data.name}</p>
                       <span className="text-xs text-gray-300 dark:text-gray-400">{data.character}</span>

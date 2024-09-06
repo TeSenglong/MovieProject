@@ -1,111 +1,73 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchMovieAction, searchMovieAction } from '../features/products/productsAction'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { initFlowbite } from 'flowbite'
 import { discoverMovies } from '../services/products'
+import axios from 'axios'
 
 export default function Search() {
     initFlowbite()
     const dispatch = useDispatch()
-    const { movies, status, error } = useSelector(state => state.movies)
+    // const { movies, status, error } = useSelector(state => state.movies)
     const [query, setquery] = useState('')
+    const [totalpage, settotalpage] = useState(1)
     const [genres, setgenres] = useState([])
+    const [pageN, setpage] = useState(1)
+    const [movies, setMovies] = useState([])
+    const [error, setError] = useState(false)
     let handleSubmit = (e) => {
         e.preventDefault()
         // get what user input
-        console.log("handle submit click");
+        //    if (query.trim()) {
+        //     navigate(`/search?query=${encodeURIComponent(query)}`);
+        //   }
     }
-    useEffect(() => {
-        dispatch(searchMovieAction(query))
-    }, [query])
     // useEffect(() => {
-    //     discoverMovies()
-    //         .then((res) => {
-    //             setgenres(res.results)
-    //             console.log('genresss', genres)
-    //         })
-    // }, [])
-    // const genre = [
-    //     {
-    //         "id": 28,
-    //         "name": "Action"
-    //     },
-    //     {
-    //         "id": 12,
-    //         "name": "Adventure"
-    //     },
-    //     {
-    //         "id": 16,
-    //         "name": "Animation"
-    //     },
-    //     {
-    //         "id": 35,
-    //         "name": "Comedy"
-    //     },
-    //     {
-    //         "id": 80,
-    //         "name": "Crime"
-    //     },
-    //     {
-    //         "id": 99,
-    //         "name": "Documentary"
-    //     },
-    //     {
-    //         "id": 18,
-    //         "name": "Drama"
-    //     },
-    //     {
-    //         "id": 10751,
-    //         "name": "Family"
-    //     },
-    //     {
-    //         "id": 14,
-    //         "name": "Fantasy"
-    //     },
-    //     {
-    //         "id": 36,
-    //         "name": "History"
-    //     },
-    //     {
-    //         "id": 27,
-    //         "name": "Horror"
-    //     },
-    //     {
-    //         "id": 10402,
-    //         "name": "Music"
-    //     },
-    //     {
-    //         "id": 9648,
-    //         "name": "Mystery"
-    //     },
-    //     {
-    //         "id": 10749,
-    //         "name": "Romance"
-    //     },
-    //     {
-    //         "id": 878,
-    //         "name": "Science Fiction"
-    //     },
-    //     {
-    //         "id": 10770,
-    //         "name": "TV Movie"
-    //     },
-    //     {
-    //         "id": 53,
-    //         "name": "Thriller"
-    //     },
-    //     {
-    //         "id": 10752,
-    //         "name": "War"
-    //     },
-    //     {
-    //         "id": 37,
-    //         "name": "Western"
-    //     }
-    // ]
+    //     dispatch(searchMovieAction({query,page}))      
+    //     setmoviess(movies) 
+    //     console.log(error) 
+    // }, [query,page,dispatch])
+    useEffect(() => {
+        setMovies([])
+    }, [query])
 
+    useEffect(() => {
+        // setqloading(true)
+        setError(false)
+        let cancel
+        axios({
+            method: 'GET',
+            url: 'https://api.themoviedb.org/3/search/movie',
+            params: {
+                api_key: '4113f3ad734e747a5b463cde8c55de42',
+                query: query,
+                page: pageN,
+            },
+            cancelToken: new axios.CancelToken(c => cancel = c)
+        }).then(res => {
+            // console.log(res.data.results)
+            // setMovies(res.data.results)
+            setMovies(prevmovie => {
+                return [...prevmovie, ...res.data.results]
+            })
+            // console.log('totalpage',res.data.total_pages)
+            settotalpage(res.data.total_pages)
+        }).catch(e => {
+            if (axios.isCancel(e)) return
+            setError(true)
+        })
+        return () => cancel()
+    }, [pageN, query])
+    const handleSelect = (e) => {
+        setquery(e.target.value);
+    }
 
+    const navigate = useNavigate()
+    const navigateToSearch = (e) => {
+        navigate('/search', e.target.value)
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+    }
     return (
         <div>
             <form
@@ -118,29 +80,25 @@ export default function Search() {
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                         </svg>
                     </div>
-                    <input
+                    <input value={query}
                         onChange={(e) => {
-                            console.log(e)
-                            setquery(e.target.value)
+
+                            console.log(e.target.value)
+                            setquery(e.target.value);
+
                         }}
                         type="search" id="default-search" className="block w-full md:p-4 md:pl-10 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Movies....." required />
-                    <button type="submit" className="text-white hidden sm:block absolute end-2.5 bottom-1 md:bottom-2.5 bg-primary hover:bg-blue-950 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-1 md:px-4 md:py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+                    <button type="submit" className="text-white hidden sm:block absolute end-2.5 bottom-1 md:bottom-2.5 bg-primary hover:bg-blue-950 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-1 md:px-4 md:py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={navigateToSearch}   >Search</button>
                 </div>
             </form>
-            {/* <select className='bg-gray-200' >
-                <option  > Genres </option>
-                {genre.map((res) => (
-                    <option className='text-red-600 ' key={res.id} value={res.id} >{res.name}</option>
-                ))
-                }
-
-            </select> */}
-
             <div className='grid grid-cols-2 mt-5 md:10 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6  gap-1 sm:gap-4'>
 
                 {movies.map((data, index) => (
                     <div key={index} className="h-auto transition ease-in-out delay-150 flex-none hover:-translate-y-1 hover:scale-110  duration-300  rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                        <Link to={`/onemovie/${data.id}`} className=''>
+                        <Link onClick={() => {
+                            window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+                        }}
+                            to={`/onemovie/${data.id}`} className=''>
                             <img className="rounded-t-lg  " src={`https://image.tmdb.org/t/p/w300${data.poster_path}`} alt={data.title} />
                         </Link>
                         <div className="p-2 text-center">

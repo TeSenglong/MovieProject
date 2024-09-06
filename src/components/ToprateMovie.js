@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { searchMovieAction } from '../features/products/productsAction';
 import { Searching } from './Search';
 import { Pagination } from 'swiper/modules';
+import { CardSwiper } from './Card';
 
 export default function ToprateMovie() {
   const [movie, setmovie] = useState([]);
@@ -27,10 +28,11 @@ export default function ToprateMovie() {
         console.log(movie)
       })
   }, [])
+  const{key}=movie
   return (
     <>
     {
-      loading ? <Loading1/> :
+      loading ? <Loading1 key={key}/> :
     <Swiper style={{
       "--swiper-pagination-color": "#0cdefa",
       "--swiper-pagination-bullet-inactive-color": "#999999",
@@ -76,23 +78,8 @@ export default function ToprateMovie() {
     >
       {
         movie.map((products,index) =>
-          <SwiperSlide  className=" flex-none transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-95  duration-300  rounded-lg  ">
-            <Link key={products.id}
-               onClick={() => {
-                window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-              }} to={`/onemovie/${products.id}`}
-            >
-            <img data-aos="zoom-in"
-              className="rounded-t-lg "
-              src={`https://image.tmdb.org/t/p/w500${products.poster_path}`} alt="" />
-            </Link>
-
-            <div className="text-center">
-              <a href="#">
-                <h5 className="mb-2 text-xs sm:text-sm md:text-base mt-2 sm:font-bold dark:text-sky-900 tracking-tight text-white">{products.title}</h5>
-              </a>
-              <div className='p-2 sm:p-2' ></div>
-            </div>
+          <SwiperSlide  key={index}  className=" flex-none transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-95  duration-300  rounded-lg  ">
+       <CardSwiper key={index} data={products}/>
           </SwiperSlide>
         )
       }

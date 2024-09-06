@@ -1,30 +1,66 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { searchMovieAction, TopRatefetch } from "../features/products/productsAction"
+
 import { Loading1, Loadinglist } from "../components/Loading"
 import { Link } from "react-router-dom"
 import { Searching } from "../components/Search"
 import { Helmet } from 'react-helmet'
 import thumnail from '../icon/thumnail.png';
 import logoimg from '../icon/small logo.jpg';
-import GenreDropdown from "../components/Genres"
-import { LazyLoadImage } from "react-lazy-load-image-component"
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import { LazyLoadImage } from "react-lazy-load-image-component"
+import GenreDropdown from "../components/Genres"
+import { searchMovieAction, trendingfetch, } from "../features/products/productsAction"
 import { MovieCard } from "../components/Card"
-export function Topratelist() {
+// import { trending } from "../services/products"
+
+export function Trendinglist() {
+
     const [loading, setloading] = useState(true)
     const [totalpage, settotalpage] = useState(0)
     const [page, setpage] = useState(1)
     const [dataTrending, setDataTrending] = useState([])
+    const dispatch = useDispatch()
+    const { movies, status, error } = useSelector(state => state.movies)
+    const [query, setquery] = useState("")
+
+    // useEffect(() => {
+    // const searchmovie = async (query) => {
+    //     const res = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=4113f3ad734e747a5b463cde8c55de42&query=${query}}`)
+    //     return res.json()
+    //         .then((res) => {
+    //             setDataTrending(res.results)
+    //         })
+    // }
+    // if (query) {
+    //     searchmovie(query)
+    //     console.log('has query')
+
+    // } else {
+    //     console.log('no query')
+    //     searchmovie('')
+    //     const data = undefined || [];
+    //     const filteredData = data.filter(item => item);
+    //     async function trending(page) {
+    //         const res = await fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US&page=${page}`)
+    //         setDataTrending(prevGenres => {
+    //             const newResults = prevGenres.filter(newItem => !prevGenres.some(item => item.id === newItem.id));
+    //             return [...prevGenres, ...newResults];
+    //         })
+    // .then((res) => {
+    //     settotalpage(res.totals_pages)
+    //     setDataTrending(prevGenres => [...prevGenres, ...res.results]);
+    //     console.log('trending', page)
+    // })
+    //         } trending(page)
+    //     }
+    // }, [query, page])
     useEffect(() => {
         const fetchTrending = async ({ page }) => {
             try {
-                const res = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US&page=${page}`);
+                const res = await fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US&page=${page}`);
                 const data = await res.json();
-                setDataTrending(prevData => {
-                    const newResults = data.results.filter(newItem => !prevData.some(item => item.id === newItem.id));
-                    return [...prevData, ...newResults];
-                });
+                setDataTrending(prevData => [...prevData, ...data.results])
                 setTimeout(() => {
                     setloading(false)
                 }, 1000);
@@ -33,6 +69,7 @@ export function Topratelist() {
             }
         };
         fetchTrending({ page })
+
     }, [page]);
 
     let handleSubmit = (e) => {
@@ -86,6 +123,7 @@ export function Topratelist() {
             setpage((prev) => prev + 1);
         }
     }
+
     const nextpage = () => {
         setpage(page + 1)
         window.addEventListener("scroll", handleScroll);
@@ -96,7 +134,7 @@ export function Topratelist() {
             <Helmet>
                 <meta charSet='UTF-8' />
                 <link rel="shortcut icon" href={logoimg} />
-                <title>Mohaori-TopRateMovie</title>
+                <title>Mohaori-TredingMovie</title>
                 <meta name='title' content='About Mohaori' />
                 <meta name='description' content='About Demo Movies website មហោរី design from class web-design web20' />
                 <meta name='thumbnail' content={thumnail} />
@@ -106,7 +144,6 @@ export function Topratelist() {
                 <meta property='og:image:width' content="400" />
                 <meta property='og:image:height' content='300' />
             </Helmet>
-
             <main className='dark:bg-gray-300 bg-gray-900 pb-10 pt-20'>
                 {
                     loading ? <Loadinglist /> :
@@ -132,21 +169,26 @@ export function Topratelist() {
                                     selected ?
                                         <h2 className='text-xl z-10 text-secondary dark:text-gray-900 md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl sm:mb-10 mb-5  text-center ' >{genrename}</h2>
 
-                                        : <h2 className='text-xl font-bold z-10 text-secondary dark:text-gray-900 md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl sm:mb-10 mb-5 text-center' >TopRate movies </h2>
+                                        : <h2 className='text-xl font-bold z-10 text-secondary dark:text-gray-900 md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl sm:mb-10 mb-5 text-center' >Treding movies </h2>
                                 }
 
                             </div>
+
+
+
                             <article className='grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-6  gap-1 sm:gap-4'>
                                 {selected ? (genresMovie.map((data, index) => (
-                                    <MovieCard key={index} data={data} />
+                                 <MovieCard key={index} data={data}/>
                                 ))) : (dataTrending.map((data, index) => (
-                                    <MovieCard key={index} data={data} />
+                                    <MovieCard key={index} data={data}/>
                                 )))
                                 }
+
+
                             </article>
                             <div className='w-full text-center mt-10'>
                                 {
-                                    totalpage !== page && <button className='dark:text-gray-900  border-sky-500 dark:border-gray-800  border text-secondary hover:bg-slate-400 hover:text-gray-900  p-3 text-base md:text-xl rounded-lg ' onClick={nextpage}> See more
+                                    totalpage !== page && <button className='dark:text-gray-900 border-sky-500 dark:border-gray-800  border text-secondary hover:bg-slate-400 hover:text-gray-900  p-3 text-base md:text-xl rounded-lg ' onClick={nextpage}> See more
                                     </button>
                                 }
                             </div>
@@ -156,3 +198,32 @@ export function Topratelist() {
         </>
     );
 }
+
+
+// const dispatch = useDispatch()
+// const { movies, status, error } = useSelector(state => state.movies)
+// const [query, setquery] = useState("")
+// useEffect(() => {
+//   dispatch(searchMovieAction(query))
+// }, [query])
+
+// const [movie, setmovie] = useState([]);
+// const [loading, setloading] = useState(true)
+// const [totalpage, settotalpage] = useState(0)
+// const [page, setpage] = useState(1)
+
+// useEffect(() => {
+//   const fetchmovie = async () => {
+//     const res = await fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US&page=${page}`)
+//     return res.json()
+//       .then((movies) => {
+//         settotalpage(movies.totals_pages);
+//         setmovie([...movie, ...movies.results]);
+//         setTimeout(() => {
+//           setloading(false)
+//         }, 1500);
+//         console.log('totalpages', movies)
+//       });
+//   }
+//   fetchmovie();
+// }, [page]);

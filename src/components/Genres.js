@@ -51,15 +51,46 @@ function GenreDropdown({ onSelect }) {
   }, [])
 
   return (
-    <Dropdown label="" dismissOnClick={false} renderTrigger={() => <span className='text-white border rounded-md shadow-lg p-2 hover:bg-slate-500' >Select Genres</span>}>
+    <>
+    
+    <Dropdown label="" dismissOnClick={false} renderTrigger={() => 
+    <span className='text-white border rounded-md shadow-lg p-2 hover:bg-slate-500 dark:text-gray-800 cursor-pointer ' >Select Genres</span>}>
       {genres.map((genre) => (
         <Dropdown.Item className='' key={genre.id} onClick={() => onSelect(genre.id,genre.name)}>
           {genre.name}
         </Dropdown.Item>
       ))}
     </Dropdown>
+    </>
+
+  );
+}
+export default GenreDropdown;
+
+ export function GenreMenu({ onSelect }) {
+  const [genres, setGenres] = useState([]);
+  useEffect(() => {
+    initFlowbite()
+    genrekeys()
+      .then((res) => {
+        setGenres(res.genres)
+        console.log('genress search', genres)
+      })
+  }, [])
+
+  return (
+    <>
+    
+    <Dropdown label="" dismissOnClick={false} renderTrigger={() => 
+    <span className='text-white border rounded-md shadow-lg p-2 hover:bg-slate-500 dark:text-gray-800 cursor-pointer ' >Select Genres</span>}>
+      {genres.map((genre) => (
+        <Dropdown.Item className='' key={genre.id} onClick={() => onSelect(genre.id,genre.name)}>
+          {genre.name}
+        </Dropdown.Item>
+      ))}
+    </Dropdown>
+    </>
 
   );
 }
 
-export default GenreDropdown;

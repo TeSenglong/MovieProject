@@ -13,10 +13,10 @@ import 'swiper/css/navigation';
 // import required modules
 import { Pagination, Navigation, Keyboard, Mousewheel, Autoplay } from 'swiper/modules';
 import products from '../services/products';
-import { register } from 'swiper/element-bundle';
+
 import { Loading } from './Loading';
 import { Link } from 'react-router-dom';
-register();
+
 
 export default function MainContent() {
     const [loading, setLoading] = useState(true)
@@ -28,7 +28,7 @@ export default function MainContent() {
                 setTimeout(() => {
                     setLoading(false)
                   },1500);
-                console.log('nananan', movie.poster_path)
+                console.log('nananan', movie)
             })
     }, [])
     return (

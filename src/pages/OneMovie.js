@@ -19,6 +19,7 @@ export default function OneMovie() {
   const { id } = useParams()
   const [movie, setmovie] = useState([])
   const [playtrailer, setplaytrailer] = useState(false)
+  const [error,setError]=useState(false)
   useEffect(() => {
     Aos.init({
       delay: "200"
@@ -45,6 +46,7 @@ export default function OneMovie() {
     const trailer = movie.find(vid => vid.name === 'Official Trailer')
     const key = trailer ? trailer.key : movie[0].key
     console.log('trailer', trailer)
+    console.log(error)
     return (
       <YouTube
         videoId={key}
@@ -89,7 +91,7 @@ export default function OneMovie() {
                   className="sm:hidden  h-auto mb-5 w-full flex justify-center">
                   <img className=' w-60 h-auto sm:w-56 md:w-60 lg:w-60 lg:h-auto xl:w-72  ' src={`https://image.tmdb.org/t/p/w500${onemovie.poster_path}`} alt="mockup" />
                 </div>
-                <h1 className="max-w-2xl mb-4 text-center sm:text-start text-xl sm:text-xl font-extrabold tracking-tight leading-none md:text-2xl xl:text-4xl text-white dark:text-white">
+                <h1 className="max-w-2xl mb-4 text-center sm:text-start  text-xl sm:text-xl font-extrabold tracking-tight leading-none md:text-2xl xl:text-4xl text-white dark:text-white">
                   {onemovie.title}
                 </h1>
                 <div className='sm:hidden w-full opacity-85 text-center' >

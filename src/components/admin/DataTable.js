@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import DataTable from 'react-data-table-component'
+import DataTable, { createTheme } from 'react-data-table-component'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchMovieAction, searchMovieAction } from '../../features/products/productsAction'
 
@@ -17,26 +17,59 @@ export default function DataTablee() {
         },
         {
             name: 'Title',
-            selector: row => <div>{row.title}</div>,
+            selector: row => <div className='w-auto' >{row.title}</div>,
             sortable: true,
-            width: "250px",
-        },
-        {
-            name: 'Poster',
-            selector: row => <img className='w-28 h-36' src={`https://image.tmdb.org/t/p/w500${row.poster_path}`} alt={row.title} />,
-            width: "250px",
-        },
-        {
-            name: 'Status',
-            selector: row => <div >{row.overview}</div>,
-            width: "500px",
+            maxWidth: '200px',
+            wrap:true,
+            
         },
         {
             name: 'Release Date',
             selector: row => <div>{row.release_date}</div>,
-            width: "200px",
+            width: "150px",
+            
         },
+        {
+            name: 'Poster',
+            selector: row => <img className='w-auto h-36' src={`https://image.tmdb.org/t/p/w500${row.poster_path}`} alt={row.title} />,
+            width: "150px",
+        },
+        {
+            name: 'OverView',
+            selector: row => <div className='flex flex-wrap' >{row.overview}</div>,
+            width: "500px", 
+            sortable: true, 
+            wrap: true
+            
+        },
+
     ];
+    createTheme('solarized', {
+        text: {
+          primary: '#ffffff ',
+          secondary: '#2aa198',
+        },
+        background: {
+          default: '#111827',
+        },
+        context: {
+          background: '#cb4b16',
+          text: '#FFFFFF',
+        },
+        divider: {
+          default: '#073642',
+        },
+        action: {
+          button: 'rgba(0,0,0,.54)',
+          hover: 'rgba(0,0,0,.08)',
+          disabled: 'rgba(0,0,0,.12)',
+        },
+      }, 'dark');
+      createTheme('dark',{
+        background:{
+            default:'transparen',
+        }
+      });
     let handleSubmit = (e) => {
         e.preventDefault()
         // get what user input
@@ -46,7 +79,7 @@ export default function DataTablee() {
     const dispatch = useDispatch()
     const [query, setquery] = useState("")
     const data = useState([])
-    const page = 1;
+    const [page,setpage]=useState(1)
     // useEffect(()=>{
     //     dispatch(fetchMovieAction())
     // },[])
@@ -54,18 +87,26 @@ export default function DataTablee() {
     useEffect(() => {
         if (query) {
             console.log('no result')
-            dispatch(searchMovieAction(query))
+            dispatch(searchMovieAction({page,query}))
+            console.log(movies)
         } else {
             dispatch(fetchMovieAction({page}))
         }
     }, [query,page])
+    const nextpage = () =>{
+        setpage(page + 1)
+    }
     return (
-        <article className='mt-20 w-11/12 m-auto'>
+        <article className='mt-20 p-10 m-auto'>
             <DataTable
                 columns={columns}
                 data={movies}
                 pagination
+                style={{overflow:'wrap'}}
+                onChangePage={nextpage}
                 subHeader
+                theme='solarized'
+                // paginationComponent={CustomMaterialPagination}
                 subHeaderComponent={
                     <form
                         onSubmit={handleSubmit}
@@ -82,7 +123,7 @@ export default function DataTablee() {
                                     console.log(e)
                                     setquery(e.target.value)
                                 }}
-                                type="search" id="default-search" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Mockups, Logos..." required />
+                                type="search" id="default-search" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search............." required />
                             <button type="submit" class="text-white hidden sm:block  absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
                         </div>
                     </form>

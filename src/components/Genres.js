@@ -38,7 +38,7 @@ import React, { useState, useEffect } from 'react';
 import { Dropdown } from 'flowbite-react';
 import { genrekeys } from '../services/products';
 import { initFlowbite } from 'flowbite';
-
+import Select from 'react-select';
 function GenreDropdown({ onSelect }) {
   const [genres, setGenres] = useState([]);
   useEffect(() => {
@@ -54,7 +54,7 @@ function GenreDropdown({ onSelect }) {
     <>
     
     <Dropdown label="" dismissOnClick={false} renderTrigger={() => 
-    <span className='text-white border rounded-md shadow-lg p-2 hover:bg-slate-500 dark:text-gray-800 cursor-pointer ' >Select Genres</span>}>
+    <span className='text-white border rounded-md shadow-lg p-2 hover:bg-slate-500 dark:text-sky-900 cursor-pointer ' >Select Genres</span>}>
       {genres.map((genre) => (
         <Dropdown.Item className='' key={genre.id} onClick={() => onSelect(genre.id,genre.name)}>
           {genre.name}
@@ -94,3 +94,32 @@ export default GenreDropdown;
   );
 }
 
+
+
+export function SelectedGenres({onSelect}){
+  const [genres, setGenres] = useState([]);
+  const [inputValue, setInputValue] = useState('');
+  useEffect(() => {
+    initFlowbite()
+    genrekeys()
+      .then((res) => {
+        setGenres(res.genres.map(genre => ({ value: genre.id, label: genre.name })));
+        console.log('genress search', genres)
+      })
+  }, [])
+  return(
+    <>
+    
+    <Select onClick={() => onSelect(genres)}
+      // defaultValue={genres}
+      isMulti
+      name="colors"
+      options={genres}
+      onInputChange={(value) => setInputValue(value)}
+      className="basic-multi-select w-2/5"
+      classNamePrefix="select"
+    
+    />
+    </>
+  )
+}

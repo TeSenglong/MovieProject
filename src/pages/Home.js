@@ -72,11 +72,10 @@ export default function Home() {
                     </div>
                 </section>
                 <section className='' >
-                    <h2 className='text-2xl md:text-3xl text-center w-11/12 m-auto mt-5 text-secondary dark:text-gray-900 font-medium' >Top Rate Movies</h2>
-
+                    <h2 className='text-2xl md:text-3xl text-center w-11/12 m-auto mt-5 text-secondary dark:text-gray-900 font-medium' >TopRate Movies</h2>
                     <div
                         className='w-11/12   m-auto  pt-5 md:pt-10 gap-2' >
-                        <ToprateMovie />
+                        <ToprateMovie/>
                     </div>
 
                     <div className='flex w-11/12 m-auto justify-end'>

@@ -7,55 +7,56 @@ import { fetchMovieAction, searchMovieAction } from '../features/products/produc
 import { Helmet } from 'react-helmet'
 import thumnail from '../icon/thumnail.png';
 import logoimg from '../icon/small logo.jpg';
-import GenreDropdown from '../components/Genres';
+import GenreDropdown, { SelectedGenres } from '../components/Genres';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import { PopularMovie } from '../services/products';
+import { genrekeys, PopularMovie } from '../services/products';
+import Select from 'react-select';
+import axios from 'axios';
+import makeAnimated from 'react-select/animated';
+// import { colourOptions } from '../data';
+
 const PopularList = () => {
+    const animatedComponents = makeAnimated();
     const [loading, setloading] = useState(true)
     const [loading2, setloading2] = useState(false)
     const [totalpage, settotalpage] = useState(2)
     const [page, setpage] = useState(1)
-    const dispatch = useDispatch()
     const [movies, setMovies] = useState([])
     const [loading1, setloading1] = useState(false)
+
     useEffect(() => {
+        
+                PopularMovie({ page })
+                    .then((res) => {
+                        settotalpage(res.total_pages)
+                        setMovies(prevGenres => [...prevGenres, ...res.results]);
+                        console.log(movies)
+                    }) // if no query get simple data from action
+                setTimeout(() => {
+                    setloading(false)
+                }, 1000)
+            
 
-        PopularMovie({ page })
-            .then((res) => {
-                settotalpage(res.total_pages)
-                setMovies(prevGenres => [...prevGenres, ...res.results]);
-            }) // if no query get simple data from action
-        setTimeout(() => {
-            setloading(false)
-        }, 1000)
-
-    }, [page, dispatch])
-    let handleSubmit = (e) => {
-        e.preventDefault()
-        // get what user input
-        console.log("handle submit click");
-    }
+    }, [page])
     const [genresMovie, setGenresMovie] = useState([]); //state use to hold data from (fetchGenres)
     const [selected, getSelected] = useState('');//state use to hold data from onClick (genre.js)
     const [isInitialRender, setIsInitialRender] = useState(true);
-
-
     const fetchGenres = async (page) => {     //fetch data to select genre movies
+        if (selected.length > 0) {
+            const genreIds = selected.map((genre) => genre.value).join(',');
         try {
-
-            const res = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=4113f3ad734e747a5b463cde8c55de42&with_genres=${selected}&page=${page}&sort_by=popularity.desc`);
+            const res = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=4113f3ad734e747a5b463cde8c55de42&with_genres=${genreIds}&page=${page}&sort_by=popularity.desc`);
             const data = await res.json();
-            // settotalpage(data.totals_pages);
             setGenresMovie(prevGenres => [...prevGenres, ...data.results]);
             setTimeout(() => {
                 setloading1(false)
             }, 1000);
-            console.log('genresmoiveee', data)
+            // console.log('genresmoiveee', data)
         } catch (error) {
             console.error('Error fetching genres:', error);
         }
-    };
+    }}
     useEffect(() => {
         if (!isInitialRender) {
             fetchGenres(page);
@@ -63,26 +64,26 @@ const PopularList = () => {
             setIsInitialRender(false);
         }
     }, [selected, page]);
-
+    
     const [genrename, setgenrename] = useState('')//get name of genres from selected
-
-    const handleGenreSelect = (genreId, name) => {
-        if (genreId !== selected) {
-            // setloading2(true)
-            getSelected(genreId);//get id to fetch data
-            setgenrename(name)//get name
-            setpage(1); // Reset to first page on new selection
-            setGenresMovie([]); // Clear previous results
-        }
-        // setTimeout(()=>{
-        //     setloading2(false)
-        // },1000)
-    };
-
-    const handleCloseGenres = () => {
-        getSelected('');
-        setGenresMovie([]); // Clear genre results`
-    };
+    const [genres, setGenres] = useState([]);
+    useEffect(() => {
+      genrekeys()
+        .then((res) => {
+          setGenres(res.genres);
+        //   console.log('genress search', genres)
+        })
+    }, [])   
+  const handleGenreChange = (selectedOption,actionMeta) => {
+    getSelected(selectedOption);
+    console.log('selectopption',selectedOption)
+    setpage(1);
+    setGenresMovie([])
+    if(actionMeta.action === 'clear'){
+        getSelected('')
+        setGenresMovie([])
+    }
+  };
     const handleScroll = () => {
         if (
             window.innerHeight + document.documentElement.scrollTop + 20 >= document.documentElement.scrollHeight && !loading
@@ -90,6 +91,7 @@ const PopularList = () => {
             setpage((prev) => prev + 1);
         }
     }
+
     const nextpage = () => {
         setpage(page + 1)
         window.addEventListener("scroll", handleScroll);
@@ -97,7 +99,6 @@ const PopularList = () => {
     }
     return (
         <>
-
             <Helmet>
                 <meta charSet='UTF-8' />
                 <link rel="shortcut icon" href={logoimg} />
@@ -118,44 +119,22 @@ const PopularList = () => {
                             <div className='w-4/5 absolute top-0 left-1/2 transform -translate-x-1/2  bg-logo m-auto h-3/5' >
                             </div>
                             <div className='flex justify-start items-center mt-5 lg:mb-10 lg:mt-10'>
-                                {/* <Searching /> */}
-                                {/* <form
-                                    onSubmit={handleSubmit}
-                                    class="w-1/2 mx-auto">
-                                    <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
-                                    <div class="relative">
-                                        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                                            </svg>
-                                        </div>
-                                        <input
-                                            onChange={(e) => {
-                                                console.log(e)
-                                                setquery(e.target.value)
-                                            }}
-                                            type="text" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Mockups, Logos..." required />
-                                        <button type="submit" class="text-white hidden sm:block  absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
-                                    </div>
-                                </form> */}
-                                <div className='flex flex-col z-10 mt-2 sm:mt-10 sm:flex-row flex-wrap gap-2'>
-                                    <div className='' >
-                                        <GenreDropdown onSelect={handleGenreSelect} />
-                                    </div>
-                                    {selected && (
-                                        <button onClick={handleCloseGenres} className="text-gray-300 z-10 ml-5 h-full hover:bg-sky-600 dark:text-sky-400">
-                                            Close Genre
-                                        </button>
-                                    )}
-                                </div>
-
-                            </div>
+                                <Select 
+                                    options={genres.map((genre) => ({ value: genre.id, label: genre.name }))}
+                                    onChange={handleGenreChange}
+                                    placeholder="Select genres"
+                                    isMulti
+                                    components={animatedComponents}
+                                    isClearable
+                                    className='md:w-1/2 w-4/5   m-auto p-3 '
+                                />
+                           </div>
                             <div className='flex  justify-center mt-2 sm:mt-0 lg:mt-0 items-center'>
                                 {
                                     selected ?
-                                        <h2 className='text-xl z-10 text-secondary dark:text-gray-900 md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl sm:mb-10 mb-5  text-center ' >{genrename}</h2>
+                                        <h2 className='text-xl z-10 text-secondary dark:text-sky-900 md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl sm:mb-10 mb-5  text-center  ' >{selected.map((genre) => genre.label)}</h2>
 
-                                        : <h2 className='text-xl font-bold z-10 text-secondary dark:text-gray-900 md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl sm:mb-10 mb-5 text-center' >Popular movies</h2>
+                                        : <h2 className='text-xl font-bold z-10 text-secondary dark:text-sky-900 md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl sm:mb-10 mb-5 text-center' >Popular movies</h2>
                                 }
 
                             </div>

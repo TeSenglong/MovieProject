@@ -63,7 +63,7 @@ export default function MainContent() {
             </div>
             <div className='flex flex-col justify-center items-center sm:pr-3'>
             <h5 className='text-white  sm:text-2xl lg:text-5xl font-bold' ><Link to={`/onemovie/${data.id}`}>{data.title}</Link></h5>
-            <span className='text-slate-400 md:text-base lg:text-xl 2xl:text-2xl' >{data.release_date}</span>
+            <span className='text-slate-400 mt-2 md:text-base lg:text-xl 2xl:text-2xl' >{data.release_date}</span>
             <div className='w-full' >
                 <p className='text-white mt-6 hidden m-auto sm:flex lg:w-128 lg:text-2xl ' >{data.overview.length > 300 ?`${data.overview.substring(0,300)}.....`:data.overview}  </p>
             </div>

@@ -64,7 +64,7 @@ export default function Actor() {
         {
           loading ? <Loading2 /> : actor.map((data) =>
             <SwiperSlide className="w-36 flex-none transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-95  duration-300 border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-              <div data-aos="flip-left" data-aos-offset="200"
+              <div data-aos="zoom-in" data-aos-offset="200"
                 className="w-auto bg-slate-500 h-32 flex-none rounded-lg shadow dark:bg-gray-800">
                 <Link onClick={() => {
                   window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });

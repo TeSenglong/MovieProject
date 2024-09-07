@@ -14,34 +14,35 @@ import { clearResults } from '../features/products/productsSlice'
 export default function Search1() {
     const [loading, setloading] = useState(false)
     // const [error, setError] = useState(false)
-    const [totalpage, settotalpage] = useState(1)
+    const [totalpage, settotalpage] = useState(0)
     const [moviess, setMoviess] = useState([])
     const [page, setpage] = useState(1)
     const [hasmore, setHasmore] = useState(false)
     const [query, setquery] = useState("")
     const [qloading, setqloading] = useState(false)
     const dispatch = useDispatch()
-    const [errorr ,setrrror]=useState(true)
-    
-    const { movies, status, error } = useSelector(state => state.movies)
+    const [errorr, setrrror] = useState(true)
+
+    const { movies, totalPages, status, error } = useSelector(state => state.movies)
     // const results = useSelector((state)=> state.movies.movies)
 
     useEffect(() => {
         setMoviess([])
     }, [query])
     useEffect(() => {
-        dispatch(searchMovieAction({page,query}))
-        setMoviess(movies.results)
-        settotalpage(movies.total_pages)
-        console.log('getresults',movies)
+        if (query.length > 0) {
+            dispatch(searchMovieAction({ page, query }))
+            setMoviess(prevGenres => [...prevGenres, ...movies]);
+        }
+        settotalpage(totalPages)
+        // settotalpage(movies.total_pages)
+        console.log('totalpages', totalPages)
         console.log(error)
         console.log(status)
-    }, [query,page])
-
+    }, [query, page])
     const handleSelect = (e) => {
-      setquery(e.target.value);
+        setquery(e.target.value);
     }
-
     const closeSearch = () => {
         // setMovies([])
         setquery('')
@@ -51,17 +52,16 @@ export default function Search1() {
         // get what user input
         console.log("handle submit click");
     }
-    
     const handleScroll = () => {
         if (
             window.innerHeight + document.documentElement.scrollTop + 20 >= document.documentElement.scrollHeight
         ) {
-            setpage((prev) => prev + 1);
+            setpage((prev) => prev + 1)
         }
     }
-    const nextPage = () =>{
+    const nextPage = () => {
         setpage(page + 1)
-        if(query){
+        if (query) {
             window.addEventListener("scroll", handleScroll);
             return () => window.removeEventListener("scroll", handleScroll);
         }
@@ -82,8 +82,8 @@ export default function Search1() {
                 <meta property='og:image:height' content='300' />
             </Helmet>
 
-            <main className= ' dark:bg-gray-300 bg-gray-900 pb-10 pt-20'>
-                <div className='w-4/5 absolute top-0 left-1/2 transform -translate-x-1/2  bg-logo m-auto h-3/5' > 
+            <main className=' dark:bg-gray-300 bg-gray-900 pb-10 pt-20'>
+                <div className='w-4/5 absolute top-0 left-1/2 transform -translate-x-1/2 mt-20 bg-logo m-auto h-3/5' >
                 </div>
                 {
                     loading ? <Loadinglist /> :
@@ -105,57 +105,50 @@ export default function Search1() {
                                             type="text" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Mockups, Logos..." required />
                                     </div>
                                 </form>
-                                        <div className='absolute gap-3 flex end-2.5 bottom-2.5' >
-                                        {
-                                            query &&
+                                <div className='absolute gap-3 flex end-2.5 bottom-2.5' >
+                                    {
+                                        query &&
                                         <button onClick={closeSearch} className='dark:text-gray-100  p-1 ' >
                                             <svg className='w-3 fill-gray-600 ' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M376.6 84.5c11.3-13.6 9.5-33.8-4.1-45.1s-33.8-9.5-45.1 4.1L192 206 56.6 43.5C45.3 29.9 25.1 28.1 11.5 39.4S-3.9 70.9 7.4 84.5L150.3 256 7.4 427.5c-11.3 13.6-9.5 33.8 4.1 45.1s33.8 9.5 45.1-4.1L192 306 327.4 468.5c11.3 13.6 31.5 15.4 45.1 4.1s15.4-31.5 4.1-45.1L233.7 256 376.6 84.5z" /></svg>
                                         </button>
-                                        }
-                                        <button type="submit" class="text-white hidden sm:block   bg-sky-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
-                                        </div>
+                                    }
+                                    <button type="submit" class="text-white hidden sm:block   bg-sky-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+                                </div>
                             </div>
-                            <div className='flex justify-center mt-4 md:mt-4 lg:mt-0 items-center'>
+                            <div className='flex justify-center mt-4 md:mt-10 lg:mt-0 items-center'>
                                 <h2 className='text-xl text-secondary dark:text-gray-900 md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl sm:mb-10 mb-5 text-center' > movies</h2>
                             </div>
-                                    <article className='grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6  gap-1 sm:gap-4'>
-                                        {moviess.map((data, index) => (
-
-                                            <div
-                                                key={index} className="h-auto transition ease-in-out delay-150 flex-none hover:-translate-y-1 hover:scale-110  duration-300  rounded-lg ">
-                                                <Link onClick={() => {
-                                                    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+                            <article className='grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-6  gap-1 sm:gap-4'>
+                                {moviess.map((data, index) => (
+                                    <div
+                                        key={index} className="h-auto transition ease-in-out delay-150 flex-none hover:-translate-y-1 hover:scale-110  duration-300  rounded-lg ">
+                                        <Link onClick={() => {
+                                            window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+                                        }}
+                                            to={`/onemovie/${data.id}`} className=''>
+                                            <LazyLoadImage
+                                                className="rounded-t-lg "
+                                                effect="blur"
+                                                wrapperProps={{
+                                                    // If you need to, you can tweak the effect transition using the wrapper style.
+                                                    style: { transitionDelay: "1s" },
                                                 }}
-                                                    to={`/onemovie/${data.id}`} className=''>
-                                                    <LazyLoadImage
-                                                        className="rounded-t-lg "
-                                                        effect="blur"
-                                                        wrapperProps={{
-                                                            // If you need to, you can tweak the effect transition using the wrapper style.
-                                                            style: { transitionDelay: "1s" },
-                                                        }}
-                                                        src={`https://image.tmdb.org/t/p/w300${data.poster_path}`}
-                                                        alt={data.title} />
-                                                </Link>
-                                                <div className="p-2 text-center">
-                                                    <a href="#">
-                                                        <h5 className="mb-2 text-center text-base sm:text-xl md:text-xl lg:text-2xl 2xl:text-3xl  font-bold tracking-tight text-gray-300/75 dark:text-sky-900">{data.title}</h5>
-                                                    </a>
-                                                    <p className="mb-3 text-xs sm:text-sm md:text-base  font-normal text-gray-300/50 dark:text-gray-400">{data.release_date}</p>
-                                                </div>
-                                            </div>
-                                        ))}
-
-
-
-
-                                    </article>
-                            
-
+                                                src={`https://image.tmdb.org/t/p/w300${data.poster_path}`}
+                                                alt={data.title} />
+                                        </Link>
+                                        <div className="p-2 text-center">
+                                            <a href="#">
+                                                <h5 className="mb-2 text-center text-base sm:text-xl md:text-xl lg:text-2xl 2xl:text-3xl  font-bold tracking-tight text-gray-300/75 dark:text-sky-900">{data.title}</h5>
+                                            </a>
+                                            <p className="mb-3 text-xs sm:text-sm md:text-base  font-normal text-gray-300/50 dark:text-gray-400">{data.release_date}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </article>
                             <div className='w-full text-center mt-10'>
                                 {
-                                    totalpage !== page && <button className='dark:text-gray-900 border-sky-500 dark:border-gray-800  border text-secondary hover:bg-slate-400 hover:text-gray-900  p-3 text-base md:text-xl rounded-lg ' onClick={nextPage}> See more
-                                    </button>
+                                    totalpage > 1 && page < totalpage &&(<button className='dark:text-gray-900 border-sky-500 dark:border-gray-800  border text-secondary hover:bg-slate-400 hover:text-gray-900  p-3 text-base md:text-xl rounded-lg ' onClick={nextPage}> See more
+                                    </button>)
                                 }
                             </div>
                         </section>

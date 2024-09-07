@@ -153,20 +153,29 @@ html::-webkit-scrollbar-thumb{
 	background-color: #c69c9c;
 }
 .bg-logo{
+  border-radius: 25px;
   -webkit-filter: brightness(0.8);
   filter: brightness(0.8);
   background-image: url(./icon/bestlogo.jpg);
-  height: 150px;
+  height: 120px;
   background-repeat: no-repeat;
   background-size: cover;
 }
 @media (min-width: 350px) {
   .bg-logo{
-    height:180px;
+    height:120px;
   }
 }
-@media (min-width:650px) {
+@media (min-width:640px) {
+  .bg-logo{
+    height: 210px;
+  }
+}
+@media (min-width:765px) {
   .bg-logo{
     height: 250px;
   }
+}
+.basic-multi-selec{
+  width: 200px;
 }

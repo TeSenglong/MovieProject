@@ -44,7 +44,7 @@ function App() {
         <Route path='/dashboard' element={<Dashboard />} />
         <Route path='/creditsactor/:id' element={<CreditsActor />} />
         <Route path='/about' element={<About/>} />
-        <Route path='/search' element={<SearchMovie />} />
+        {/* <Route path='/search' element={<SearchMovie />} /> */}
         <Route  path='/search1' element={<Search1/>} />
       </Route>
       <Route path='/contact' element={<Contact />} />

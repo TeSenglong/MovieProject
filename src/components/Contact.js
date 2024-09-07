@@ -4,7 +4,9 @@ import { useNavigate } from 'react-router-dom'
 export default function Contact() {
     const navigate = useNavigate()
     const goBack=()=>{
-        navigate('/');
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+     
+        navigate(-1)
       }
     //   const gotToNewPage=()=>{
     //     navigate("/customer");
@@ -30,7 +32,8 @@ export default function Contact() {
             <div className='flex justify-between'>
             <button type="submit" className="py-3 px-5 text-sm font-medium text-center text-gray-900 rounded-lg bg-secondary sm:w-fit hover:bg-sky-500 dark:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-gray-500 dark:hover:bg-blue-600 dark:focus:ring-primary-800">Send message</button>
 
-            <button type="click" className="py-3 px-5 text-sm font-medium text-center text-gray-900 rounded-lg bg-secondary sm:w-fit hover:bg-sky-500 dark:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-gray-500 dark:hover:bg-blue-600 dark:focus:ring-primary-800" onClick={()=>goBack()}>Back</button>
+            <button type="click" className="py-3 px-5 text-sm font-medium text-center text-gray-900 rounded-lg bg-secondary sm:w-fit hover:bg-sky-500 dark:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-gray-500 dark:hover:bg-blue-600 dark:focus:ring-primary-800"
+             onClick={()=>goBack()}>Back</button>
             </div>
         </form>
     </div>

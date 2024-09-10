@@ -141,7 +141,7 @@ export default function SearchMovie() {
                 </div>
                 {
                     loading ? <Loadinglist /> :
-                        <section className=' h-auto w-11/12 m-auto mt-40 ' >
+                        <section className=' h-auto w-11/12 m-auto mt-10 sm:mt-40 ' >
                             <div className=' relative w-1/2 m-auto items-center lg:mb-10 lg:mt-10'>
                                 {/* <Searching /> */}
                                 <form

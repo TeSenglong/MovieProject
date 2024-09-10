@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import secureLocalStorage from 'react-secure-storage'
 import logo from '../icon/another logo .jpg'
-import '../style/style'
 export default function Navbar() {
 
   useEffect(() => {

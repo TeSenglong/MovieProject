@@ -19,6 +19,10 @@ export async function topratemovie() {
     const response = await fetch(`${BASE_URL}/movie/top_rated${API_key}&language=en-US&page=1`)
     return response.json()
 }
+export async function Topratemoviee({page}) {
+    const response = await fetch(`${BASE_URL}/movie/top_rated${API_key}&language=en-US&page=${page}`)
+    return response.json()
+}
 export async function getOneMovieVideo(id){
 const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US`)
 return response.json()
@@ -39,8 +43,16 @@ export async function nowplaying() {
     const res= await fetch(`${BASE_URL}/movie/now_playing${API_key}&language=en-US&page=1`)
     return res.json()
 }
+export async function Nowplayingg({page}) {
+    const res= await fetch(`${BASE_URL}/movie/now_playing${API_key}&language=en-US&page=${page}`)
+    return res.json()
+}
 export async function upcoming() {
     const res= await fetch(`${BASE_URL}/movie/upcoming${API_key}&language=en-US&page=1`)
+    return res.json()
+}
+export async function Upcomingg({page}) {
+    const res= await fetch(`${BASE_URL}/movie/upcoming${API_key}&language=en-US&page=${page}`)
     return res.json()
 }
 export async function popularperson() {
@@ -51,12 +63,20 @@ export async function trending(){
     const res = await fetch(`${BASE_URL}/trending/movie/week${API_key}&language=en-US`)
     return res.json()
 }
+export async function Trendingg({page}){
+    const res = await fetch(`${BASE_URL}/trending/movie/week${API_key}&language=en-US&page=${page}`)
+    return res.json()
+}
 export async function videoid(id) {
         const res = await fetch(`${BASE_URL}/movie/${id}/videos${API_key}`)
         return res.json()
 }
 export async function discoverMovies() {
     const res = await fetch(`${BASE_URL}/discover/movie${API_key}`)
+    return res.json()
+}
+export async function discoverMovie(page) {
+    const res = await fetch(`${BASE_URL}/discover/movie${API_key}&page=${page}`)
     return res.json()
 }
 

@@ -26,50 +26,70 @@ export default function SearchMovie() {
 
     // const { movies, status, error } = useSelector(state => state.movies)
     // const results = useSelector((state)=> state.movies.movies)
-
-
     useEffect(() => {
-        setMovies([])
-    }, [query])
-
-    useEffect(() => {
-        setqloading(true)
-        setError(false)
-        let cancel
+        
+        setMovies([]);
+        setpage(1); // Reset page number when query changes
+      }, [query]);
+    
+      useEffect(() => {
+        if (query === '') {
+          fetchGenres(pageN);
+        } else {
+          fetchMovies(query, pageN);
+        }
+      }, [pageN, query]);
+    
+    const fetchMovies = (query, pageN) => {
+        // setloading(true);
+        setError(false);
+        let cancel;
         axios({
-            method: 'GET',
-            url: 'https://api.themoviedb.org/3/search/movie',
-            params: {
-                api_key: '4113f3ad734e747a5b463cde8c55de42',
-                query: query,
-                page: pageN,
-            },
-            cancelToken: new axios.CancelToken(c => cancel = c)
+          method: 'GET',
+          url: 'https://api.themoviedb.org/3/search/movie',
+          params: {
+            api_key: '4113f3ad734e747a5b463cde8c55de42',
+            query: query,
+            page: pageN,
+          },
+          cancelToken: new axios.CancelToken(c => cancel = c)
         }).then(res => {
-            // console.log(res.data.results)
-            // setMovies(res.data.results)
-            setMovies(prevmovie => {
-                return [...prevmovie, ...res.data.results]
-            })
-            // console.log('totalpage',res.data.total_pages)
-            settotalpage(res.data.total_pages)
-            setTimeout(() => {
-                setqloading(false)
-
-            }, 1000);
+          setMovies(prevMovies => [...prevMovies, ...res.data.results]);
+          settotalpage(res.data.total_pages);
+          setloading(false);
         }).catch(e => {
-            if (axios.isCancel(e)) return
-            setError(true)
-        })
-        return () => cancel()
-    }, [pageN, query])
+          if (axios.isCancel(e)) return;
+          setError(true);
+        });
+        return () => cancel();
+      };
+    
+    const fetchGenres = async (pageN) => {     //fetch data to select genre movies
+        // if (selected.length > 0) {
+        //     const genreIds = selected.map((genre) => genre.value).join(',');
+        try {
+            const res = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=4113f3ad734e747a5b463cde8c55de42&page=${pageN}&sort_by=popularity.desc`);
+            const data = await res.json();
+            setMovies(prevGenres => [...prevGenres, ...data.results]);
+            console.log('genresPages',data)
+            settotalpage(data.total_pages)
+            // setTimeout(() => {
+            //     setloading1(false)
+            // }, 1000);
+            // console.log('genresmoiveee', data)
+        } catch (error) {
+            console.error('Error fetching genres:', error);
+        
+    }}
     const handleSelect = (e) => {
         setquery(e.target.value);
     }
 
     const closeSearch = () => {
-        // setMovies([])
+        setMovies([])
+        // fetchGenres(pageN)
         setquery('')
+        setpage(1)
     }
     let handleSubmit = (e) => {
         e.preventDefault()
@@ -126,17 +146,17 @@ export default function SearchMovie() {
                                 {/* <Searching /> */}
                                 <form
                                     onSubmit={handleSubmit}
-                                    class="">
-                                    <label for="default-search" class="mb-2  text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
-                                    <div class="">
-                                        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                    className="">
+                                    <label for="default-search" className="mb-2  text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                                    <div className="">
+                                        <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                            <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                                             </svg>
                                         </div>
                                         <input value={query}
                                             onChange={handleSelect}
-                                            type="text" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Mockups, Logos..." required />
+                                            type="text" className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Mockups, Logos..." required />
                                     </div>
                                 </form>
                                 <div className='absolute gap-3 flex end-2.5 bottom-2.5' >
@@ -146,7 +166,7 @@ export default function SearchMovie() {
                                             <svg className='w-3 fill-gray-600 ' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M376.6 84.5c11.3-13.6 9.5-33.8-4.1-45.1s-33.8-9.5-45.1 4.1L192 206 56.6 43.5C45.3 29.9 25.1 28.1 11.5 39.4S-3.9 70.9 7.4 84.5L150.3 256 7.4 427.5c-11.3 13.6-9.5 33.8 4.1 45.1s33.8 9.5 45.1-4.1L192 306 327.4 468.5c11.3 13.6 31.5 15.4 45.1 4.1s15.4-31.5 4.1-45.1L233.7 256 376.6 84.5z" /></svg>
                                         </button>
                                     }
-                                    {/* <button   on type="submit" class="text-white hidden sm:block   bg-sky-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button> */}
+                                    {/* <button   on type="submit" className="text-white hidden sm:block   bg-sky-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button> */}
                                 </div>
                             </div>
                             <div className='flex justify-center mt-4 md:mt-4 lg:mt-0 items-center'>

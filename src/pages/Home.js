@@ -54,7 +54,7 @@ export default function Home() {
             <main className='bg-gray-900 contianer dark:bg-gray-300 '>
                 <MainContent />
                 <div className='w-11/12 m-auto mb-5 ' >
-                    <Search />
+                    {/* <Search /> */}
                     {/* <Searching/> */}
                 </div>
 

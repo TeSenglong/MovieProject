@@ -24,7 +24,8 @@ export const productsSlice= createSlice({
     }).addCase(searchMovieAction.fulfilled,(state,action)=>{
       state.fulfilled='fullfiled'
       console.log('action.payload',action.payload)
-      state.movies =action.payload.movies
+      // state.movies =action.payload.movies
+      state.movies =[...state.movies,...action.payload.movies ]
       state.totalPages =action.payload.totalPages
       // state.movies=action.payload
     }).addCase(searchMovieAction.rejected,(state,action)=>{
@@ -36,7 +37,8 @@ export const productsSlice= createSlice({
     }).addCase(fetchMovieAction.fulfilled,(state,action)=>{
       state.fulfilled='fullfiled'
       console.log('fectmovieactionpayload',action.payload)
-      state.movies =action.payload
+      state.movies =[...state.movies,...action.payload.movies ]
+      state.totalPages =action.payload.totalPages
     }).addCase(fetchMovieAction.rejected,(state,action)=>{
       state.status=' fetch not found'
       state.error=action.error.message

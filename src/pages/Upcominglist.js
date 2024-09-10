@@ -11,85 +11,93 @@ import GenreDropdown from "../components/Genres"
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import { MovieCard } from "../components/Card"
 import Select from 'react-select';
-import { genrekeys } from "../services/products"
+import { genrekeys, Upcomingg } from "../services/products"
 import makeAnimated from 'react-select/animated';
 export function Upcominglist() {
-    const [movie, setcoming] = useState([])
-    const [loading, setloading] = useState(true)
-    const [totalpage, settotalpage] = useState(0)
-    const [page, setpage] = useState(1)
     const animatedComponents = makeAnimated();
+    const [loading, setloading] = useState(true)
+    const [totalpage, settotalpage] = useState(2)
+    const [page, setpage] = useState(1)
+    const [movies, setMovies] = useState([])
+    const [loading1, setloading1] = useState(false)
 
-        const fetchmovie = async (page) => {
-            const res = await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US&page=${page}`)
-            return res.json()
-                .then((movies) => {
-                    settotalpage(movies.totals_pages);
-                    setcoming([...movie, ...movies.results]);
-                    setTimeout(() => {
-                        setloading(false)
-                    }, 1500);
-                    console.log('totalpages', movies)
-                });
-        }
- 
-    const [genresMovie, setGenresMovie] = useState([]); //state use to hold data from (fetchGenres)
+
+
     const [selected, getSelected] = useState('');//state use to hold data from onClick (genre.js)
-    const [isInitialRender, setIsInitialRender] = useState(true);
     const fetchGenres = async (page) => {     //fetch data to select genre movies
-        if (selected.length > 0) {
-            const genreIds = selected.map((genre) => genre.value).join(',');
-            try {
-                const res = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=4113f3ad734e747a5b463cde8c55de42&with_genres=${genreIds}&page=${page}&sort_by=popularity.desc`);
-                const data = await res.json();
-                settotalpage(data.totals_pages);
-                setGenresMovie(prevGenres => [...prevGenres, ...data.results]);
-                console.log('genresmoiveee', data)
-            } catch (error) {
-                console.error('Error fetching genres:', error);
-            }
-        }
-    };
+        try {
+            const res = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=4113f3ad734e747a5b463cde8c55de42&with_genres=${selected.map((genre) => genre.value).join(',')}&page=${page}&sort_by=popularity.desc`);
+            const data = await res.json();
+            setMovies(prevGenres => [...prevGenres, ...data.results]);
+            console.log('genresPages',data)
+            setTimeout(() => {
+                setloading1(false)
+            }, 1000);
+            // console.log('genresmoiveee', data)
+        } catch (error) {
+            console.error('Error fetching genres:', error);
+        
+    }}
+    const fetchPopular = ({page}) => {
+        Upcomingg({ page })
+            .then((res) => {
+                settotalpage(res.total_pages)
+                setMovies(prevGenres => [...prevGenres, ...res.results]);
+                console.log( 'PopularMovies', res)
+            }) // if no query get simple data from action
+        setTimeout(() => {
+            setloading(false)
+        }, 1000)
+
+    }
     useEffect(() => {
-        if (!isInitialRender) {
+        if (selected) {
             fetchGenres(page);
-        } else {
-            setIsInitialRender(false);
+        } else if(selected === '') {
+            fetchPopular({page})
         }
     }, [selected, page]);
     
-    const [genrename, setgenrename] = useState('')//get name of genres from selected
+    
     const [genres, setGenres] = useState([]);
     useEffect(() => {
-        genrekeys()
-            .then((res) => {
-                setGenres(res.genres);
-                //   console.log('genress search', genres)
-            })
-    }, [])
-
-    const handleGenreChange = (selectedOption) => {
-        getSelected(selectedOption);
-        console.log('selectopption', selectedOption || [])
-        setpage(1);
-        setGenresMovie([])
-    };
+      genrekeys()
+        .then((res) => {
+          setGenres(res.genres);
+        //   console.log('genress search', genres)
+        })
+    }, [])   
+  const handleGenreChange = (selectedOption,actionMeta) => {
+    getSelected(selectedOption)
+    console.log('selectopption',selectedOption)
+    console.log('selected',selected)
+    setpage(1);
+    setMovies([])
+    if(actionMeta.action === 'clear'){
+        getSelected('')
+        console.log('clear',actionMeta)
+        setpage(1)
+        setMovies([])
+    }
+    else if(selectedOption === ''){
+    console.log('clear multi',selectedOption)
+    setMovies([])
+        setpage(1)
+    }
+  }
     const handleScroll = () => {
         if (
-            window.innerHeight + document.documentElement.scrollTop + 20 >= document.documentElement.scrollHeight && !loading
+            window.innerHeight + document.documentElement.scrollTop + 200 >= document.documentElement.scrollHeight && !loading
         ) {
             setpage((prev) => prev + 1);
         }
     }
-    
+
     const nextpage = () => {
         setpage(page + 1)
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }
-    useEffect(()=>{
-        fetchmovie(page)
-    },[page])
     return (
         <>
             <Helmet>
@@ -135,14 +143,15 @@ export function Upcominglist() {
                             </div>
 
 
-                            <article className='grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-6  gap-1 sm:gap-4'>
-                                {selected ? (genresMovie.map((data, index) => (
-                                    <MovieCard key={index} data={data} />
-                                ))) : (movie.map((data, index) => (
-                                    <MovieCard key={index} data={data} />
-                                )))
-                                }
-                            </article>
+                            {loading1 ? <Loadinglist /> :
+                                <article className='grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-6  gap-1 sm:gap-4'>
+                                    {
+                                     (movies.map((data, index) => (
+                                        <MovieCard key={index} data={data} />
+                                    )))
+                                    }
+                                </article>
+                            }
                             <div className='w-full text-center mt-10'>
                                 {
                                     totalpage !== page && <button className='dark:text-gray-900 border-sky-500 dark:border-gray-800  border text-secondary hover:bg-slate-400 hover:text-gray-900  p-3 text-base md:text-xl rounded-lg ' onClick={nextpage}> See more

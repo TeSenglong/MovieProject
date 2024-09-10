@@ -31,13 +31,9 @@ export default function Search() {
     //     dispatch(searchMovieAction({ query, page }))
     // }, [query, page, dispatch])
     useEffect(() => {
-
             dispatch(searchMovieAction({ query, page }))
             setMoviess(prevMovies => [...prevMovies, ...movies]);
-  
             console.error('Error fetching movies:', error);
-        
-
     }, [movies.results,query, page, dispatch]);
     // useEffect(() => {
     //     // setqloading(true)
@@ -127,28 +123,46 @@ export default function Search() {
         </div>
     )
 }
-export function Searching() {
+export function Searching({results}) {
     const [moviess, setMoviess] = useState([])
     const dispatch = useDispatch()
-    const { movies, status, error } = useSelector(state => state.movies)
+    // const { movies, status, error } = useSelector(state => state.movies)
     const [query, setquery] = useState("")
+    const navigate=useNavigate()
+    const [page,setpage]=useState(1)
     let handleSubmit = (e) => {
         e.preventDefault()
         // get what user input
+        navigate('/demo')
         console.log("handle submit click");
     }
-    useEffect(() => {
-        if (movies.results) {
-            setMoviess(prevMovies => [...prevMovies, ...movies.results]);
-        } else if (error) {
-            console.error('Error fetching movies:', error);
-        }
+    const searchMovie = (value) => {
+         fetch(`https://api.themoviedb.org/3/search/movie?api_key=4113f3ad734e747a5b463cde8c55de42&query=${encodeURIComponent(query)}&page=${page}`)
+        .then((data)=>data.json())
+        .then((json) => {
+            const data = json.results.filter((movie)=>{
+                return (
+                    value &&
+                    movie && 
+                    movie.title && 
+                    movie.title.toLowerCase().includes(value)
+                )
+            });
+            // console.log(data);
+            results(data)
 
-    }, [movies.results]);
+          });
+      };
+    const handleChange = (value) => {
+        setquery(value)
+        console.log('queryyy',query)
+        searchMovie(value)
+    }
+
     return (
         <form
             onSubmit={handleSubmit}
-            className="w-1/2 max-w-screen-md mx-auto md:mx-0 mb-5 ">
+            className=" mb-1 ">
             <label for="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
             <div className="relative">
                 <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -156,12 +170,11 @@ export function Searching() {
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                     </svg>
                 </div>
-                <input value={movies.index}
-                    onChange={(e) => {
-                        console.log(e)
-                        setquery(e.target.value)
-                    }}
+                <input value={query}
+                    onChange={(e) => handleChange(e.target.value)
+                    }
                     type="text" id="default-search" className="block w-full md:p-4 md:pl-10 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Movies...." required />
+                    
                 <button type="submit" className="text-white hidden sm:block absolute end-2.5 bottom-1 md:bottom-2.5 bg-primary hover:bg-blue-950 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-1 md:px-4 md:py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
             </div>
         </form>

@@ -12,7 +12,7 @@ export default function Navbar() {
   const [theme, setTheme] = useState("light");
   const handleSwitchTheme = () => {
     console.log(secureLocalStorage.getItem("color-theme"));
-    if (secureLocalStorage.getItem("color-theme") == "light"){
+    if (secureLocalStorage.getItem("color-theme") == "light") {
       secureLocalStorage.setItem("color-theme", "dark");
       document.documentElement.classList.add("dark");
       setTheme("dark");
@@ -24,59 +24,27 @@ export default function Navbar() {
   };
   return (
     <nav id='hidenn' className="backdrop-blur-xl  fixed z-30 top-0 w-full   border-gray-200 dark:bg-gray-900">
-      <div className=" flex flex-wrap items-center justify-between mx-auto p-1 ">
+      <div className=" flex  items-center justify-between  p-1 ">
         <Link to='/' className="flex items-center space-x-3 rtl:space-x-reverse">
-        <img className='pl-5 w-28  sm:w-40 sm:h-16' src={logo} />
+          <img className='pl-5 w-28  sm:w-40 sm:h-16' src={logo} />
           {/* <span className="self-center pl-4 md:pl-2  md:text-2xl font-semibold whitespace-nowrap text-secondary font-moulbali">មហោរី</span> */}
         </Link>
-         <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-          {/* <button type="button" className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
-            <span className="sr-only">Open user menu</span>
-            <img className="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-3.jpg" alt="user photo" />
-          </button> */}
- 
-          {/* <div className="z-50 hidden my-4 text-base list-none rounded-lg shadow bg-slate-500 dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
-            <div className="px-4 py-3">
-              <span className="block text-sm text-gray-900 dark:text-white">Bonnie Green</span>
-              <span className="block text-sm  text-gray-200 truncate dark:text-gray-400">name@flowbite.com</span>
-            </div>
-            <ul className="py-2" aria-labelledby="user-menu-button">
-              <li>
-                <Link to='/dashboard' className="block px-4 py-2 text-sm text-gray-100 hover:text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</Link>
-              </li>
-              <li>
-                <a href="#" className="block px-4 py-2 text-sm text-gray-100 hover:text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
-              </li>
-              <li>
-                <a href="#" className="block px-4 py-2 text-sm text-gray-100 hover:text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Earnings</a>
-              </li>
-              <li>
-                <a href="#" className="block px-4 py-2 text-sm text-gray-100 hover:text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
-              </li>
-            </ul>
-          </div> */}
-          
-          <button data-collapse-toggle="navbar-user" type="button" className="inline-flex mr-10 items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-user" aria-expanded="false">
-            <span className="sr-only">Open main menu</span>
-            <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
-            </svg>
-          </button>
 
-        </div> 
-        <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
+      
+
+        <div className="items-center justify-between hidden w-full md:flex md:w-auto " id="navbar-user">
           <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-            <li> 
+            <li>
               <Link onClick={() => {
                 window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
               }}
-              to="/" className="block py-2 px-3 text-xl  text-secondary dark:text-white rounded md:bg-transparent md:hover:text-blue-700  md:p-0" >Home</Link>
+                to="/" className="block py-2 px-3 text-xl  text-secondary dark:text-white rounded md:bg-transparent md:hover:text-blue-700  md:p-0" >Home</Link>
             </li>
             <li>
               <Link onClick={() => {
                 window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
               }}
-              to="/person" className="block text-xl  py-2 px-3 text-secondary rounded hover:bg-gray-500 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">People</Link>
+                to="/person" className="block text-xl  py-2 px-3 text-secondary rounded hover:bg-gray-500 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">People</Link>
             </li>
             <li>
               <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" className="flex items-center justify-between w-full py-2 px-3 text-secondary rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent text-xl  ">Movie <svg className="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -86,56 +54,56 @@ export default function Navbar() {
                 <ul className="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
                   <li>
                     <Link onClick={() => {
-                window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-              }}
-                    to="/popularlist" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Popular</Link>
+                      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+                    }}
+                      to="/popularlist" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Popular</Link>
                   </li>
                   <li>
                     <Link onClick={() => {
-                window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-              }}
-                    to="/nowplayinglist" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Nowplaying</Link>
+                      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+                    }}
+                      to="/nowplayinglist" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Nowplaying</Link>
                   </li>
                   <li>
                     <Link onClick={() => {
-                window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-              }}
-                    to='/topratelist' className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">TopRate</Link>
+                      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+                    }}
+                      to='/topratelist' className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">TopRate</Link>
                   </li>
                   <li>
                     <Link onClick={() => {
-                window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-              }}
-                    to="/upcominglist" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">UpComing</Link>
+                      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+                    }}
+                      to="/upcominglist" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">UpComing</Link>
                   </li>
                   <li>
                     <Link onClick={() => {
-                window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-              }}
-                    to="/trendinglist" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Trending</Link>
+                      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+                    }}
+                      to="/trendinglist" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Trending</Link>
                   </li>
                 </ul>
               </div>
             </li>
             <li>
-              <button id="dropdownNavbarLinkk" data-dropdown-toggle="dropdownNavbarr" 
-              className="text-xl  flex items-center justify-between w-full py-2 px-3 text-secondary rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
+              <button id="dropdownNavbarLinkk" data-dropdown-toggle="dropdownNavbarr"
+                className="text-xl  flex items-center justify-between w-full py-2 px-3 text-secondary rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
               >About <svg className="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
-              </svg></button>
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+                </svg></button>
               <div id="dropdownNavbarr" className="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
                 <ul className="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
                   <li>
                     <Link onClick={() => {
-                window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-              }}
-                    to="/about" className="block  px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">About</Link>
+                      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+                    }}
+                      to="/about" className="block  px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">About</Link>
                   </li>
                   <li>
                     <Link onClick={() => {
-                window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-              }}
-                    to="/dashboard" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</Link>
+                      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+                    }}
+                      to="/dashboard" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</Link>
                   </li>
                 </ul>
               </div>
@@ -146,7 +114,7 @@ export default function Navbar() {
                 aria-label="Toggle dark mode"
                 data-testid="dark-theme-toggle"
                 type="button"
-                class="rounded-lg p-2.5 text-sm text-gray-500 hover:bg-gray-100   dark:text-gray-400 dark:hover:bg-gray-700 "
+                className="rounded-lg p-2.5 text-sm text-gray-500 hover:bg-gray-100   dark:text-gray-400 dark:hover:bg-gray-700 "
               >
                 <svg
                   stroke="currentColor"
@@ -155,7 +123,7 @@ export default function Navbar() {
                   viewBox="0 0 20 20"
                   aria-hidden="true"
                   aria-label="Currently dark mode"
-                  class="h-5 w-5"
+                  className="h-5 w-5"
                   height="1em"
                   width="1em"
                   xmlns="http://www.w3.org/2000/svg"
@@ -169,7 +137,7 @@ export default function Navbar() {
                 aria-label="Toggle dark mode"
                 data-testid="dark-theme-toggle"
                 type="button"
-                class="rounded-lg p-2.5 text-sm text-gray-500 hover:bg-gray-100   dark:text-gray-400 dark:hover:bg-gray-700 "
+                className="rounded-lg p-2.5 text-sm text-gray-500 hover:bg-gray-100   dark:text-gray-400 dark:hover:bg-gray-700 "
               >
                 <svg
                   stroke="currentColor"
@@ -178,7 +146,7 @@ export default function Navbar() {
                   viewBox="0 0 20 20"
                   aria-hidden="true"
                   aria-label="Currently light mode"
-                  class="h-5 w-5"
+                  className="h-5 w-5"
                   height="1em"
                   width="1em"
                   xmlns="http://www.w3.org/2000/svg"
@@ -193,6 +161,30 @@ export default function Navbar() {
             )}
 
           </ul>
+        </div>
+        <Link to={'/search'} onClick={() => {
+                    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });}} >
+        <button className=' absolute right-5 top-3 hidden md:flex  hover:bg-sky-700 hover:translate-y-2 hover:transition-all cursor-pointer w-auto bg-gray-800 p-2 rounded-md fill-sky-500' >
+          <p className='pr-2 text-white'>Search</p>
+          <svg className='w-7 hover:fill-white' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM241 119c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l31 31L120 184c-13.3 0-24 10.7-24 24s10.7 24 24 24l118.1 0-31 31c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l72-72c9.4-9.4 9.4-24.6 0-33.9l-72-72z" /></svg>
+        </button>
+        </Link>
+        <div className="flex items-center mr-2">
+          <button data-collapse-toggle="navbar-user" type="button" className="inline-flex mr-2 items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-user" aria-expanded="false">
+            <span className="sr-only">Open main menu</span>
+            <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
+            </svg>
+          </button>
+          <Link to={'/search'} onClick={() => {
+                    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });}} >
+          <button className=' md:hidden flex  hover:bg-sky-700 hover:translate-y-2 hover:transition-all cursor-pointer mr-3 w-auto bg-gray-800 p-2 rounded-md fill-sky-500' >
+          <p className='pr-2 hidden text-white'>Search</p>
+          <svg className='w-7 hover:fill-white' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM241 119c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l31 31L120 184c-13.3 0-24 10.7-24 24s10.7 24 24 24l118.1 0-31 31c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l72-72c9.4-9.4 9.4-24.6 0-33.9l-72-72z" /></svg>
+        </button>
+          </Link>
         </div>
       </div>
     </nav>

@@ -11,7 +11,6 @@ import React, { lazy, Suspense, useEffect } from 'react';
 import Popularpeople from './pages/Popularpeople';
 
 import PopularList from './pages/PopularList';
-import Search from './components/Search';
 import CreditsActor from './pages/CreditsActor';
 import Dashboard from './pages/Dashboard';
 import { Nowplayinglist } from './pages/Nowplayinglist';
@@ -24,7 +23,6 @@ import Aos from 'aos';
 import 'aos/dist/aos.css';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import SearchMovie from './pages/SearchMovie';
-import Search1 from './pages/Search1';
 function App() {
   useEffect(() => {
     Aos.init();
@@ -44,8 +42,7 @@ function App() {
         <Route path='/dashboard' element={<Dashboard />} />
         <Route path='/creditsactor/:id' element={<CreditsActor />} />
         <Route path='/about' element={<About/>} />
-        {/* <Route path='/search' element={<SearchMovie />} /> */}
-        <Route  path='/search1' element={<Search1/>} />
+        <Route path='/search' element={<SearchMovie />} />
       </Route>
       <Route path='/contact' element={<Contact />} />
     </Routes>

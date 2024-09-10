@@ -24,7 +24,11 @@ export const fetchMovieAction = createAsyncThunk('/movies/fetchmoviess',async ({
         const res = await fetch(`${BASE_URL}/discover/movie${API_key}&page=${page}`)
         const data = await res.json()
         console.log('discover' ,data)
-        return data
+        // console.log('data.results',data.results,'data.total_pages',data.total_pages)
+        return {
+            movies:data.results,
+            totalPages:data.total_pages,
+        }
     }catch (error){
         return Promise.resolve(error)
     }

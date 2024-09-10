@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import secureLocalStorage from 'react-secure-storage'
 import logo from '../icon/another logo .jpg'
+import '../style/style'
 export default function Navbar() {
 
   useEffect(() => {
@@ -22,9 +23,26 @@ export default function Navbar() {
       document.documentElement.classList.remove("dark");
     }
   };
+  const [lastScrollTop, setLastScrollTop] = useState(0);
+  const [navStyle, setNavStyle] = useState({ top: '0' });
+
+  useEffect(() => {
+      const handleScroll = () => {
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          if (scrollTop > lastScrollTop) {
+              setNavStyle({ top: '-80px' });
+          } else {
+              setNavStyle({ top: '0' });
+          }
+          setLastScrollTop(scrollTop);
+      };
+
+      window.addEventListener('scroll', handleScroll);
+      return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollTop]);
   return (
     <>
-    <nav id='hidenn' className="backdrop-blur-xl  fixed z-30 top-0 w-full   border-gray-200 dark:bg-gray-900">
+    <nav id='navbar' style={navStyle} className=" duration-500 transition-all backdrop-blur-xl md:h-20  fixed z-30 top-0 w-full   border-gray-200 dark:bg-gray-900">
       <div className=" flex flex-wrap items-center justify-between mx-auto p-1 ">
         <Link to='/' className="flex items-center space-x-3 rtl:space-x-reverse">
           <img className='pl-5 w-28 h-10  md:w-40 md:h-16' src={logo} />

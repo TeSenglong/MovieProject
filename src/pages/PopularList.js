@@ -21,20 +21,21 @@ const PopularList = () => {
     const [totalpage, settotalpage] = useState(2)
     const [page, setpage] = useState(1)
     const [movies, setMovies] = useState([])
-    const [loading1, setloading1] = useState(false)
+    const [loading1, setloading1] = useState(true)
 
 
 
     const [selected, getSelected] = useState('');//state use to hold data from onClick (genre.js)
     const fetchGenres = async (page) => {     //fetch data to select genre movies
         try {
+            setloading1(true)
             const res = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=4113f3ad734e747a5b463cde8c55de42&with_genres=${selected.map((genre) => genre.value).join(',')}&page=${page}&sort_by=popularity.desc`);
             const data = await res.json();
             setMovies(prevGenres => [...prevGenres, ...data.results]);
             console.log('genresPages',data)
             setTimeout(() => {
                 setloading1(false)
-            }, 1000);
+            }, 500);
             // console.log('genresmoiveee', data)
         } catch (error) {
             console.error('Error fetching genres:', error);
@@ -50,6 +51,9 @@ const PopularList = () => {
         setTimeout(() => {
             setloading(false)
         }, 1000)
+        setTimeout(() => {
+            setloading1(false)
+        }, 1000);
 
     }
     useEffect(() => {
@@ -73,6 +77,7 @@ const PopularList = () => {
     getSelected(selectedOption)
     console.log('selectopption',selectedOption)
     console.log('selected',selected)
+
     setpage(1);
     setMovies([])
     if(actionMeta.action === 'clear'){

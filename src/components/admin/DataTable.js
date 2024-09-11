@@ -12,7 +12,7 @@ export default function DataTablee() {
             sortable: true,
             width: "100px",
             hight: "fit-content",
-            
+
 
         },
         {
@@ -20,90 +20,101 @@ export default function DataTablee() {
             selector: row => <div className='w-auto' >{row.title}</div>,
             sortable: true,
             maxWidth: '200px',
-            wrap:true,
-            
+            wrap: true,
+
         },
         {
             name: 'Release Date',
             selector: row => <div>{row.release_date}</div>,
             width: "150px",
-            
+            sortable: true,
+
         },
         {
             name: 'Poster',
             selector: row => <img className='w-auto h-36' src={`https://image.tmdb.org/t/p/w500${row.poster_path}`} alt={row.title} />,
             width: "150px",
+            sortable: true,
         },
         {
             name: 'OverView',
             selector: row => <div className='flex flex-wrap' >{row.overview}</div>,
-            width: "500px", 
-            sortable: true, 
+            width: "500px",
+            sortable: true,
             wrap: true
-            
-        },
 
+        },
+        {
+            name: 'Popularity',
+            selector: row => <div>{row.popularity}</div>,
+            width: "150px",
+            sortable: true,
+
+        },
     ];
     createTheme('solarized', {
         text: {
-          primary: '#ffffff ',
-          secondary: '#2aa198',
+            primary: '#ffffff ',
+            secondary: '#2aa198',
         },
         background: {
-          default: '#111827',
+            default: '#111827',
         },
         context: {
-          background: '#cb4b16',
-          text: '#FFFFFF',
+            background: '#cb4b16',
+            text: '#FFFFFF',
         },
         divider: {
-          default: '#073642',
+            default: '#073642',
         },
         action: {
-          button: 'rgba(0,0,0,.54)',
-          hover: 'rgba(0,0,0,.08)',
-          disabled: 'rgba(0,0,0,.12)',
+            button: 'rgba(0,0,0,.54)',
+            hover: 'rgba(0,0,0,.08)',
+            disabled: 'rgba(0,0,0,.12)',
         },
-      }, 'dark');
-      createTheme('dark',{
-        background:{
-            default:'transparen',
+    }, 'dark');
+    createTheme('dark', {
+        background: {
+            default: 'transparen',
         }
-      });
+    });
     let handleSubmit = (e) => {
         e.preventDefault()
         // get what user input
         console.log("handle submit click");
     }
-    const { movies, status, error } = useSelector(state => state.movies)
+    const { movies, totalPages, status, error } = useSelector(state => state.movies)
     const dispatch = useDispatch()
     const [query, setquery] = useState("")
     const data = useState([])
-    const [page,setpage]=useState(1)
+    const [page, setpage] = useState(1)
     // useEffect(()=>{
     //     dispatch(fetchMovieAction())
     // },[])
 
     useEffect(() => {
-        if (query) {
+        if (query === '') {
             console.log('no result')
-            dispatch(searchMovieAction({page,query}))
+            dispatch(fetchMovieAction({ page }))
             console.log(movies)
         } else {
-            dispatch(fetchMovieAction({page}))
+            dispatch(searchMovieAction({ page, query }))
         }
-    }, [query,page])
-    const nextpage = () =>{
+    }, [query, page])
+    const nextpage = () => {
         setpage(page + 1)
     }
     return (
-        <article className='mt-20 p-10 m-auto'>
+        <article className='pt-20 p-10 m-auto'>
             <DataTable
                 columns={columns}
                 data={movies}
                 pagination
-                style={{overflow:'wrap'}}
+                style={{ overflow: 'wrap' }}
                 onChangePage={nextpage}
+                onChangeRowsPerPage={movies}
+                paginationTotalRows={totalPages}
+                paginationServer
                 subHeader
                 theme='solarized'
                 // paginationComponent={CustomMaterialPagination}
@@ -124,7 +135,6 @@ export default function DataTablee() {
                                     setquery(e.target.value)
                                 }}
                                 type="search" id="default-search" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search............." required />
-                            <button type="submit" class="text-white hidden sm:block  absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
                         </div>
                     </form>
 

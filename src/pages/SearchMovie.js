@@ -21,13 +21,10 @@ export default function SearchMovie() {
     const [pageN, setpage] = useState(1)
     const [hasmore, setHasmore] = useState(false)
     const [query, setquery] = useState("")
-    const [qloading, setqloading] = useState(false)
-    const dispatch = useDispatch()
 
     // const { movies, status, error } = useSelector(state => state.movies)
     // const results = useSelector((state)=> state.movies.movies)
     useEffect(() => {
-        
         setMovies([]);
         setpage(1); // Reset page number when query changes
       }, [query]);

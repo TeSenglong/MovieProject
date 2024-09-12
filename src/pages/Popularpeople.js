@@ -48,14 +48,17 @@ export default function Popularpeople() {
                 <meta property='og:image:height' content='300' />
             </Helmet>
             <main className='bg-gray-900 dark:bg-gray-300 pt-20 pb-10'>
+     
                 {
                     loading ? <Loading22 /> :
-                        <section className='w-11/12 m-auto' >
-                            <p className='text-secondary pt-5 text-xl md:text-3xl font-bold dark:text-gray-900 ' >Popular Actor </p>
+                        <section className='w-11/12 m-auto sm:mt-32 md:mt-40' >
+                                  <div className='w-4/5 absolute top-0 left-1/2 transform -translate-x-1/2  bg-logo m-auto h-3/5' >
+                                  </div>
+                            <p className='text-secondary pt-5 text-xl text-center md:text-3xl font-bold dark:text-gray-900  mt-5 sm:mt-10 lg:mt-10 ' >Popular Actor </p>
                             <article className=' mt-5 grid grid-cols-2 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4 justify-center' >
                                 {
                                     person.map((data, index) =>
-                                        <div key={index} className="w-auto h-auto bg-slate-800   flex-none mt-5 rounded-lg shadow dark:bg-gray-800">
+                                        <div key={index} className="w-auto h-auto  flex-none mt-5 rounded-lg shadow ">
                                             <Link onClick={() => {
                                                 window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
                                             }}
@@ -63,8 +66,8 @@ export default function Popularpeople() {
                                                 <div className="grid grid-cols-6 p-5 gap-2 h-full items-center justify-center">
                                                     <img className=" col-span-3 w-20 h-20 sm:w-28 sm:h-28 xl:w-36 xl:h-36 2xl:w-48 2xl:h-48  mr-5 rounded-full   shadow-lg" src={`https://image.tmdb.org/t/p/w500${data.profile_path}`} alt="" />
                                                     <div className=' col-span-3 flex flex-col xs:gap-2' >
-                                                        <p className="mb-1 2xl:text-3xl text-xs sm:text-base md:text-xl sm:font-medium text-gray-100 dark:text-white">{data.name}</p>
-                                                        <p className="text-xs 2xl:text-2xl md:text-sm text-gray-100 dark:text-gray-400">{data.known_for_department}</p>
+                                                        <p className="mb-1 2xl:text-3xl text-xs sm:text-base md:text-xl sm:font-medium text-gray-100 dark:text-gray-900">{data.name}</p>
+                                                        <p className="text-xs 2xl:text-2xl md:text-sm text-gray-100 dark:text-gray-600">{data.known_for_department}</p>
                                                         <p className='text-secondary 2xl:text-xl text-xs md-text-base' > Pop:  {data.popularity}</p>
                                                     </div>
                                                 </div>

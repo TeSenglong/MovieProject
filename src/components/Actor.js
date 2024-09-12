@@ -27,18 +27,18 @@ export default function Actor() {
     <>
       <Swiper
         slidesPerView={2}
-        autoplay={{
-          delay: 3000,
-          disableOnInteraction: false,
-        }}
+        // autoplay={{
+        //   delay: 3000,
+        //   disableOnInteraction: false,
+        // }}
         spaceBetween={10}
         breakpoints={{
           400: {
-            slidesPerView: 2,
+            slidesPerView: 3,
             spaceBetween: 5,
           },
           440: {
-            slidesPerView: 2,
+            slidesPerView: 3,
             spaceBetween: 10,
           },
           640: {
@@ -62,29 +62,29 @@ export default function Actor() {
             spaceBetween: 20
           }
         }}
-        modules={[Pagination,Autoplay]}
+        modules={[Pagination, Autoplay]}
         className="mySwiper"
       >
         {
           loading ? <Loading2 /> : actor.map((data) =>
-            <SwiperSlide className="w-36 flex-none transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-95  duration-300 border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <SwiperSlide>
               <div data-aos="zoom-in" data-aos-offset="200"
-                className="w-auto bg-slate-500 h-32 flex-none rounded-lg shadow dark:bg-gray-800">
+                className="  w-auto  h-32 flex-none  rounded-lg shadow ">
                 <Link onClick={() => {
                   window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
                 }}
                   to={`/creditsactor/${data.id}`}>
-                  <div className="flex gap-2 p-3 h-full items-center justify-center">
+                  <div className=" relative flex justify-center gap-2 p-3 h-full">
                     <LazyLoadImage
                       effect="blur"
                       wrapperProps={{
                         // If you need to, you can tweak the effect transition using the wrapper style.
                         style: { transitionDelay: "1s" },
                       }}
-                      className=" w-20 h-20 md:w-24  md:h-24  rounded-full   shadow-lg"
+                      className="hover:translate-x-1 hover:scale-125  transition-all flex-none w-20 h-20 md:w-24  md:h-24  rounded-full   shadow-lg"
                       src={`https://image.tmdb.org/t/p/w500${data.profile_path}`}
                       alt={data.name} />
-                    <div>
+                    <div className='hidden absolute top-0 left-0'>
                       <p className="mb-1 text-base md:text-base font-medium text-gray-100 dark:text-white">{data.name}</p>
                       <span className="text-xs text-gray-300 dark:text-gray-400">{data.character}</span>
                     </div>

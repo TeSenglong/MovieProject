@@ -3,7 +3,7 @@ import { getactor } from '../services/products'
 import { Link, useParams } from 'react-router-dom'
 import { Loading1, Loading2 } from './Loading'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Pagination } from 'swiper/modules'
+import { Autoplay, Pagination } from 'swiper/modules'
 import 'swiper/swiper-bundle.css'
 import Aos from 'aos'
 import 'aos/dist/aos.css';
@@ -27,6 +27,10 @@ export default function Actor() {
     <>
       <Swiper
         slidesPerView={2}
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: false,
+        }}
         spaceBetween={10}
         breakpoints={{
           400: {
@@ -58,7 +62,7 @@ export default function Actor() {
             spaceBetween: 20
           }
         }}
-        modules={[Pagination]}
+        modules={[Pagination,Autoplay]}
         className="mySwiper"
       >
         {

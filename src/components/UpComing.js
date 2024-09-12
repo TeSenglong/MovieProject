@@ -30,6 +30,11 @@ export default function UpComing() {
 
                 effect={'coverflow'}
                 grabCursor={true}
+                autoplay={{
+                    delay: 5000,
+                    disableOnInteraction: false,
+                  }}
+                
                 centeredSlides={true}
                 slidesPerView={'1'}
                 breakpoints={{
@@ -46,7 +51,7 @@ export default function UpComing() {
                     slideShadows: true,
                 }}
                 pagination={true}
-                modules={[EffectCoverflow, Pagination]}
+                modules={[EffectCoverflow, Pagination,Autoplay]}
                 className="mySwiper"
             >
                 {

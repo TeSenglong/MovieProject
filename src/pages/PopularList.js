@@ -143,7 +143,7 @@ const PopularList = () => {
                                     selected ?
                                         <h2 className='text-xl z-10 text-secondary dark:text-sky-900 md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl sm:mb-10 mb-5  text-center  ' >{selected.map((genre) => genre.label)}</h2>
 
-                                        : <h2 className='text-xl font-bold z-10 text-secondary dark:text-sky-900 md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl sm:mb-10 mb-5 text-center' >Popular movies</h2>
+                                        : <h2 className='text-xl font-bold z-10 text-secondary dark:text-sky-900 md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl sm:mb-10 mb-5 text-center' >Popular Movies</h2>
                                 }
 
                             </div>

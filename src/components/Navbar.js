@@ -43,7 +43,7 @@ export default function Navbar() {
     <>
     <nav id='navbar' style={navStyle} className=" duration-500 transition-all backdrop-blur-xl md:h-20  fixed z-30 top-0 w-full   border-gray-200 dark:bg-gray-900">
       <div className=" flex flex-wrap items-center justify-between mx-auto p-1 ">
-        <Link to='/' className="flex items-center space-x-3 rtl:space-x-reverse">
+        <Link to='/' className="flex hover:scale-110 transition-all items-center space-x-3 rtl:space-x-reverse">
           <img className='pl-5 w-28 h-10  md:w-40 md:h-16' src={logo} />
           {/* <span className="self-center pl-4 md:pl-2  md:text-2xl font-semibold whitespace-nowrap text-secondary font-moulbali">មហោរី</span> */}
         </Link>

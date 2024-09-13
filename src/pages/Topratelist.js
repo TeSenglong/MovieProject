@@ -27,7 +27,7 @@ export function Topratelist() {
     const [selected, getSelected] = useState('');//state use to hold data from onClick (genre.js)
     const fetchGenres = async (page) => {     //fetch data to select genre movies
         try {
-            setloading1(true)
+            // setloading1(true)
             const res = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=4113f3ad734e747a5b463cde8c55de42&with_genres=${selected.map((genre) => genre.value).join(',')}&page=${page}&sort_by=popularity.desc`);
             const data = await res.json();
             setMovies(prevGenres => [...prevGenres, ...data.results]);

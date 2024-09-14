@@ -72,6 +72,7 @@ export default function PopularSwiper() {
           spaceBetween: 20,
         }
       }}
+        touchEventsTarget='container'
       modules={[Pagination]}
       className="mySwiper"
     >

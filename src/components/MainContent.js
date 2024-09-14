@@ -50,6 +50,7 @@ export default function MainContent() {
     delay: 5000,
     disableOnInteraction: false,
   }}
+  touchEventsTarget='container'
   mousewheel={true}
   onAutoplayTimeLeft={onAutoplayTimeLeft}
   keyboard={true}

@@ -1,6 +1,6 @@
 
 import { initFlowbite } from 'flowbite';
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import secureLocalStorage from 'react-secure-storage'
 import logo from '../icon/another logo .jpg'
@@ -22,26 +22,23 @@ export default function Navbar() {
       document.documentElement.classList.remove("dark");
     }
   };
-  const lastScrollTop = useRef(0);
+  const [lastScrollTop, setLastScrollTop] = useState(0);
   const [navStyle, setNavStyle] = useState({ top: '0' });
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      if (scrollTop > lastScrollTop.current) {
-        setNavStyle({ top: '-80px' });
-      } else {
-        setNavStyle({ top: '0' });
-      }
-      lastScrollTop.current = scrollTop;
-    };
+      const handleScroll = () => {
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          if (scrollTop > lastScrollTop) {
+              setNavStyle({ top: '-80px' });
+          } else {
+              setNavStyle({ top: '0' });
+          }
+          setLastScrollTop(scrollTop);
+      };
 
-    const debouncedHandleScroll = debounce(handleScroll, 100);
-
-    window.addEventListener('scroll', debouncedHandleScroll);
-    return () => window.removeEventListener('scroll', debouncedHandleScroll);
-  }, []);
-
+      window.addEventListener('scroll', handleScroll);
+      return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollTop]);
   return (
     <>
     <nav id='navbar' style={navStyle} className=" duration-500 transition-all backdrop-blur-xl md:h-20  fixed z-30 top-0 w-full   border-gray-200 dark:bg-gray-900">
@@ -215,13 +212,5 @@ export default function Navbar() {
     </nav>
 
     </>
-
   )
-}
-function debounce(func, wait) {
-  let timeout;
-  return function (...args) {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => func.apply(this, args), wait);
-  };
 }

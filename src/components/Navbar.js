@@ -28,7 +28,9 @@ export default function Navbar() {
   useEffect(() => {
       const handleScroll = () => {
           const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-          if (scrollTop > lastScrollTop) {
+          const halfScreenHeight = window.innerHeight / 2;
+
+          if (scrollTop > lastScrollTop && scrollTop > halfScreenHeight) {
               setNavStyle({ top: '-80px' });
           } else {
               setNavStyle({ top: '0' });
